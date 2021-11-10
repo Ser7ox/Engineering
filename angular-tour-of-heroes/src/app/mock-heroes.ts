@@ -1,15 +1,15 @@
 import { Hero } from './hero';
 
-export const HEROES: Hero[] = [
-    { ID: 1, Nome: "Tempesta" },
-    { ID: 2, Nome: "Cap. America" },
-    { ID: 3, Nome: "Iron Man" },
-    { ID: 4, Nome: "Superman" },
-    { ID: 5, Nome: "Batman" },
-    { ID: 6, Nome: "Antman" },
-    { ID: 7, Nome: "Aquaman" },
-    { ID: 8, Nome: "Thor Ragnarok" },
-    { ID: 9, Nome: "Cap. Marvel" },
-    { ID: 10, Nome: "Hulk" }
+export const heroes: Hero[] = [
+    { id: 1, name: "Tempesta" },
+    { id: 2, name: "Cap. America" },
+    { id: 3, name: "Iron Man" },
+    { id: 4, name: "Superman" },
+    { id: 5, name: "Batman" },
+    { id: 6, name: "Antman" },
+    { id: 7, name: "Aquaman" },
+    { id: 8, name: "Thor Ragnarok" },
+    { id: 9, name: "Cap. Marvel" },
+    { id: 10, name: "Hulk" }
 
 ]

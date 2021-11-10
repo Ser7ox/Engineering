@@ -7,17 +7,33 @@ label {
     padding: .5rem;
   }
   button {
-    margin-top: 20px;
-    background-color: #eee;
     padding: 1rem;
+    text-decoration: none;
+    margin-top: 20px;
+    display: inline-block;
+    background-color: #e8e8e8;
+    color: #3d3d3d;
     border-radius: 4px;
-    font-size: 1rem;
+    margin-right: 25px;
+    border: 0px;
+
   }
   button:hover {
-    background-color: #cfd8dc;
+    color: white;
+    background-color: #42545C;
   }
-  button:disabled {
-    background-color: #eee;
-    color: #ccc;
-    cursor: auto;
+
+  button:active {
+    background-color: black;
+  }
+
+  .componenti {
+    text-align: center; 
+  }
+  .label1 {
+    margin-right: 305px;
+  }
+
+  input {
+    border-radius: 4px;
   }
