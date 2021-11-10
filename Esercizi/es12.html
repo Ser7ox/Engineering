@@ -1,0 +1,26 @@
+<html>
+<head> 
+	<style>
+		body { text-align: center; margin-top: 200px;}
+	</style>
+<script>
+function creapar() {
+	var div = document.createElement("div");
+	var attr = document.createAttribute("id");
+	var p = document.createElement("p"); 
+	p.innerHTML = 'New Paragraph'; 
+	attr.value="mainDiv";
+	div.setAttributeNode(attr);
+	div.appendChild(p); 
+	document.body.appendChild(div);
+}
+		</script>
+</head>
+<body>
+	<h2>Title</h2>
+	<div id="mainDiv">
+		<p>Paragraph</p>
+		<button onclick="creapar()"> Clicca qui per aggiungere paragrafo </button>
+	</div>
+</body>
+</html>

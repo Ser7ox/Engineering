@@ -1,0 +1,247 @@
+JAVASCRIPT
+
+1. A cosa serve la parola chiave "this"?
+
+1. Inizio con un esempio:
+<html>
+<head>
+<script>
+        var squadra = function (allenatore, capitano) {
+            this.allenatore= allenatore;
+            this.capitano= capitano;
+            this.stampaVariabili = function() {
+                alert("Allenatore: " + this.allenatore + "\n" + "Capitano: " + this.capitano)
+            }
+        }
+        var prova = new squadra("Mourinho", "Pellegrini")
+        prova.stampaVariabili();
+</script>
+</head>
+</body> <h1> Ciao </h1> </body>
+</html>
+
+Invece di scrivere squadra.allenatore... oppure squadra.capitano... possiamo usare la parola chiave this per riferirci all'oggetto ( squadra ).
+
+2. Cos'è una arrow function? 
+
+2.  L'arrow function permette un'invocazione in maniera compatta eliminando notazioni che in una normale invocazione dovrebbero esserci.
+Esempio con una funzione senza la sintassi arrow function:
+var FunzioneMoltiplica = function (a, b) {
+	return a * b;
+};
+
+con la sintassi arrow function quello descritto sopra diventerebbe:
+var FunzioneMoltiplica = (a, b) => a*b;
+
+C'è da considerare che l'arrow function ha delle limitazioni, esempio:
+var prova = {
+	x: "ciao",
+	FunzioneParola: function() { console.log(this.x); },
+	FunzioneArrow: () => console.log(this.x)
+};
+prova.FunzioneParola()
+prova.FunzioneArrow()
+
+su FunzioneParola() verrà mostrata sulla console la parola ciao mentre su FunzioneArrow no, perché quel metodo ha this che non rappresenta l'oggetto prova, pertanto sulla console verrà stampato undefined.
+
+3. Cos'è una promise?
+
+3.  La sintassi per un oggetto promise è questa:
+let promise = new Promise(function(resolve, reject) {
+}
+
+La funzione che viene passata è chiamata esecutore e viene eseguita in automatico. Contiene il codice produttore che produrrà solo un risultato, value oppure error.
+Resolve e reject sono definite di default da javascript, la prima fornisce risultato value se il processo termina correttamente, la seconda fornisce risultato error se c'è un errore.
+L'esecutore quindi mette promise in uno di questi due stati, che hanno due proprietà interne: state e result.
+State è inizialmente in stato pending e cambia in fulfilled se viene invocato resolve, in rejected altrimenti.
+Result è inizialmente undefined, cambia in value se viene invocato resolve, in error altrimenti.
+L'oggetto promise fa da collegamento tra l'esecutore e le funzioni consumatore che riceveranno il risultato o l'errore. Queste funzioni sono subscribed dai metodi then, catch e finally.
+Il then è il più importante, la sintassi è la seguente:
+promise.then(
+  function(result) {  },
+  function(error) {  }
+);
+Il primo argomento di .then è una funzione che esegue quando una promise viene risolta, e ne riceve il risultato.
+
+Il secondo argomento di .then è una funzione che esegue quando una promise viene rifiutata e riceve l’errore.
+
+4. A cosa serve lo spread operator? Fornire un esempio.
+
+4. Lo spread operator si indica con i tre puntini e può essere utilizzato per estrarre i valori da un array mettendo i tre puntini prima del nome dell'array. Oppure per estrarli inserendoli in un altro array. Esempio:
+let list = [0, 1, 2];
+let list2 = [...list, 3, 4, 5];
+
+console.log(list2); // [0, 1, 2, 3, 4, 5]
+
+5.  Dato il seguente HTML:
+
+<input type="text" id="myText" value="Text">
+<p class="myParagraph">Paragraph 1</p>
+
+Utilizzare il DOM per nascondere il tag "p" quando l'input con id "myText" perde il focus.
+
+5.  File allegato 'es5.html'
+
+6. Spiegare a cosa servono i metodi call(), apply() e bind() e la differenza tra essi.
+
+6. Creiamo un oggetto persona con al suo interno due proprietà e un metodo:
+
+var persona {
+nome = 'Flavio',
+cognome = 'Fantasia',
+NomeCognome: function () {
+	var NomCog = this.nome + ' ' + this.cognome
+	return NomCog
+
+Fatto questo, creo logutente () che è una funzione che esiste al di fuori dell'oggetto persona.
+
+var logutente = function () {
+
+	console.log('Loggato: ' + this.NomeCognome())
+}
+
+Ora se richiamo logutente() uscirà errore perchè il this inserito in logutente punta all'oggetto globale che non dispone di NomeCognome. Uso bind() e il problema si risolve. Aggiungo questo pezzo di codice a logutente(): 
+var logcorretto = logutente.bind(persona)
+
+logcorretto() // Loggato: Flavio Fantasia
+
+Call() a differenza di bind() non crea una copia di una funzione, ma ti consente di passare il riferimento "this" e invoca la funzione subito.
+
+Apply() invece fa la stessa identica cosa di call() ma vuole che gli argomenti della funzione originale vengano passati come array.
+
+
+7. Utilizzare il DOM per cambiare il valore del seguente input al focus:
+
+<input type="text" id="myText" value="Hello">
+
+7. File allegato 'es7.html'
+
+8. Perché "0 == false" restituisce "true" e "0 === false" restituisce "false"?
+
+8. Perché nel primo caso 0 è visto come un valore numerico e come sappiamo 0 rappresenta un valore falso. Difatti 0 == false verifica l'uguaglianza del valore 0 (false) con "false" e restituisce appunto true.
+0 === false restituisce false perché i tre uguali effettuano l'operazione di uguaglianza stretta, ovvero i valori devono essere esattamente uguali tra loro, ma in questo caso 0 e false non sono uguali. 
+Se ci fosse stato 1 === 1 allora la restituzione sarebbe stata true. 
+
+9. Creare un array di interi di dimensione 10 e inizializzarlo con dei valori a piacere.
+Aggiungere poi 1 ad ogni elemento dell'array ed infine rimuovere tutti gli elementi pari.
+
+9. File allegato 'es9.html'
+
+10. Stampare su console il contenuto del tag "h1" senza modificare il seguente HTML: 
+
+<div id="mainDiv">
+	<h1>Titolo</h1>
+	<p>Un paragrafo</p>
+	<p>Un altro paragrafo</p>
+</div>
+
+10.  Basta inserire nel tag script di html questa riga di codice:
+
+var element = document.getElementsByTagName("h1");
+
+Successivamente, per stampare sulla console il contenuto di h1 basta utilizzare questa riga di codice:
+
+console.log(element[0])
+
+Commento: Prendere l'h1 di quel specifico tag h1.
+
+11. Scrivere una arrow function che estrae la prima metà di una stringa di lunghezza dispari.
+
+11. 
+
+let estrai = (str) => {
+if (str.length % 2 == 1) 
+	posizione = str.length/ 2 + 1;
+	else { 
+		posizione = str.length / 2;
+}
+return str.substring(0, posizione)
+}
+
+console.log(estrai("armadio"));
+
+
+
+12. Aggiungere un secondo paragrafo dal contenuto "New Paragraph" all'interno del tag "div".
+
+<h2>Title</h2>
+<div id="mainDiv">
+	<p>Paragraph</p>
+</div>
+
+12. File allegato 'es12.html'
+
+13. Indicare se i seguenti pezzi di codice sono corretti e qual è il risultato finale:
+
+-	var numeri = {
+    	x: 10,
+    	y: 5,
+    	calculate: function() {
+		var result = function() { return this.x + this.y };
+        	return result();
+    	},
+    	print: () => console.log(this.x + ',' + this.y)
+	}
+	numeri.calculate();
+	numeri.print();
+
+
+-	var x = "6";
+	var y = "2";
+	var z = x / y;
+
+
+-	var x = "10";
+	var y = x + 11;
+
+13. Il primo pezzo di codice non stampa niente, al posto di this va chiamato direttamente l'oggetto numeri. 
+La sintassi corretta è la seguente:
+
+var numeri = {
+    	x: 10,
+    	y: 5,
+    	calculate: function() {
+		var result = function() { return numeri.x + numeri.y };
+        	return result();
+    	},
+    	print: () => console.log(numeri.x + ',' + numeri.y)
+	}
+numeri.calculate(); // stampa 15
+numeri.print(); // stampa 10,5
+
+Il secondo pezzo di codice fornisce come risultato 3, poiché prende i valori numerici 6 e 2 e li divide tra loro.
+
+Il terzo pezzo di codice fornisce come risultato 1011, perché la variabile y facendo "x + 11" al suo interno prevede una concatenazione tra i due valori e non una somma. 
+
+14. Dato il seguente HTML: 
+
+<p class="example">Text 1</p>
+<p>Text 2</p>
+<button>Click me!</button>
+
+Rendere rosso il testo del tag "p" con classe "example" al click del bottone.
+
+14. File allegato 'es14.html'
+
+15. Salvare il numero di volte in cui il pulsante con id "btn" viene cliccato e mostrarlo all'interno del div "result":
+
+<button id="btn">Click me!</button>
+<div id="result"></div>
+
+15. File allegato 'es15.html'
+
+salvare i click in un var htmlweb storage htmllocal storage
+
+</body>
+</html>
+
+16. Creare un form contenente i seguenti input:
+- "Nome" e "Cognome", in cui non è possibile inserire caratteri numerici;
+- Una select "Paese" con valori "Italia", "Estero";
+- "Username" in cui è possibile inserire 3 caratteri qualsiasi, seguiti da un punto (opzionale) e da sole cifre numeriche (ad es: ap6.2020, mxt.33232, at62020999)
+
+Al click sul pulsante di submit, se il campo "Username" non è corretto dovrà apparire il messaggio "Username non valido".
+
+16. File allegato 'es16.html'
+form html 
+pattern 
