@@ -12,13 +12,14 @@ export class RubricaComponent implements OnInit {
 
   
   constructor() { 
-    let prova2 = new Prova("Mario");
   }
   ngOnInit(): void {
   }
   faCoffee = faCoffee;
 
-  
+  metodoprova = function () {
+    return Prova.name;
+  }
 
 }
 

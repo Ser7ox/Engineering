@@ -8,15 +8,6 @@ export class Prova {
         this.cognome = obj && obj.cognome || null;
         this.indirizzo = obj && obj.indirizzo || null;
     }
-    name() { 
-        return `${this.nome}`;
-    }
-    surname() { 
-        return `${this.cognome}`;
-    }
-    address() { 
-        return `${this.indirizzo}`;
-    }
   }
   
   
