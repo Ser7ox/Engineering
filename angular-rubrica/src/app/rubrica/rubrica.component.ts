@@ -12,6 +12,7 @@ export class RubricaComponent implements OnInit {
   person = Persone;
 
   constructor() { 
+    
   }
   ngOnInit(): void {
   }

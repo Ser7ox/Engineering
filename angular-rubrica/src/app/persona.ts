@@ -2,12 +2,14 @@ export class Persona {
     private _id: number;
     private _nome: string;
     private _cognome: string;
+    private _telefono: number;
     private _indirizzo: string;
 
-    constructor(_id: number, _nome: string, _cognome: string, _indirizzo: string) { 
+    constructor(_id: number, _nome: string, _cognome: string, _telefono: number, _indirizzo: string) { 
         this._id = _id;
         this._nome = _nome;
-        this._cognome = _cognome; 
+        this._cognome = _cognome;
+        this._telefono = _telefono;
         this._indirizzo = _indirizzo; 
     }
 
@@ -32,6 +34,13 @@ export class Persona {
         return this._cognome; //output -> _cognome
     }
 
+    public set telefono(telefono: number) {
+        this.telefono = telefono;  //passo in input al set il valore id interessato
+    }
+    public get telefono(): number {
+        return this.telefono; //output -> _telefono
+    }
+
     public set indirizzo(indirizzo: string) {
         this._indirizzo = indirizzo; //passo in input al set il valore indirizzo interessato
     }
@@ -41,5 +50,3 @@ export class Persona {
 }
   
 
-    
-    
