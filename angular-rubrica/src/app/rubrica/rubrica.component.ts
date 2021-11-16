@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Prova } from '../persona';
+import { Persone } from '../persona-server';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -10,6 +10,7 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 })
 export class RubricaComponent implements OnInit {
 
+  person = Persone;
   
   constructor() { 
   }
@@ -17,9 +18,7 @@ export class RubricaComponent implements OnInit {
   }
   faCoffee = faCoffee;
 
-  metodoprova = function () {
-    return Prova.name;
-  }
+
 
 }
 

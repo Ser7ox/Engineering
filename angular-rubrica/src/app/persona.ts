@@ -1,5 +1,5 @@
 
-export class Prova {
+export class Persona {
     nome: string;
     cognome: string;
     indirizzo: string;
