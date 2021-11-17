@@ -35,10 +35,10 @@ export class Persona {
     }
 
     public set telefono(telefono: number) {
-        this.telefono = telefono;  //passo in input al set il valore id interessato
+        this._telefono = telefono;  //passo in input al set il valore id interessato
     }
     public get telefono(): number {
-        return this.telefono; //output -> _telefono
+        return this._telefono; //output -> _telefono
     }
 
     public set indirizzo(indirizzo: string) {
