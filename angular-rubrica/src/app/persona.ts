@@ -4,7 +4,8 @@ export class Persona {
     private _sesso: string;
     private _telefono: number;
     private _indirizzo: string;
-  length: number;
+    length: number;
+    
 
     constructor(_nome: string, _cognome: string, _sesso: string, _telefono: number, _indirizzo: string) { 
         

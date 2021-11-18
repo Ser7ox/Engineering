@@ -4,16 +4,17 @@
                 <div class="col-lg-9 col-md-12 px-5 py-5">
                         <div class="table-responsive">
                             <table class="table table-responsive" *ngIf="person.length > 0">
+                                <thead>
                                     <tr>
-                                        <th scope="col">ID</th>
+                                        <th scope="col">#</th>
                                         <th scope="col">Nome</th>
                                         <th scope="col">Cognome</th>
                                         <th scope="col">Sesso</th>
                                         <th scope="col">Telefono</th>
-                                        <th scope="col"></th>
-                                        <th scope="col"></th>
-                                        <th scope="col"></th>
+                                        <th scope="col">Azioni user</th>
                                     </tr>
+                                </thead>
+                                <tbody>
                                     <tr *ngFor="let persona of person; let i=index;" >
                                         <th scope="row"> {{i}} </th>
                                         <td> {{ persona.nome }} </td>
@@ -21,15 +22,12 @@
                                         <td [ngClass]="{'modificaColore': persona.sesso === 'M', 'modificaColore2': persona.sesso === 'F'}"> {{ persona.sesso }} </td>
                                         <td> {{ persona.telefono }} </td>
                                         <td>
-                                        <button data-bs-toggle="modal" data-bs-target="#address" (click)="onSelect(persona)"><i class="fas fa-map-marker-alt"></i></button>
-                                        </td>
-                                        <td>
-                                        <button (click)="eliminaRiga(persona.nome)" data-bs-toggle="modal" data-bs-target="#conferma" ><i class="fas fa-trash-alt"></i></button>
-                                        </td>
-                                        <td>
-                                        <button (click)="onSelect(persona)" data-bs-toggle="modal" data-bs-target="#form"><i class="fas fa-edit"></i></button>
+                                        <button class="btn" data-bs-toggle="modal" data-bs-target="#address" (click)="onSelect(persona)"><i class="fas fa-map-marker-alt"></i></button>
+                                        <button class="btn" (click)="eliminaRiga(i)" data-bs-toggle="modal" data-bs-target="#conferma" ><i class="fas fa-trash-alt"></i></button>
+                                        <button class="btn" (click)="onSelect(persona)" data-bs-toggle="modal" data-bs-target="#form"><i class="fas fa-edit"></i></button>
                                         </td>
                                     </tr>
+                                </tbody>
                             </table>
                         </div>     
                 </div>
@@ -37,8 +35,8 @@
 </div>
 
     <!-- Modal form -->
-<div class="modal fade" id="form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="form" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Profilo di {{ saveperson?.nomeCompleto }}</h5>
@@ -58,14 +56,14 @@
     </div>
 </div>
     <!-- Modal address -->
-<div class="modal fade" id="address" tabindex="-1" aria-labelledby="addressLabel" aria-hidden="true">
+<div class="modal fade" id="address" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addressLabel">Indirizzo di {{ saveperson?.nomeCompleto }} </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title">Indirizzo di {{ saveperson?.nomeCompleto }} </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-                <div class="modal-body" id="bodyind">
+                <div class="modal-body">
                     {{ saveperson?.indirizzo }}
                 </div>
                 <div class="modal-footer">
@@ -76,11 +74,11 @@
 </div>
 
     <!-- Modal conferma eliminazione-->
-<div class="modal fade" id="conferma" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="conferma" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Profilo eliminato</h5>
+                <h5 class="modal-title">Profilo eliminato</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
