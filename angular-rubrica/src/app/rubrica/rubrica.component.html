@@ -1,47 +1,53 @@
 
-<div class="mx-5 shadow rounded" *ngIf="show">
-            <div class="row mt-5 px-5 py-5">
-                <div class="col-lg-9 col-md-9 px-5">
-                        <p class="lead mb-4">Contatti della rubrica</p>
+<div class="mx-5 shadow rounded">
+            <div class="row mt-5 px-2 py-2">
+                <div class="col-lg-8 col-md-12 px-5 py-5">
                         <div class="table-responsive">
-                        <table class="table" *ngIf="person.length > 0">
-                            
-                                <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Cognome</th>
-                                <th scope="col">Sesso</th>
-                                <th scope="col">Telefono</th>
-                                <th scope="col">Azioni sull'utente</th>
-                                </tr>
-                                <tr *ngFor="let persona of person; let i=index;" >
-                                    <th scope="row"> {{i}} </th>
-                                    <td> {{ persona.nome }} </td>
-                                    <td> {{ persona.cognome }} </td>
-                                    <td [ngClass]="{'modificaColore': persona.sesso === 'M', 'modificaColore2': persona.sesso === 'F'}"> {{ persona.sesso }} </td>
-                                    <td> {{ persona.telefono }} </td>
-                                    <td>
+                            <table class="table table-responsive" *ngIf="person.length > 0">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Cognome</th>
+                                        <th scope="col">Sesso</th>
+                                        <th scope="col">Telefono</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                    <tr *ngFor="let persona of person; let i=index;" >
+                                        <th scope="row"> {{i}} </th>
+                                        <td> {{ persona.nome }} </td>
+                                        <td> {{ persona.cognome }} </td>
+                                        <td [ngClass]="{'modificaColore': persona.sesso === 'M', 'modificaColore2': persona.sesso === 'F'}"> {{ persona.sesso }} </td>
+                                        <td> {{ persona.telefono }} </td>
+                                        <td>
                                         <button data-bs-toggle="modal" data-bs-target="#address" (click)="onSelect(persona)"><i class="fas fa-map-marker-alt"></i></button>
-                                        <button (click)="eliminaRiga(persona.nome)" data-bs-toggle="modal" data-bs-target="#conferma" ><i class="fas fa-trash-alt"></i></button> 
+                                        </td>
+                                        <td>
+                                        <button (click)="eliminaRiga(persona.nome)" data-bs-toggle="modal" data-bs-target="#conferma" ><i class="fas fa-trash-alt"></i></button>
+                                        </td>
+                                        <td>
                                         <button (click)="onSelect(persona)"><i class="fas fa-edit"></i></button>
-                                    </td>
-                                </tr>
-                        </table>       
-                        </div>
-                  
+                                        </td>
+                                    </tr>
+                            </table>
+                        </div>     
                 </div>
             </div>
+                <div class="col-lg-6 col-md-12 px-5 py-5 ">
+                    <div class="card text-center">
+                        <div class="card-header">
+                        Edit contact
+                        </div>
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <app-form [FormPerson]="saveperson"></app-form>
+                        </div>
+                        <div class="card-footer text-muted mt-2">
+                        Engineering &copy;
+                        </div>
+                    </div>
+                </div>
 </div>
-<div class="mx-5 shadow rounded">
-    <div class="row mt-5 px-5">
-            <div class="col-lg-6 col-md-3 py-5">
-                <app-form [FormPerson]="saveperson"></app-form>      
-            </div>
-    </div>
-</div>
-
-
-
 
 
         <!-- Modal address -->

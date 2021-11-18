@@ -1,16 +1,13 @@
-.footer-fixed {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-* {
+
+body {
     font-family: Verdana;
 }
 
 button {
     border: none;
-    margin-left: 10px;
 }
+
+
 
 /*
 .modificaColore {
