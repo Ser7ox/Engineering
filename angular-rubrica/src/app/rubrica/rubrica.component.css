@@ -9,8 +9,18 @@
 
 button {
     border: none;
+    margin-left: 10px;
 }
 
-
+/*
+.modificaColore {
+     background-color: rgb(48, 87, 212); 
+    border-radius: 5px;
+ } 
+ .modificaColore2 {
+     background-color: rgb(245, 35, 210); 
+    border-radius: 5px;
+ }
+*/
 
 

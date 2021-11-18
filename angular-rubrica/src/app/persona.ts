@@ -1,23 +1,18 @@
 export class Persona {
-    private _id: number;
     private _nome: string;
     private _cognome: string;
+    private _sesso: string;
     private _telefono: number;
     private _indirizzo: string;
+  length: number;
 
-    constructor(_id: number, _nome: string, _cognome: string, _telefono: number, _indirizzo: string) { 
-        this._id = _id;
+    constructor(_nome: string, _cognome: string, _sesso: string, _telefono: number, _indirizzo: string) { 
+        
         this._nome = _nome;
         this._cognome = _cognome;
+        this._sesso = _sesso;
         this._telefono = _telefono;
         this._indirizzo = _indirizzo; 
-    }
-
-    public set id(id: number) {
-        this._id = id;  //passo in input al set il valore id interessato
-    }
-    public get id(): number {
-        return this._id; //output -> _id
     }
 
     public set nome(nome: string) {
@@ -34,6 +29,13 @@ export class Persona {
         return this._cognome; //output -> _cognome
     }
 
+    public set sesso(sesso: string) {
+        this._sesso = sesso;  //passo in input al set il valore id interessato
+    }
+    public get sesso(): string {
+        return this._sesso; //output -> sesso
+    }
+
     public set telefono(telefono: number) {
         this._telefono = telefono;  //passo in input al set il valore id interessato
     }
@@ -47,6 +49,17 @@ export class Persona {
     public get indirizzo(): string {
         return this._indirizzo; //output -> _indirizzo
     }
+
+    get nomeCompleto(): string {
+		return this._nome + ' ' + this._cognome;
+    }
+	set nomeCompleto(valore: string) {
+		var parti = valore.toString().split(' ');
+		this._nome = parti[0] || '';
+		this._cognome = parti[1] || '';
+    }   // <--- set and get per ottenere nome e cognome completo in un'unica riga
+
+    
 }
   
 
