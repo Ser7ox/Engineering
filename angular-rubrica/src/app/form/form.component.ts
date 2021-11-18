@@ -15,7 +15,5 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSelect(formpersona: Persona) {
-    this.FormPerson = formpersona;  
-  }
+  
 }
