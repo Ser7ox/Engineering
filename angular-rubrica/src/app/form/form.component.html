@@ -22,35 +22,35 @@
     <div>
       <form  #form="ngForm">
         <div class="form-group">
-          <label for="nome">Name</label>
-          <input type="text" class="form-control" id="nome" [(ngModel)]="FormPerson.nome" name="nome" #nome="ngModel" required>
+          <label for="nome">Nome</label>
+          <input type="text" class="form-control" id="nome" [(ngModel)]="FormPerson.nome" name="nome" #nome="ngModel" required readonly>
           <div [hidden]="nome.valid || nome.pristine" class="alert alert-danger"> Inserisci il nome </div>
         </div>
   
         <div class="form-group">
-          <label for="cognome">Cognome</label>
-          <input type="text" class="form-control" id="cognome" [(ngModel)]="FormPerson.cognome" name="cognome" #cognome="ngModel" required>
+          <label class="mt-2" for="cognome">Cognome</label>
+          <input type="text" class="form-control" id="cognome" [(ngModel)]="FormPerson.cognome" name="cognome" #cognome="ngModel" required readonly>
           <div [hidden]="cognome.valid || cognome.pristine" class="alert alert-danger"> Inserisci il cognome </div>
         </div>
   
         <div class="form-group">
-          <label for="sesso">Sesso</label>
-          <input type="text" class="form-control" id="sesso" [(ngModel)]="FormPerson.sesso" name="sesso" #sesso="ngModel" required>
+          <label class="mt-2" for="sesso">Sesso</label>
+          <input type="text" class="form-control" id="sesso" [(ngModel)]="FormPerson.sesso" name="sesso" #sesso="ngModel" required readonly>
           <div [hidden]="sesso.valid || sesso.pristine" class="alert alert-danger"> Inserisci il sesso </div>
         </div>
 
         <div class="form-group">
-            <label for="indirizzo">Indirizzo</label>
+            <label class="mt-2" for="indirizzo">Indirizzo</label>
             <input type="text" class="form-control" id="indirizzo" [(ngModel)]="FormPerson.indirizzo" name="indirizzo" #indirizzo="ngModel" required>
             <div [hidden]="indirizzo.valid || indirizzo.pristine" class="alert alert-danger"> Inserisci l'indirizzo </div>
         </div>
 
         <div class="form-group">
-            <label for="telefono">Telefono</label>
+            <label class="mt-2" for="telefono">Telefono</label>
             <input type="text" class="form-control" id="telefono" [(ngModel)]="FormPerson.telefono" name="telefono" #telefono="ngModel" required>
             <div [hidden]="telefono.valid || telefono.pristine" class="alert alert-danger"> Inserisci il telefono </div>
         </div>
       </form>
     </div>
-
 -->
+

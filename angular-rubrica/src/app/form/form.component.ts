@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Persona } from '../persona';
 import { FormBuilder } from '@angular/forms';
-import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -11,6 +10,7 @@ import { Validators } from '@angular/forms';
 export class FormComponent implements OnInit {
 
   @Input() FormPerson: Persona;
+
   profilo = this.fb.group({
     nome: [''],
     cognome: [''],
