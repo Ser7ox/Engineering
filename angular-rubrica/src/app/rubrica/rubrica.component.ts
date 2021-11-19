@@ -29,7 +29,7 @@ export class RubricaComponent implements OnInit {
   }
 
   takeData(event: Persona) {
-    this.person.push(event);
+    this.saveperson = event;
   }
 
 }
