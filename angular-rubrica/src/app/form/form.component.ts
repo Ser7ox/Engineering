@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { Persona } from '../persona';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -9,7 +9,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FormComponent implements OnInit {
   @Input() FormPerson: Persona;
+
   
+
   constructor(private fb: FormBuilder) { }
   
   profilo: FormGroup;
@@ -33,6 +35,7 @@ export class FormComponent implements OnInit {
       this.profilo.get('sesso').setValue(this.FormPerson?.sesso);
       this.profilo.get('telefono').setValue(this.FormPerson?.telefono);
       this.profilo.get('indirizzo').setValue(this.FormPerson?.indirizzo);
+      
     }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -41,4 +44,13 @@ export class FormComponent implements OnInit {
     }
     }
 
+  
+
+  TakeIt(event2: Persona) {
+    this.outputP.emit(event2);
+  }
+
+
+  @Output()
+  outputP: EventEmitter<Persona> = new EventEmitter<Persona>();
 }

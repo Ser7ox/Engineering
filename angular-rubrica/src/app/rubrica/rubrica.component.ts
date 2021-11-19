@@ -12,6 +12,7 @@ export class RubricaComponent implements OnInit {
 
   person = Persone;
   saveperson: Persona;
+  event: Persona;
 
   constructor() { 
     
@@ -25,6 +26,10 @@ export class RubricaComponent implements OnInit {
 
   onSelect(persona: Persona) {
     this.saveperson = persona;  // prende in input persona di tipo Persona e salva l'intera riga della table html all'interno di saveperson. Successivamente in HTML io stampo saveperson.indirizzo
+  }
+
+  takeData(event: Persona) {
+    this.person.push(event);
   }
 
 }

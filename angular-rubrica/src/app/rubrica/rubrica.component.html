@@ -45,7 +45,7 @@
             <div class="modal-body">
                 <form>
                     <div class="mb-3">
-                        <app-form [FormPerson]="saveperson"></app-form>
+                        <app-form [FormPerson]="saveperson" (outputP)="takeData($event)"></app-form>
                     </div>
                 </form>
             </div>
