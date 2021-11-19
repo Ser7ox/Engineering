@@ -1,20 +1,22 @@
  <!-- reactive form -->
 
  <form [formGroup]="profilo">
+
     <label for="nome">Nome: </label>
-    <input id="nome" class="form-control" type="text" formControlName="nome" value="{{FormPerson?.nome}}" readonly>
+    <input id="nome" class="form-control" type="text" formControlName="nome">
           
     <label class="mt-2" for="cognome">Cognome: </label>
-    <input id="cognome" class="form-control" type="text" formControlName="cognome" value="{{FormPerson?.cognome}}" readonly>
+    <input id="cognome" class="form-control" type="text" formControlName="cognome">
             
     <label class="mt-2" for="sesso">Sesso: </label>
-    <input id="sesso" class="form-control" type="text" formControlName="sesso" value="{{FormPerson?.sesso}}" readonly>
+    <input id="sesso" class="form-control" type="text" formControlName="sesso" readonly>
 
     <label class="mt-2" for="indirizzo">Indirizzo: </label>
-    <input id="indirizzo" class="form-control" type="text" formControlName="indirizzo" value="{{FormPerson?.indirizzo}}">
+    <input id="indirizzo" class="form-control" type="text" formControlName="indirizzo">
 
     <label class="mt-2" for="telefono">Telefono: </label>
-    <input id="telefono" class="form-control" type="text" formControlName="telefono" value="{{FormPerson?.telefono}}">   
+    <input id="telefono" class="form-control" type="text" formControlName="telefono">
+    <p class="text-muted mt-2"> Form Status: {{ profilo.status }} </p>
 </form> 
 
 
