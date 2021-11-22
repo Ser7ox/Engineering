@@ -1,6 +1,6 @@
  <!-- reactive form -->
 
- <form [formGroup]="profilo" (ngSubmit)="TakeIt(FormPerson)">
+ <form [formGroup]="profilo" (ngSubmit)="SaveForm(FormPerson)">
 
     <label for="nome">Nome: </label>
     <input id="nome" class="form-control" type="text" formControlName="nome">
@@ -18,7 +18,8 @@
     <input id="telefono" class="form-control" type="text" formControlName="telefono">
     <p class="text-muted mt-2"> Form Status: {{ profilo.status }} </p>
 
-    <button type="submit" (click)="TakeIt(FormPerson)">Add to parent's list</button>
+    <button type="submit" class="btn btn-primary">Aggiorna i dati</button>
+
 </form> 
 
 

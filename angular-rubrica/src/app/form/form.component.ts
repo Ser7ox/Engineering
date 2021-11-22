@@ -44,13 +44,10 @@ export class FormComponent implements OnInit {
     }
     }
 
-  
+  @Output() outputP = new EventEmitter<Persona>();
 
-  TakeIt(event2: Persona) {
-    this.outputP.emit(event2);
+  SaveForm(FormPerson: Persona) {
+    this.outputP.emit(FormPerson);
   }
 
-
-  @Output()
-  outputP: EventEmitter<Persona> = new EventEmitter<Persona>();
 }

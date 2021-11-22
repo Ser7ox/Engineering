@@ -1,4 +1,6 @@
 export class Persona {
+  
+    private _id: number;
     private _nome: string;
     private _cognome: string;
     private _sesso: string;
@@ -7,13 +9,21 @@ export class Persona {
     length: number;
     
 
-    constructor(_nome: string, _cognome: string, _sesso: string, _telefono: number, _indirizzo: string) { 
+    constructor(_id: number, _nome: string, _cognome: string, _sesso: string, _telefono: number, _indirizzo: string) { 
         
+        this._id = _id;
         this._nome = _nome;
         this._cognome = _cognome;
         this._sesso = _sesso;
         this._telefono = _telefono;
         this._indirizzo = _indirizzo; 
+    }
+
+    public set id(id: number) {
+        this._id = id; //passo in input al set il valore nome interessato
+    }
+    public get id(): number {
+        return this._id; //output -> _id
     }
 
     public set nome(nome: string) {
