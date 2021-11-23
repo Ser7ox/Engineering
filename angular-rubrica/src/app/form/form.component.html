@@ -1,7 +1,7 @@
  <form [formGroup]="profilo" (ngSubmit)="SaveForm()">
 
     <label for="nome">Nome: </label>
-    <input id="nome" class="form-control" type="text" formControlName="nome"> 
+    <input id="nome" class="form-control" type="text" formControlName="nome" name="nome"> 
     <!-- [class.valid]="profilo.get('nome').valid && (profilo.get('nome').dirty || profilo.get('nome').touched)" 
     [class.invalid]="profilo.get('nome').invalid &&  (profilo.get('nome').dirty || profilo.get('nome').touched)"-->
     <div *ngIf="profilo.get('nome').invalid && (profilo.get('nome').dirty || profilo.get('nome').touched)">
@@ -16,6 +16,10 @@
       <small class="text-danger"
           *ngIf="profilo.get('nome').hasError('maxlength')">
           La lunghezza massima per questo campo è {{profilo.get('nome').errors.maxlength.requiredLength}} caratteri.
+      </small>
+      <small class="text-danger"
+          *ngIf="profilo.get('nome').hasError('gte')">
+          Il campo non deve contenere numeri o caratteri speciali.
       </small>
     </div>
           
@@ -35,6 +39,10 @@
       <small class="text-danger"
           *ngIf="profilo.get('cognome').hasError('maxlength')">
           La lunghezza massima per questo campo è {{profilo.get('cognome').errors.maxlength.requiredLength}} caratteri.
+      </small>
+      <small class="text-danger"
+          *ngIf="profilo.get('nome').hasError('gte')">
+          Il campo non deve contenere numeri o caratteri speciali.
       </small>
     </div>
             

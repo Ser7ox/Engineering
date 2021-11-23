@@ -1,13 +1,7 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  SimpleChanges,
-  Output,
-  EventEmitter,
-} from '@angular/core';
+import { Component,OnInit,Input,SimpleChanges,Output,EventEmitter,} from '@angular/core';
 import { Persona } from '../persona';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { filtronumeri } from '../filtronumeri.validator';
 
 @Component({
   selector: 'app-form',
@@ -23,22 +17,8 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.profilo = this.fb.group({
-      nome: [
-        undefined,
-        [
-          Validators.minLength(3),
-          Validators.maxLength(20),
-          Validators.required,
-        ],
-      ],
-      cognome: [
-        undefined,
-        [
-          Validators.minLength(3),
-          Validators.maxLength(20),
-          Validators.required,
-        ],
-      ],
+      nome: [undefined,[Validators.required, Validators.minLength(3), Validators.maxLength(20), filtronumeri]],
+      cognome: [undefined,[Validators.required, Validators.minLength(3), Validators.maxLength(20), filtronumeri]],
       sesso: [undefined],
       telefono: [undefined],
       indirizzo: [undefined],

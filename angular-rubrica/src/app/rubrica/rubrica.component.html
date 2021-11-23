@@ -100,7 +100,7 @@
       </div>
       <div class="modal-body">
         {{ saveperson?.indirizzo }}
-        <div *ngIf="saveperson?.indirizzo == null ">
+        <div *ngIf="saveperson?.indirizzo == null || saveperson?.indirizzo === '' ">
             <p class="mb-1 fw-light">Informazione non disponibile per quest'utente.</p>
         </div>
       </div>
