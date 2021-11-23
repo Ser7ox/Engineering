@@ -9,7 +9,7 @@ export class Persona {
     length: number;
     
 
-    constructor(_id: number, _nome: string, _cognome: string, _sesso: string, _telefono: number, _indirizzo: string) { 
+    constructor(_id: number, _nome: string, _cognome: string, _sesso: string, _telefono: number, _indirizzo?: string) { 
         
         this._id = _id;
         this._nome = _nome;

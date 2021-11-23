@@ -1,92 +1,137 @@
-
 <div class="mx-5 shadow rounded">
-            <div class="row mt-5 px-2 py-2 d-flex justify-content-center">
-                <div class="col-lg-9 col-md-12 px-5 py-5">
-                        <div class="table-responsive">
-                            <table class="table table-responsive" *ngIf="person.length > 0">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Nome</th>
-                                        <th scope="col">Cognome</th>
-                                        <th scope="col">Sesso</th>
-                                        <th scope="col">Telefono</th>
-                                        <th scope="col">Azioni user</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let persona of person" >
-                                        <th scope="row"> {{persona.id}} </th>
-                                        <td> {{ persona.nome }} </td>
-                                        <td> {{ persona.cognome }} </td>
-                                        <td [ngClass]="{'modificaColore': persona.sesso === 'M', 'modificaColore2': persona.sesso === 'F'}"> {{ persona.sesso }} </td>
-                                        <td> {{ persona.telefono }} </td>
-                                        <td>
-                                        <button class="btn" data-bs-toggle="modal" data-bs-target="#address" (click)="onSelect(persona)"><i class="fas fa-map-marker-alt"></i></button>
-                                        <button class="btn" (click)="eliminaRiga(persona.id)" data-bs-toggle="modal" data-bs-target="#conferma" ><i class="fas fa-trash-alt"></i></button>
-                                        <button class="btn" (click)="onSelect(persona)" data-bs-toggle="modal" data-bs-target="#form"><i class="fas fa-edit"></i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>     
-                </div>
-            </div>              
+  <div class="row mt-5 px-2 py-2 d-flex justify-content-center">
+    <div class="col-lg-9 col-md-12 px-5 py-5">
+      <div class="table-responsive">
+        <table class="table table-responsive" *ngIf="person.length > 0">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Cognome</th>
+              <th scope="col">Sesso</th>
+              <th scope="col">Telefono</th>
+              <th scope="col">Azioni user</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let persona of person">
+              <th scope="row">{{ persona.id }}</th>
+              <td>{{ persona.nome }}</td>
+              <td>{{ persona.cognome }}</td>
+              <td
+                [ngClass]="{
+                  modificaColore: persona.sesso === 'M',
+                  modificaColore2: persona.sesso === 'F'
+                }"
+              >
+                {{ persona.sesso }}
+              </td>
+              <td>{{ persona.telefono }}</td>
+              <td>
+                <button
+                  class="btn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#address"
+                  (click)="onSelect(persona)">
+
+                  <i class="fas fa-map-marker-alt"></i>
+                </button>
+                <button
+                  class="btn"
+                  (click)="eliminaRiga(persona)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#conferma">
+
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+                <button
+                  class="btn"
+                  (click)="onSelect(persona)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#form">
+
+                  <i class="fas fa-edit"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 
-    <!-- Modal form -->
+<!-- Modal form -->
 <div class="modal fade" id="form" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Profilo di {{ saveperson?.nomeCompleto }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <app-form [FormPerson]="saveperson" (outputP)="takeData($event)"></app-form>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Conferma <i class="fas fa-check"></i></button>
-            </div>
-        </div>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Profilo di {{ saveperson?.nomeCompleto }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <app-form [FormPerson]="saveperson" (outputP)="takeData($event)"></app-form>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
-    <!-- Modal address -->
+<!-- Modal address -->
 <div class="modal fade" id="address" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Indirizzo di {{ saveperson?.nomeCompleto }} </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-                <div class="modal-body">
-                    {{ saveperson?.indirizzo }}
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close <i class="fas fa-times"></i></button>
-                </div>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Indirizzo di {{ saveperson?.nomeCompleto }}</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        {{ saveperson?.indirizzo }}
+        <div *ngIf="saveperson?.indirizzo == null ">
+            <p class="mb-1 fw-light">Informazione non disponibile per quest'utente.</p>
         </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+          Close <i class="fas fa-times"></i>
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 
-    <!-- Modal conferma eliminazione-->
+<!-- Modal conferma eliminazione-->
 <div class="modal fade" id="conferma" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Profilo eliminato</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Il profilo è stato eliminato.
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close <i class="fas fa-times"></i></button>
-            </div>
-        </div>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Profilo eliminato</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">Il profilo è stato eliminato.</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close <i class="fas fa-times"></i>
+        </button>
+      </div>
     </div>
+  </div>
 </div>

@@ -11,9 +11,9 @@ import { Persone } from '../persona-server';
 })
 export class RubricaComponent implements OnInit {
 
-  person = Persone;
-  saveperson: Persona;
-  event: Persona;
+  person = Persone
+  saveperson: Persona
+  event: Persona
 
   constructor() { 
     
@@ -21,25 +21,20 @@ export class RubricaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  eliminaRiga(id: number) {
-    this.person.splice(id, 1);
+  eliminaRiga(persona: Persona) {
+    this.person.forEach( (element, i) => 
+      {if (element.id === persona.id ) this.person.splice(i, 1)} )
+    
   }
 
   onSelect(persona: Persona) {
     this.saveperson = persona;
-    console.log(this.saveperson);  // prende in input persona di tipo Persona e salva l'intera riga della table html all'interno di saveperson. Successivamente in HTML io stampo saveperson.indirizzo
+    //console.log(this.saveperson);  // prende in input persona di tipo Persona e salva l'intera riga della table html all'interno di saveperson. Successivamente in HTML io stampo saveperson.indirizzo
   }
 
-  takeData(FormPerson: Persona) {
-
-  const listofid = this.person.map(function(a) {return a.id;});
-  console.log(listofid)
-  for ( let x of listofid ) {
-    if (x == FormPerson.id)
-        this.person[x - 1] = FormPerson;
-        console.log(this.person[x - 1]);
-  }
-  
+  takeData(outputP: Persona) {
+    this.person.forEach(  (element, i) => 
+      {if (element.id === outputP.id ) this.person[i] = outputP } )
   }
 }
         
