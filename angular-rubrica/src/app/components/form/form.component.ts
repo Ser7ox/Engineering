@@ -1,7 +1,7 @@
 import { Component,OnInit,Input,SimpleChanges,Output,EventEmitter,} from '@angular/core';
-import { Persona } from '../persona';
+import { Persona } from '../../model/persona';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { filtronumeri } from '../filtronumeri.validator';
+import { filtronumeri } from '../../validator/filtronumeri.validator';
 
 @Component({
   selector: 'app-form',

@@ -1,5 +1,5 @@
 import { identifierModuleUrl } from '@angular/compiler';
-import { Persona } from './persona';
+import { Persona } from './model/persona';
 
 
 

@@ -1,7 +1,7 @@
 import { identifierModuleUrl } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { Persona } from '../persona';
-import { Persone } from '../persona-server';
+import { Persona } from '../../model/persona';
+import { Persone } from '../../persona-server';
 
 
 @Component({

@@ -1,9 +1,7 @@
  <form [formGroup]="profilo" (ngSubmit)="SaveForm()">
 
     <label for="nome">Nome: </label>
-    <input id="nome" class="form-control" type="text" formControlName="nome" name="nome"> 
-    <!-- [class.valid]="profilo.get('nome').valid && (profilo.get('nome').dirty || profilo.get('nome').touched)" 
-    [class.invalid]="profilo.get('nome').invalid &&  (profilo.get('nome').dirty || profilo.get('nome').touched)"-->
+    <input id="nome" class="form-control" type="text" formControlName="nome" name="nome">
     <div *ngIf="profilo.get('nome').invalid && (profilo.get('nome').dirty || profilo.get('nome').touched)">
       <small class="text-danger"
           *ngIf="profilo.get('nome').hasError('required')">
@@ -18,15 +16,13 @@
           La lunghezza massima per questo campo è {{profilo.get('nome').errors.maxlength.requiredLength}} caratteri.
       </small>
       <small class="text-danger"
-          *ngIf="profilo.get('nome').hasError('gte')">
+          *ngIf="profilo.get('nome').hasError('filtronumeri')">
           Il campo non deve contenere numeri o caratteri speciali.
       </small>
     </div>
           
     <label class="mt-2" for="cognome">Cognome: </label>
     <input id="cognome" class="form-control" type="text" formControlName="cognome">
-    <!-- [class.valid]="profilo.get('cognome').valid && (profilo.get('cognome').dirty || profilo.get('cognome').touched)" 
-    [class.invalid]="profilo.get('cognome').invalid &&  (profilo.get('cognome').dirty || profilo.get('cognome').touched)"-->
     <div *ngIf="profilo.get('cognome').invalid && (profilo.get('cognome').dirty || profilo.get('cognome').touched)">
       <small class="text-danger"
           *ngIf="profilo.get('cognome').hasError('required')">
@@ -57,14 +53,6 @@
 
     <button data-bs-dismiss="modal" type="submit" class="btn btn-primary mt-3" [disabled]="profilo.invalid">Salva <i class="fas fa-save"></i></button>
 </form>
-<!-- 
-1) Bottone disabilitato se form non è valido, quando diventa valido il bottone si abilita; OK
-2) Inserire messaggio se assente nome e/o cognome, nello specifico: OK
-2a) "Inserire un nome" se nome e/o cognome assente; 
-2b) "Inserire lungh necessaria per campo" se nome e/o cognome length non rispetta i canoni;
-3) Se non è presente indirizzo sul bottone address nella tabella fornire messaggio "Informazione non presente" 
--->
-
 
  <!-- template driven form
     <div>
