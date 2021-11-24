@@ -18,39 +18,19 @@
               <th scope="row">{{ persona.id }}</th>
               <td>{{ persona.nome }}</td>
               <td>{{ persona.cognome }}</td>
-              <td
-                [ngClass]="{
-                  modificaColore: persona.sesso === 'M',
-                  modificaColore2: persona.sesso === 'F'
-                }"
-              >
+              <td [ngClass]="{ modificaColore: persona.sesso === 'M', modificaColore2: persona.sesso === 'F' }">
                 {{ persona.sesso }}
               </td>
               <td>{{ persona.telefono }}</td>
               <td>
-                <button
-                  class="btn"
-                  data-bs-toggle="modal"
-                  data-bs-target="#address"
-                  (click)="onSelect(persona)">
-
-                  <i class="fas fa-map-marker-alt"></i>
+                <button class="btn" data-bs-toggle="modal" data-bs-target="#address" (click)="onSelect(persona)">
+                <i class="fas fa-map-marker-alt"></i>
                 </button>
-                <button
-                  class="btn"
-                  (click)="eliminaRiga(persona)"
-                  data-bs-toggle="modal"
-                  data-bs-target="#conferma">
-
-                  <i class="fas fa-trash-alt"></i>
+                <button class="btn" (click)="eliminaRiga(persona)" data-bs-toggle="modal" data-bs-target="#conferma">
+                <i class="fas fa-trash-alt"></i>
                 </button>
-                <button
-                  class="btn"
-                  (click)="onSelect(persona)"
-                  data-bs-toggle="modal"
-                  data-bs-target="#form">
-
-                  <i class="fas fa-edit"></i>
+                <button class="btn" (click)="onSelect(persona)" data-bs-toggle="modal" data-bs-target="#form">
+                <i class="fas fa-edit"></i>
                 </button>
               </td>
             </tr>
@@ -67,14 +47,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-          Profilo di {{ saveperson?.nomeCompleto }}
+          Profilo di {{ saveperson?.nomeCompleto }} 
         </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
       </div>
       <div class="modal-body">
         <form>
@@ -91,12 +66,10 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Indirizzo di {{ saveperson?.nomeCompleto }}</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-        ></button>
+        <h5 class="modal-title">
+          Indirizzo di {{ saveperson?.nomeCompleto }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" ></button>
       </div>
       <div class="modal-body">
         <div *ngIf=" saveperson?.indirizzo ">
@@ -121,12 +94,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Profilo eliminato</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">Il profilo è stato eliminato.</div>
       <div class="modal-footer">

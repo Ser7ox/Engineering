@@ -2,6 +2,7 @@ import { identifierModuleUrl } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Persona } from '../../model/persona';
 import { Persone } from '../../persona-server';
+import { PersonaServiceService } from 'src/app/services/persona-service.service';
 
 
 @Component({
@@ -13,31 +14,26 @@ export class RubricaComponent implements OnInit {
 
   person = Persone
   saveperson: Persona
-  event: Persona
+  
+  constructor( private personaservice: PersonaServiceService ) { }
 
-  constructor() { 
-    
-  }
   ngOnInit(): void {
   }
 
   eliminaRiga(persona: Persona) {
-    this.person.forEach( (element, i) => 
-      {if (element.id === persona.id ) this.person.splice(i, 1)} )
-    
-  }
-
-  onSelect(persona: Persona) {
-    this.saveperson = persona;
-    //console.log(this.saveperson);  // prende in input persona di tipo Persona e salva l'intera riga della table html all'interno di saveperson. Successivamente in HTML io stampo saveperson.indirizzo
+    return this.personaservice.eliminaUtente(persona);
   }
 
   takeData(outputP: Persona) {
-    this.person.forEach(  (element, i) => 
-      {if (element.id === outputP.id ) this.person[i] = outputP } )
+    return this.personaservice.editForm(outputP);
   }
-}
-        
+
+  onSelect(persona: Persona) {
+    this.saveperson = persona; 
+    // input <= persona di tipo Persona e salva l'intera riga della table html all'interno di saveperson. 
+  }
+
+}    
 
 
 

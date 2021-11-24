@@ -1,3 +1,5 @@
+import { PersonaServiceService } from "../services/persona-service.service";
+
 export class Persona {
   
     private _id: number;
@@ -16,7 +18,7 @@ export class Persona {
         this._cognome = _cognome;
         this._sesso = _sesso;
         this._telefono = _telefono;
-        this._indirizzo = _indirizzo; 
+        this._indirizzo = _indirizzo;
     }
 
     public set id(id: number) {
