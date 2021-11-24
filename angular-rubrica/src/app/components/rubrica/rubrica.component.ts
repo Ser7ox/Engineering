@@ -16,6 +16,8 @@ export class RubricaComponent implements OnInit {
   
   @ViewChild(ModaldeleteComponent) 
   child:ModaldeleteComponent;
+
+  @Input() clickmodale2: (open : boolean) => void
   
   constructor( private personaservice: PersonaService ) { }
 
@@ -24,12 +26,12 @@ export class RubricaComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.child.clickmodale());
+    console.log(this.child.clickModale(true));
     }
   
   eliminaRiga(persona: Persona) {
     this.person = this.personaservice.eliminaUtente(persona);
-    return this.child.clickmodale()
+    return this.child.clickModale(true)
   }
 
   takeData(outputP: Persona) {

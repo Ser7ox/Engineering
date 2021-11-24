@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-modaldelete',
@@ -7,14 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModaldeleteComponent implements OnInit {
   
-  openModal: false
+  openModal:boolean = false
+  
 
   constructor() { }
 
   ngOnInit(): void {
   }
   
-  clickmodale() {
-    return !this.openModal
-  }
+  clickModale(open : boolean): void {
+    this.openModal = open;
+}
 }
