@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { RubricaComponent } from './components/rubrica/rubrica.component';
 import { FormComponent } from './components/form/form.component';
 import { FormsModule } from '@angular/forms';
+import { ModaldeleteComponent } from './components/modaldelete/modaldelete.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RubricaComponent,
-    FormComponent
+    FormComponent,
+    ModaldeleteComponent
   ],
   imports: [
     BrowserModule,

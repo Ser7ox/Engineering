@@ -1,8 +1,7 @@
-import { identifierModuleUrl } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Persona } from '../../model/persona';
-import { Persone } from '../../persona-server';
-import { PersonaServiceService } from 'src/app/services/persona-service.service';
+import { PersonaService } from 'src/app/services/persona.service';
+import { ModaldeleteComponent } from '../modaldelete/modaldelete.component';
 
 
 @Component({
@@ -12,20 +11,29 @@ import { PersonaServiceService } from 'src/app/services/persona-service.service'
 })
 export class RubricaComponent implements OnInit {
 
-  person = Persone
+  person: Persona[]
   saveperson: Persona
   
-  constructor( private personaservice: PersonaServiceService ) { }
+  @ViewChild(ModaldeleteComponent) 
+  child:ModaldeleteComponent;
+  
+  constructor( private personaservice: PersonaService ) { }
 
   ngOnInit(): void {
+    this.person = this.personaservice.getutenti()
   }
 
+  ngAfterViewInit() {
+    console.log(this.child.clickmodale());
+    }
+  
   eliminaRiga(persona: Persona) {
-    return this.personaservice.eliminaUtente(persona);
+    this.person = this.personaservice.eliminaUtente(persona);
+    return this.child.clickmodale()
   }
 
   takeData(outputP: Persona) {
-    return this.personaservice.editForm(outputP);
+    this.person = this.personaservice.dataUtente(outputP);
   }
 
   onSelect(persona: Persona) {
