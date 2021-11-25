@@ -1,36 +1,37 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import {Component,OnInit,ViewChild} from '@angular/core';
 import { Persona } from '../../model/persona';
 import { PersonaService } from 'src/app/services/persona.service';
 import { ModaldeleteComponent } from '../modaldelete/modaldelete.component';
-
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-rubrica',
   templateUrl: './rubrica.component.html',
-  styleUrls: ['./rubrica.component.css']
+  styleUrls: ['./rubrica.component.css'],
 })
-export class RubricaComponent implements OnInit, AfterViewInit {
-
+export class RubricaComponent implements OnInit {
   person: Persona[];
   saveperson: Persona;
-  variabile: boolean;
-  
-  @ViewChild(ModaldeleteComponent) 
-  child:ModaldeleteComponent;
 
-  constructor( private personaservice: PersonaService ) { }
+  @ViewChild(ModaldeleteComponent)
+  child: ModaldeleteComponent;
 
-  ngAfterViewInit() {
-    console.log(this.child.clickModale(true));
-  }
+  @ViewChild('modale') public modale: ModalDirective;
+
+  constructor(private personaservice: PersonaService) {}
 
   ngOnInit(): void {
-    this.person = this.personaservice.getutenti()
+    this.person = this.personaservice.getutenti();
   }
 
   eliminaRiga(persona: Persona) {
     this.person = this.personaservice.eliminaUtente(persona);
-    this.variabile = this.child.clickModale(true)
+    this.modale.show();
+    this.child.show();
+  }
+
+  hide(): void {
+    this.modale.hide();
   }
 
   takeData(outputP: Persona) {
@@ -38,13 +39,7 @@ export class RubricaComponent implements OnInit, AfterViewInit {
   }
 
   onSelect(persona: Persona) {
-    this.saveperson = persona; 
-    // input <= persona di tipo Persona e salva l'intera riga della table html all'interno di saveperson. 
+    this.saveperson = persona;
+    // input <= persona di tipo Persona e salva l'intera riga della table html all'interno di saveperson.
   }
-
-}    
-
-
-
-
-
+}

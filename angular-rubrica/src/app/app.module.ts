@@ -7,6 +7,7 @@ import { RubricaComponent } from './components/rubrica/rubrica.component';
 import { FormComponent } from './components/form/form.component';
 import { FormsModule } from '@angular/forms';
 import { ModaldeleteComponent } from './components/modaldelete/modaldelete.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ModaldeleteComponent } from './components/modaldelete/modaldelete.compo
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

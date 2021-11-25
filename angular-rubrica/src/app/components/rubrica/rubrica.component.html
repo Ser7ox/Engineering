@@ -1,5 +1,5 @@
 <div class="mx-5 shadow rounded">
-  <div class="row mt-5 px-2 py-2 d-flex justify-content-center">
+  <div class="row mt-5 px-2 py-2 ">
     <div class="col-lg-9 col-md-12 px-5 py-5">
       <div class="table-responsive">
         <table class="table table-responsive" *ngIf="person.length > 0">
@@ -40,9 +40,9 @@
     </div>
   </div>
 </div>
-                
-<div *ngIf="variabile" id="myModal" >
-  <app-modaldelete></app-modaldelete>
+
+<div class="modal fade" bsModal #modale="bs-modal">
+  <app-modaldelete> </app-modaldelete>
 </div>
 
 
