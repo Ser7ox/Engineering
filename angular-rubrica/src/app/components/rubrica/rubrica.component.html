@@ -1,8 +1,8 @@
 <div class="mx-5 shadow rounded">
-  <div class="row mt-5 px-2 py-2 ">
-    <div class="col-lg-9 col-md-12 px-5 py-5">
+  <div class="row d-flex justify-content-center mt-5 px-2 py-2">
+    <div class="col-lg-8 col-md-12 px-5 py-5">
       <div class="table-responsive">
-        <table class="table table-responsive" *ngIf="person.length > 0">
+        <table class="table" *ngIf="person.length > 0">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -35,16 +35,14 @@
               </td>
             </tr>
           </tbody>
-        </table>
-      </div>
+      </table>
+    </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" bsModal #modale="bs-modal">
-  <app-modaldelete> </app-modaldelete>
-</div>
 
+<app-modaldelete></app-modaldelete>
 
 <!-- Modal form -->
 <div class="modal fade" id="form" aria-hidden="true">
@@ -93,7 +91,5 @@
   </div>
 </div>
 
-<!-- dentro modale metodo open e close per chiudere e aprire modale,
-   utilizzare viewchild e viewchildren e richiamare apertura componente modale da elimina riga-->
 
    

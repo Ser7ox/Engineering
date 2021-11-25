@@ -1,8 +1,7 @@
-import {Component,OnInit,ViewChild} from '@angular/core';
+import { Component,OnInit,ViewChild } from '@angular/core';
 import { Persona } from '../../model/persona';
 import { PersonaService } from 'src/app/services/persona.service';
 import { ModaldeleteComponent } from '../modaldelete/modaldelete.component';
-import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-rubrica',
@@ -16,8 +15,6 @@ export class RubricaComponent implements OnInit {
   @ViewChild(ModaldeleteComponent)
   child: ModaldeleteComponent;
 
-  @ViewChild('modale') public modale: ModalDirective;
-
   constructor(private personaservice: PersonaService) {}
 
   ngOnInit(): void {
@@ -26,12 +23,7 @@ export class RubricaComponent implements OnInit {
 
   eliminaRiga(persona: Persona) {
     this.person = this.personaservice.eliminaUtente(persona);
-    this.modale.show();
     this.child.show();
-  }
-
-  hide(): void {
-    this.modale.hide();
   }
 
   takeData(outputP: Persona) {
