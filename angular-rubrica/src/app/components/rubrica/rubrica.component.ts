@@ -11,6 +11,8 @@ import { ModaldeleteComponent } from '../modaldelete/modaldelete.component';
 export class RubricaComponent implements OnInit {
   person: Persona[];
   saveperson: Persona;
+  headR: string = "Profilo eliminato";
+  bodyR: string = "Il profilo è stato eliminato.";
 
   @ViewChild(ModaldeleteComponent)
   child: ModaldeleteComponent;

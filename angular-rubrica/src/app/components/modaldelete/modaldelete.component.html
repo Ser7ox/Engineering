@@ -2,12 +2,12 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Profilo eliminato</h5>
+        <h5 class="modal-title">{{ headM }}</h5>
         <button type="button" class="btn-close" aria-label="Close" (click)="hide()"></button>
       </div>
-      <div class="modal-body">Il profilo è stato eliminato.</div>
+      <div class="modal-body"> {{ bodyM }} </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="hide()">
+        <button type="button" class="btn btn-warning" (click)="hide()">
           Close <i class="fas fa-times"></i>
         </button>
       </div>

@@ -41,8 +41,7 @@
   </div>
 </div>
 
-
-<app-modaldelete></app-modaldelete>
+<app-modaldelete [headM]="headR" [bodyM]="bodyR"></app-modaldelete>
 
 <!-- Modal form -->
 <div class="modal fade" id="form" aria-hidden="true">
@@ -72,7 +71,6 @@
         <h5 class="modal-title">
           Indirizzo di {{ saveperson?.nomeCompleto }}
         </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" ></button>
       </div>
       <div class="modal-body">
         <div *ngIf=" saveperson?.indirizzo ">
@@ -83,7 +81,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+        <button type="button" class="btn btn-info" data-bs-dismiss="modal">
           Close <i class="fas fa-times"></i>
         </button>
       </div>
