@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Persone } from '../persona-server';
-import { Persona } from '../model/persona';
+import { Persona } from '../components/model/persona';
 
 @Injectable({
   providedIn: 'root',

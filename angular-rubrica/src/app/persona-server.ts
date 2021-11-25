@@ -1,5 +1,4 @@
-import { identifierModuleUrl } from '@angular/compiler';
-import { Persona } from './model/persona';
+import { Persona } from './components/model/persona';
 
 
 

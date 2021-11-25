@@ -23,13 +23,13 @@
               </td>
               <td>{{ persona.telefono }}</td>
               <td>
-                <button class="btn" data-bs-toggle="modal" data-bs-target="#address" (click)="onSelect(persona)">
+                <button class="btn" (click)="selectRow(persona)">
                 <i class="fas fa-map-marker-alt"></i>
                 </button>
-                <button class="btn" (click)="eliminaRiga(persona)" data-toggle="modal" data-target="#myModal">
+                <button class="btn" (click)="deleteRow(persona)">
                 <i class="fas fa-trash-alt"></i>
                 </button>
-                <button class="btn" (click)="onSelect(persona)" data-bs-toggle="modal" data-bs-target="#form">
+                <button class="btn" (click)="editForm(persona)" data-bs-toggle="modal" data-bs-target="#form">
                 <i class="fas fa-edit"></i>
                 </button>
               </td>
@@ -41,7 +41,16 @@
   </div>
 </div>
 
-<app-modaldelete [headM]="headR" [bodyM]="bodyR"></app-modaldelete>
+<app-modal [headM]="headR" [bodyM]="bodyR" [savepersonmodal]="saveperson"></app-modal>
+
+<!-- 
+        <div *ngIf=" saveperson?.indirizzo ">
+            {{ saveperson?.indirizzo }}
+        </div>
+        <div *ngIf=" !saveperson?.indirizzo ">
+            <p class="mb-1 fw-light">Informazione non disponibile per quest'utente.</p>
+        </div>
+-->
 
 <!-- Modal form -->
 <div class="modal fade" id="form" aria-hidden="true">
@@ -63,31 +72,5 @@
     </div>
   </div>
 </div>
-<!-- Modal address -->
-<div class="modal fade" id="address" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">
-          Indirizzo di {{ saveperson?.nomeCompleto }}
-        </h5>
-      </div>
-      <div class="modal-body">
-        <div *ngIf=" saveperson?.indirizzo ">
-            {{ saveperson?.indirizzo }}
-        </div>
-        <div *ngIf=" !saveperson?.indirizzo ">
-            <p class="mb-1 fw-light">Informazione non disponibile per quest'utente.</p>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-info" data-bs-dismiss="modal">
-          Close <i class="fas fa-times"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
    

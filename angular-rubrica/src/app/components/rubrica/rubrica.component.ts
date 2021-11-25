@@ -1,7 +1,7 @@
 import { Component,OnInit,ViewChild } from '@angular/core';
-import { Persona } from '../../model/persona';
+import { Persona } from '../model/persona';
 import { PersonaService } from 'src/app/services/persona.service';
-import { ModaldeleteComponent } from '../modaldelete/modaldelete.component';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-rubrica',
@@ -11,11 +11,11 @@ import { ModaldeleteComponent } from '../modaldelete/modaldelete.component';
 export class RubricaComponent implements OnInit {
   person: Persona[];
   saveperson: Persona;
-  headR: string = "Profilo eliminato";
-  bodyR: string = "Il profilo è stato eliminato.";
+  headR: string 
+  bodyR: string 
 
-  @ViewChild(ModaldeleteComponent)
-  child: ModaldeleteComponent;
+  @ViewChild(ModalComponent)
+  child: ModalComponent;
 
   constructor(private personaservice: PersonaService) {}
 
@@ -23,8 +23,10 @@ export class RubricaComponent implements OnInit {
     this.person = this.personaservice.getutenti();
   }
 
-  eliminaRiga(persona: Persona) {
+  deleteRow(persona: Persona) {
     this.person = this.personaservice.eliminaUtente(persona);
+    this.headR = "Profilo eliminato"
+    this.bodyR = "Il profilo è stato eliminato"
     this.child.show();
   }
 
@@ -32,8 +34,14 @@ export class RubricaComponent implements OnInit {
     this.person = this.personaservice.dataUtente(outputP);
   }
 
-  onSelect(persona: Persona) {
+  selectRow(persona: Persona) {
     this.saveperson = persona;
-    // input <= persona di tipo Persona e salva l'intera riga della table html all'interno di saveperson.
+    this.headR = "Indirizzo di " + this.saveperson.nomeCompleto;
+    this.bodyR = this.saveperson.indirizzo;
+    this.child.show();
+  }
+
+  editForm(persona: Persona) {
+    this.saveperson = persona;
   }
 }

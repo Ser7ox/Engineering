@@ -1,15 +1,18 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { Persona } from '../model/persona';
+
 @Component({
-  selector: 'app-modaldelete',
-  templateUrl: './modaldelete.component.html',
-  styleUrls: ['./modaldelete.component.css']
+  selector: 'app-modal',
+  templateUrl: './modal.component.html',
+  styleUrls: ['./modal.component.css']
 })
-export class ModaldeleteComponent implements OnInit {
+export class ModalComponent implements OnInit {
   
   @ViewChild('modale') public modale:ModalDirective;
-  @Input() headM: string
+  @Input() headM: string;
   @Input() bodyM: string;
+  @Input() savepersonmodal: Persona;
 
   constructor() { }
 

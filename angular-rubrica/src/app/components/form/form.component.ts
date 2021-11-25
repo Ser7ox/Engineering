@@ -1,5 +1,5 @@
 import { Component,OnInit,Input,SimpleChanges,Output,EventEmitter,} from '@angular/core';
-import { Persona } from '../../model/persona';
+import { Persona } from '../model/persona';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { filtronumeri } from '../../validator/filtronumeri.validator';
 

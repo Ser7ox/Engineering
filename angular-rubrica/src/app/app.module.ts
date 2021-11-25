@@ -6,15 +6,15 @@ import { AppComponent } from './app.component';
 import { RubricaComponent } from './components/rubrica/rubrica.component';
 import { FormComponent } from './components/form/form.component';
 import { FormsModule } from '@angular/forms';
-import { ModaldeleteComponent } from './components/modaldelete/modaldelete.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RubricaComponent,
     FormComponent,
-    ModaldeleteComponent
+    ModalComponent
   ],
   imports: [
     BrowserModule,
