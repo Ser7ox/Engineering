@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Persona } from '../../model/persona';
 import { PersonaService } from 'src/app/services/persona.service';
 import { ModaldeleteComponent } from '../modaldelete/modaldelete.component';
@@ -9,29 +9,28 @@ import { ModaldeleteComponent } from '../modaldelete/modaldelete.component';
   templateUrl: './rubrica.component.html',
   styleUrls: ['./rubrica.component.css']
 })
-export class RubricaComponent implements OnInit {
+export class RubricaComponent implements OnInit, AfterViewInit {
 
-  person: Persona[]
-  saveperson: Persona
+  person: Persona[];
+  saveperson: Persona;
+  variabile: boolean;
   
   @ViewChild(ModaldeleteComponent) 
   child:ModaldeleteComponent;
 
-  @Input() clickmodale2: (open : boolean) => void
-  
   constructor( private personaservice: PersonaService ) { }
+
+  ngAfterViewInit() {
+    console.log(this.child.clickModale(true));
+  }
 
   ngOnInit(): void {
     this.person = this.personaservice.getutenti()
   }
 
-  ngAfterViewInit() {
-    console.log(this.child.clickModale(true));
-    }
-  
   eliminaRiga(persona: Persona) {
     this.person = this.personaservice.eliminaUtente(persona);
-    return this.child.clickModale(true)
+    this.variabile = this.child.clickModale(true)
   }
 
   takeData(outputP: Persona) {
