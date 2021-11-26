@@ -2,15 +2,20 @@ button {
     border: none;
 }
 
+.display {
+    display:none;
+    visibility: hidden;
+}
+
 
 
 
 /*
-.modificaColore {
+.sessoM {
      background-color: rgb(48, 87, 212); 
     border-radius: 5px;
  } 
- .modificaColore2 {
+ .sessoF {
      background-color: rgb(245, 35, 210); 
     border-radius: 5px;
  }

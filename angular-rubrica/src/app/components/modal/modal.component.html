@@ -1,29 +1,18 @@
 <div class="modal fade" bsModal #modale="bs-modal">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{ headM }}</h5>
-          <button type="button" class="btn-close" aria-label="Close" (click)="hide()"></button>
-        </div>
-            <div class="modal-body" *ngIf=" bodyM ">
-            <div> {{ bodyM }} </div>
+        <div class="card modal-content">
+            <div class="header modal-header">
+              <ng-content select="header"></ng-content>
             </div>
-            <div class="modal-body" *ngIf=" bodyM ">
-            <ng-container *ngIf="!this.savepersonmodal?.indirizzo; then show; else notshow;"></ng-container>
-
-                <ng-template #show>
-                Informazione non disponibile per quest'utente.
-                </ng-template>
-
-                <ng-template #notshow>
-                
-                </ng-template>
+            <div class="content modal-body mt-3 mb-3">
+              <ng-content select="content"></ng-content>
             </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-warning" (click)="hide()">
-            Close <i class="fas fa-times"></i>
-          </button>
+            <div class="form modal-body mt-3 mb-3">
+              <ng-content select="form"></ng-content>
+            </div>
+            <div class="footer modal-footer">
+              <ng-content select="footer"> </ng-content>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>

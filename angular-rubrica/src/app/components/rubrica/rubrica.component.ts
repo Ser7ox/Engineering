@@ -1,5 +1,5 @@
-import { Component,OnInit,ViewChild } from '@angular/core';
-import { Persona } from '../model/persona';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Persona } from '../../model/persona';
 import { PersonaService } from 'src/app/services/persona.service';
 import { ModalComponent } from '../modal/modal.component';
 
@@ -11,8 +11,9 @@ import { ModalComponent } from '../modal/modal.component';
 export class RubricaComponent implements OnInit {
   person: Persona[];
   saveperson: Persona;
-  headR: string 
-  bodyR: string 
+  headR: string;
+  bodyR: string;
+  buttonR: string;
 
   @ViewChild(ModalComponent)
   child: ModalComponent;
@@ -25,8 +26,9 @@ export class RubricaComponent implements OnInit {
 
   deleteRow(persona: Persona) {
     this.person = this.personaservice.eliminaUtente(persona);
-    this.headR = "Profilo eliminato"
-    this.bodyR = "Il profilo è stato eliminato"
+    this.headR = 'Profilo eliminato';
+    this.bodyR = 'Il profilo è stato eliminato';
+    this.buttonR = "Close";
     this.child.show();
   }
 
@@ -34,14 +36,27 @@ export class RubricaComponent implements OnInit {
     this.person = this.personaservice.dataUtente(outputP);
   }
 
+  hide (): void {
+    this.child.hide();
+  }
+
   selectRow(persona: Persona) {
     this.saveperson = persona;
-    this.headR = "Indirizzo di " + this.saveperson.nomeCompleto;
-    this.bodyR = this.saveperson.indirizzo;
+    this.headR = 'Indirizzo di ' + this.saveperson.nomeCompleto;
+    if (!this.saveperson.indirizzo) {
+      this.bodyR = "Informazione non disponibile per quest'utente.";
+    } else {
+      this.bodyR = this.saveperson.indirizzo;
+    }
+    this.buttonR = "Close";
     this.child.show();
   }
 
   editForm(persona: Persona) {
     this.saveperson = persona;
+    this.headR = 'Profilo di ' + this.saveperson.nomeCompleto;
+    this.bodyR == '';
+    console.log(this.bodyR)
+    this.child.show(); 
   }
 }

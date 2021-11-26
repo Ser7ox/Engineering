@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { Persona } from '../model/persona';
+import { Persona } from '../../model/persona';
 
 @Component({
   selector: 'app-modal',
@@ -10,9 +10,6 @@ import { Persona } from '../model/persona';
 export class ModalComponent implements OnInit {
   
   @ViewChild('modale') public modale:ModalDirective;
-  @Input() headM: string;
-  @Input() bodyM: string;
-  @Input() savepersonmodal: Persona;
 
   constructor() { }
 

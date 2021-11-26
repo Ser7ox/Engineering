@@ -1,4 +1,4 @@
-import { PersonaService } from "../../services/persona.service";
+import { PersonaService } from "../services/persona.service";
 
 export class Persona {
   

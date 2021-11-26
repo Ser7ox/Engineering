@@ -18,59 +18,34 @@
               <th scope="row">{{ persona.id }}</th>
               <td>{{ persona.nome }}</td>
               <td>{{ persona.cognome }}</td>
-              <td [ngClass]="{ modificaColore: persona.sesso === 'M', modificaColore2: persona.sesso === 'F' }">
+              <td [ngClass]="{sessoM: persona.sesso === 'M',sessoF: persona.sesso === 'F'}">
                 {{ persona.sesso }}
               </td>
               <td>{{ persona.telefono }}</td>
               <td>
-                <button class="btn" (click)="selectRow(persona)">
-                <i class="fas fa-map-marker-alt"></i>
-                </button>
-                <button class="btn" (click)="deleteRow(persona)">
-                <i class="fas fa-trash-alt"></i>
-                </button>
-                <button class="btn" (click)="editForm(persona)" data-bs-toggle="modal" data-bs-target="#form">
-                <i class="fas fa-edit"></i>
-                </button>
+                  <button class="btn" (click)="selectRow(persona)">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </button>
+                  <button class="btn" (click)="deleteRow(persona)">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                  <button class="btn" (click)="editForm(persona)" data-bs-toggle="modal" data-bs-target="#form">
+                    <i class="fas fa-edit"></i>
+                  </button>
               </td>
             </tr>
           </tbody>
-      </table>
-    </div>
-    </div>
-  </div>
-</div>
-
-<app-modal [headM]="headR" [bodyM]="bodyR" [savepersonmodal]="saveperson"></app-modal>
-
-<!-- 
-        <div *ngIf=" saveperson?.indirizzo ">
-            {{ saveperson?.indirizzo }}
-        </div>
-        <div *ngIf=" !saveperson?.indirizzo ">
-            <p class="mb-1 fw-light">Informazione non disponibile per quest'utente.</p>
-        </div>
--->
-
-<!-- Modal form -->
-<div class="modal fade" id="form" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          Profilo di {{ saveperson?.nomeCompleto }} 
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <app-form [FormPerson]="saveperson" (outputP)="takeData($event)"></app-form>
-          </div>
-        </form>
+        </table>
       </div>
     </div>
   </div>
 </div>
 
-   
+<app-modal> 
+    <header> <h5> {{ headR }} </h5> </header>
+    <content [ngClass]="{display: bodyR===undefined}" > {{bodyR }} </content>
+    <form *ngIf=" bodyR=== undefined "> <app-form [FormPerson]="saveperson" (outputP)="takeData($event)"></app-form></form>
+    <footer *ngIf="bodyR"> <button type="button" class="btn btn-warning" (click)="hide()"> {{ buttonR }} </button></footer>
+</app-modal>
+
+
