@@ -8,13 +8,15 @@ import { FormComponent } from './components/form/form.component';
 import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ModalComponent } from './components/modal/modal.component';
+import { GenericPipe } from './generic-pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     RubricaComponent,
     FormComponent,
-    ModalComponent
+    ModalComponent,
+    GenericPipe
   ],
   imports: [
     BrowserModule,
