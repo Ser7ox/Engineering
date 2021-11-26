@@ -28,7 +28,7 @@ export class RubricaComponent implements OnInit {
 
   deleteRow(persona: Persona) {
     this.person = this.personaservice.eliminaUtente(persona);
-    this.headR = 'profilo eliminato';
+    this.headR = 'Profilo Eliminato';
     this.bodyR = 'Il profilo è stato eliminato';
     this.buttonR = "Close";
     this.child.show();
@@ -58,7 +58,7 @@ export class RubricaComponent implements OnInit {
   editForm(persona: Persona) {
     this.saveperson = persona;
     this.headR = 'Profilo di ' + this.saveperson.nomeCompleto;
-    this.bodyR == '';
+    this.bodyR = '';
     console.log(this.bodyR)
     this.child.show(); 
   }

@@ -51,7 +51,7 @@
     <label class="mt-2" for="telefono">Telefono: </label>
     <input id="telefono" class="form-control" type="text" formControlName="telefono">
 
-    <button data-bs-dismiss="modal" type="submit" class="btn btn-success mt-3 " [disabled]="profilo.invalid">Salva <i class="fas fa-save"></i></button>
+    <button data-bs-dismiss="modal" type="submit" (click)="nascondi()" class="btn btn-success mt-3 " [disabled]="profilo.invalid">Salva <i class="fas fa-save"></i></button>
 </form>
 
  <!-- template driven form

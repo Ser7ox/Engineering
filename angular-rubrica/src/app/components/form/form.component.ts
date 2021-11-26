@@ -1,7 +1,8 @@
-import { Component,OnInit,Input,SimpleChanges,Output,EventEmitter,} from '@angular/core';
+import { Component,OnInit,Input,SimpleChanges,Output,EventEmitter, ViewChild,} from '@angular/core';
 import { Persona } from '../../model/persona';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { filtronumeri } from '../../validator/filtronumeri.validator';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-form',
@@ -12,6 +13,9 @@ export class FormComponent implements OnInit {
   @Input() FormPerson: Persona;
   @Output() outputP = new EventEmitter<Persona>();
   profilo: FormGroup;
+
+  @ViewChild(ModalComponent)
+  hidemodal: ModalComponent;
 
   constructor(private fb: FormBuilder) {}
 
@@ -50,7 +54,10 @@ export class FormComponent implements OnInit {
       this.profilo.get('telefono').value,
       this.profilo.get('indirizzo').value
     );
-    this.outputP.emit(persona);
-    
+    this.outputP.emit(persona); 
+  }
+
+  nascondi(): void {
+    this.hidemodal.hide();
   }
 }

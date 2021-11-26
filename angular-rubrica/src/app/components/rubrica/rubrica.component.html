@@ -43,8 +43,8 @@
 
 <app-modal> 
     <header> <h5> {{ headR }} </h5> </header>
-    <content [ngClass]="{display: bodyR===undefined}" > {{bodyR }} </content>
-    <form *ngIf=" bodyR=== undefined "> <app-form [FormPerson]="saveperson" (outputP)="takeData($event)"></app-form></form>
+    <content *ngIf="bodyR"> {{bodyR }} </content>
+    <form *ngIf=" bodyR=== '' "> <app-form [FormPerson]="saveperson" (outputP)="takeData($event)"></app-form></form>
     <footer *ngIf="bodyR"> <button type="button" class="btn btn-warning" (click)="hide()"> {{ buttonR }} </button></footer>
 </app-modal>
 
