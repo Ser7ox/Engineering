@@ -18,6 +18,7 @@ export class FormComponent implements OnInit{
 
   ngOnInit(): void {
     this.profilo = this.fb.group({
+      id: [undefined],
       nome: [undefined,[Validators.required, Validators.minLength(3), Validators.maxLength(20), filtronumeri]],
       cognome: [undefined,[Validators.required, Validators.minLength(3), Validators.maxLength(20), filtronumeri]],
       datanascita: [undefined,[Validators.required]],
@@ -30,6 +31,7 @@ export class FormComponent implements OnInit{
   }
 
   setProfilo() {
+    this.profilo.get('id').setValue(this.FormPerson?.id);
     this.profilo.get('nome').setValue(this.FormPerson?.nome);
     this.profilo.get('cognome').setValue(this.FormPerson?.cognome);
     this.profilo.controls['datanascita'].setValue(this.FormPerson?.dateUtente());    

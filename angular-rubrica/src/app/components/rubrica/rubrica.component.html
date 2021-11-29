@@ -44,7 +44,7 @@
 </div>
 
 <app-modal [headM]="headR"> 
-    <div content *ngIf="bodyR"> {{ bodyR }} </div>
+    <div content *ngIf="bodyR" class="mt-3 mb-3"> {{ bodyR }} </div>
     <div content *ngIf="!bodyR"> <app-form [FormPerson]="saveperson" (outputP)="takeData($event)"></app-form></div>
 </app-modal>
 

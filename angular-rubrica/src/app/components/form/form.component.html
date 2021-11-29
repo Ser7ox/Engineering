@@ -1,52 +1,51 @@
  <form [formGroup]="profilo" (ngSubmit)="SaveForm()">
-
-    <label for="nome">Nome: </label>
+    <div class="row align-items-center">
+      <div class="col-auto ">
+    <label for="id" >ID: </label>
+    </div>
+    <div class="col-auto ps-0">
+    <input id="id" class="form-control w-25" type="text" formControlName="id" name="id" readonly>
+    </div>
+    </div>
+    
+    <label class="mt-2" for="nome">Nome:* </label>
     <input id="nome" class="form-control" type="text" formControlName="nome" name="nome">
     <div *ngIf="profilo.get('nome').invalid && (profilo.get('nome').dirty || profilo.get('nome').touched)">
-      <small class="text-danger"
-          *ngIf="profilo.get('nome').hasError('required')">
+      <small class="text-danger" *ngIf="profilo.get('nome').hasError('required')">
           Inserisci un nome.
       </small>
-      <small class="text-danger"
-          *ngIf="profilo.get('nome').hasError('minlength')">
+      <small class="text-danger" *ngIf="profilo.get('nome').hasError('minlength')">
           La lunghezza minima per questo campo è {{profilo.get('nome').errors.minlength.requiredLength}} caratteri.
       </small>
-      <small class="text-danger"
-          *ngIf="profilo.get('nome').hasError('maxlength')">
+      <small class="text-danger" *ngIf="profilo.get('nome').hasError('maxlength')">
           La lunghezza massima per questo campo è {{profilo.get('nome').errors.maxlength.requiredLength}} caratteri.
       </small>
-      <small class="text-danger"
-          *ngIf="profilo.get('nome').hasError('filtronumeri')">
+      <small class="text-danger" *ngIf="profilo.get('nome').hasError('filtronumeri')">
           Il campo non deve contenere numeri o caratteri speciali.
       </small>
     </div>
           
-    <label class="mt-2" for="cognome">Cognome: </label>
+    <label class="mt-2" for="cognome">Cognome:* </label>
     <input id="cognome" class="form-control" type="text" formControlName="cognome">
     <div *ngIf="profilo.get('cognome').invalid && (profilo.get('cognome').dirty || profilo.get('cognome').touched)">
-      <small class="text-danger"
-          *ngIf="profilo.get('cognome').hasError('required')">
+      <small class="text-danger" *ngIf="profilo.get('cognome').hasError('required')">
           Inserisci un cognome.
       </small>
-      <small class="text-danger"
-          *ngIf="profilo.get('cognome').hasError('minlength')">
+      <small class="text-danger" *ngIf="profilo.get('cognome').hasError('minlength')">
           La lunghezza minima per questo campo è {{profilo.get('cognome').errors.minlength.requiredLength}} caratteri.
       </small>
-      <small class="text-danger"
-          *ngIf="profilo.get('cognome').hasError('maxlength')">
+      <small class="text-danger" *ngIf="profilo.get('cognome').hasError('maxlength')">
           La lunghezza massima per questo campo è {{profilo.get('cognome').errors.maxlength.requiredLength}} caratteri.
       </small>
-      <small class="text-danger"
-          *ngIf="profilo.get('nome').hasError('gte')">
+      <small class="text-danger" *ngIf="profilo.get('nome').hasError('gte')">
           Il campo non deve contenere numeri o caratteri speciali.
       </small>
     </div>
 
-    <label class="mt-2" for="datanascita">Data di nascita: </label>
+    <label class="mt-2" for="datanascita">Data di nascita:* </label>
     <input id="datanascita" class="form-control" type="date" formControlName="datanascita">
     <div *ngIf="profilo.get('datanascita').invalid">
-      <small class="text-danger"
-          *ngIf="profilo.get('datanascita').hasError('required')">
+      <small class="text-danger" *ngIf="profilo.get('datanascita').hasError('required')">
           Inserisci una data di nascita valida.
       </small>
       </div>
@@ -61,7 +60,12 @@
     <input id="telefono" class="form-control" type="text" formControlName="telefono">
 
     <button data-bs-dismiss="modal" type="submit" class="btn btn-success mt-3 " [disabled]="profilo.invalid">Salva <i class="fas fa-save"></i></button>
-
+    
+    <div class="mt-3">
+      <span class="form-text">
+        *: Campi obbligatori
+      </span>
+    </div>
 </form>
 
  <!-- template driven form
