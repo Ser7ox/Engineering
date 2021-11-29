@@ -18,4 +18,5 @@ export class MousehoverDirective {
   private bgcolor(color: string) {
     this.elRef.nativeElement.style.backgroundColor = color;
   }
+  
 } 
