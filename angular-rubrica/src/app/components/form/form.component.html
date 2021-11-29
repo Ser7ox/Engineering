@@ -41,6 +41,15 @@
           Il campo non deve contenere numeri o caratteri speciali.
       </small>
     </div>
+
+    <label class="mt-2" for="datanascita">Data di nascita: </label>
+    <input id="datanascita" class="form-control" [value]="FormPerson?.datanascita | date:'yyyy-MM-dd'" type="date" formControlName="datanascita">
+    <div *ngIf="profilo.get('datanascita').invalid">
+      <small class="text-danger"
+          *ngIf="profilo.get('datanascita').hasError('required')">
+          Inserisci una data di nascita valida.
+      </small>
+      </div>
             
     <label class="mt-2" for="sesso">Sesso: </label>
     <input id="sesso" class="form-control" type="text" formControlName="sesso" readonly>
@@ -51,7 +60,8 @@
     <label class="mt-2" for="telefono">Telefono: </label>
     <input id="telefono" class="form-control" type="text" formControlName="telefono">
 
-    <button data-bs-dismiss="modal" type="submit" (click)="nascondi()" class="btn btn-success mt-3 " [disabled]="profilo.invalid">Salva <i class="fas fa-save"></i></button>
+    <button data-bs-dismiss="modal" type="submit" class="btn btn-success mt-3 " [disabled]="profilo.invalid">Salva <i class="fas fa-save"></i></button>
+
 </form>
 
  <!-- template driven form

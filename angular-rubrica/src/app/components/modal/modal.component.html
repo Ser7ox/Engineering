@@ -2,14 +2,13 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="card modal-content">
             <div class="header modal-header">
-              <ng-content select="header"></ng-content>
+              <h5 class="modal-title">{{ headM }}</h5>
+              <button type="button" class="btn-close" aria-label="Close" (click)="hide()"></button>
             </div>
             <div class="content modal-body mt-3 mb-3">
-              <ng-content select="content"></ng-content>
-              <ng-content select="form"></ng-content>
+              <ng-content select="[content]"></ng-content>
             </div>
-            <div class="footer modal-footer">
-              <ng-content select="footer"> </ng-content>
+            <div class="footer modal-footer mb-4">
             </div>
         </div>
     </div>

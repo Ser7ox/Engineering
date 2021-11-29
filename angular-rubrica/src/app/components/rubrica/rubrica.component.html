@@ -1,6 +1,6 @@
 <div class="mx-5 shadow rounded">
   <div class="row d-flex justify-content-center mt-5 px-2 py-2">
-    <div class="col-lg-8 col-md-12 px-5 py-5">
+    <div class="col-lg-10 col-md-12 px-5 py-5">
       <div class="table-responsive">
         <table class="table" *ngIf="person.length > 0">
           <thead>
@@ -8,16 +8,18 @@
               <th scope="col">#</th>
               <th scope="col">Nome</th>
               <th scope="col">Cognome</th>
+              <th scope="col">Data di nascita</th>
               <th scope="col">Sesso</th>
               <th scope="col">Telefono</th>
               <th scope="col">Azioni user</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let persona of person">
+            <tr appMousehover *ngFor="let persona of person">
               <th scope="row">{{ persona.id }}</th>
               <td>{{ persona.nome }}</td>
               <td>{{ persona.cognome }}</td>
+              <td> {{ persona.datanascita | date: 'dd/MM/yyyy' }} </td>
               <td [ngClass]="{sessoM: persona.sesso === 'M',sessoF: persona.sesso === 'F'}">
                 {{ persona.sesso }}
               </td>
@@ -29,7 +31,7 @@
                   <button class="btn" (click)="deleteRow(persona)">
                     <i class="fas fa-trash-alt"></i>
                   </button>
-                  <button class="btn" (click)="editForm(persona)" data-bs-toggle="modal" data-bs-target="#form">
+                  <button class="btn" (click)="editForm(persona)">
                     <i class="fas fa-edit"></i>
                   </button>
               </td>
@@ -41,11 +43,9 @@
   </div>
 </div>
 
-<app-modal> 
-    <header> <h5> {{ headR }} </h5> </header>
-    <content *ngIf="bodyR"> {{bodyR }} </content>
-    <form *ngIf=" bodyR=== '' "> <app-form [FormPerson]="saveperson" (outputP)="takeData($event)"></app-form></form>
-    <footer *ngIf="bodyR"> <button type="button" class="btn btn-warning" (click)="hide()"> {{ buttonR }} </button></footer>
+<app-modal [headM]="headR"> 
+    <div content *ngIf="bodyR"> {{ bodyR }} </div>
+    <div content *ngIf="!bodyR"> <app-form [FormPerson]="saveperson" (outputP)="takeData($event)"></app-form></div>
 </app-modal>
 
 

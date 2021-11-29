@@ -34,7 +34,6 @@ export class RubricaComponent implements OnInit {
     this.child.show();
   }
 
-
   takeData(outputP: Persona) {
     this.person = this.personaservice.dataUtente(outputP);
   }
@@ -58,8 +57,7 @@ export class RubricaComponent implements OnInit {
   editForm(persona: Persona) {
     this.saveperson = persona;
     this.headR = 'Profilo di ' + this.saveperson.nomeCompleto;
-    this.bodyR = '';
-    console.log(this.bodyR)
+    this.bodyR = undefined;
     this.child.show(); 
   }
 }

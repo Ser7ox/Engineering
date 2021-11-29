@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ModalComponent } from './components/modal/modal.component';
 import { GenericPipe } from './generic-pipe';
+import { MousehoverDirective } from './mousehover.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { GenericPipe } from './generic-pipe';
     RubricaComponent,
     FormComponent,
     ModalComponent,
-    GenericPipe
+    GenericPipe,
+    MousehoverDirective
   ],
   imports: [
     BrowserModule,

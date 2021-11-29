@@ -1,28 +1,30 @@
-import { PersonaService } from "../services/persona.service";
+
+import { DatePipe } from '@angular/common';
 
 export class Persona {
   
     private _id: number;
     private _nome: string;
     private _cognome: string;
+    private _datanascita: Date;
     private _sesso: string;
     private _telefono: number;
     private _indirizzo: string;
     length: number;
     
 
-    constructor(_id: number, _nome: string, _cognome: string, _sesso: string, _telefono: number, _indirizzo?: string) { 
-        
+    constructor(_id: number, _nome: string, _cognome: string,  _datanascita: Date, _sesso: string, _telefono: number, _indirizzo?: string) { 
         this._id = _id;
         this._nome = _nome;
         this._cognome = _cognome;
+        this._datanascita = _datanascita;
         this._sesso = _sesso;
         this._telefono = _telefono;
         this._indirizzo = _indirizzo;
     }
 
     public set id(id: number) {
-        this._id = id; //passo in input al set il valore nome interessato
+        this._id = id; //passo in input al set il valore id interessato
     }
     public get id(): number {
         return this._id; //output -> _id
@@ -40,6 +42,13 @@ export class Persona {
     }
     public get cognome(): string {
         return this._cognome; //output -> _cognome
+    }
+    
+    public set datanascita(datanascita: Date) {
+        this._datanascita = datanascita; //passo in input al set il valore datanascita interessato
+    }
+    public get datanascita(): Date {
+        return this._datanascita; //output -> _datanascita
     }
 
     public set sesso(sesso: string) {
@@ -74,5 +83,9 @@ export class Persona {
 
     
 }
-  
 
+/*  aggiungere data nascita sulla tabella con formato date ( dd/MM/YYYY ) OK
+    togliere ng-content header e metterlo da modale OK
+    inserire data nascita su form per poterla modificare OK
+    direttiva custom, al passaggio del mouse su riga tabella, questa diventa grigia 
+*/
