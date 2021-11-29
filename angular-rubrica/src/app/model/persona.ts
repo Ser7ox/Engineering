@@ -44,12 +44,16 @@ export class Persona {
         return this._cognome; //output -> _cognome
     }
     
-    public set datanascita(datanascita: Date) {
+    public set dataNascita(datanascita: Date) {
         this._datanascita = datanascita; //passo in input al set il valore datanascita interessato
     }
-    public get datanascita(): Date {
+    public get dataNascita(): Date {
         return this._datanascita; //output -> _datanascita
     }
+    dateUtente() {
+        const dataUtente = new Date(this.dataNascita);
+        return dataUtente.toISOString().substring(0,10);
+      }
 
     public set sesso(sesso: string) {
         this._sesso = sesso;  //passo in input al set il valore id interessato

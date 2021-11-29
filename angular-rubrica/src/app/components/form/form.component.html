@@ -43,7 +43,7 @@
     </div>
 
     <label class="mt-2" for="datanascita">Data di nascita: </label>
-    <input id="datanascita" class="form-control" [value]="FormPerson?.datanascita | date:'yyyy-MM-dd'" type="date" formControlName="datanascita">
+    <input id="datanascita" class="form-control" type="date" formControlName="datanascita">
     <div *ngIf="profilo.get('datanascita').invalid">
       <small class="text-danger"
           *ngIf="profilo.get('datanascita').hasError('required')">

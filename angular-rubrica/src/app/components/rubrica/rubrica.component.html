@@ -19,7 +19,7 @@
               <th scope="row">{{ persona.id }}</th>
               <td>{{ persona.nome }}</td>
               <td>{{ persona.cognome }}</td>
-              <td> {{ persona.datanascita | maiuscolo }} </td>
+              <td> {{ persona.dataNascita | date: 'dd/MM/yyyy' }} </td>
               <td [ngClass]="{sessoM: persona.sesso === 'M',sessoF: persona.sesso === 'F'}">
                 {{ persona.sesso }}
               </td>

@@ -2,13 +2,14 @@ import { Component,OnInit,Input,SimpleChanges,Output,EventEmitter} from '@angula
 import { Persona } from '../../model/persona';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { filtronumeri } from '../../validator/filtronumeri.validator';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit{
   @Input() FormPerson: Persona;
   @Output() outputP = new EventEmitter<Persona>();
   profilo: FormGroup;
@@ -32,7 +33,7 @@ export class FormComponent implements OnInit {
   setProfilo() {
     this.profilo.get('nome').setValue(this.FormPerson?.nome);
     this.profilo.get('cognome').setValue(this.FormPerson?.cognome);
-    this.profilo.get('datanascita').setValue(this.FormPerson?.datanascita);
+    this.profilo.controls['datanascita'].setValue(this.FormPerson?.dateUtente());    
     this.profilo.get('sesso').setValue(this.FormPerson?.sesso);
     this.profilo.get('telefono').setValue(this.FormPerson?.telefono);
     this.profilo.get('indirizzo').setValue(this.FormPerson?.indirizzo);
