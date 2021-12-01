@@ -16,7 +16,6 @@ export class NewContactComponent implements OnInit {
   
   profilo: FormGroup;
   person = Persone;
-  @ViewChild('modale') public modale:ModalDirective;
   @ViewChild(ModalComponent)child: ModalComponent;
   headR: string;
   bodyR: string;
@@ -52,10 +51,6 @@ export class NewContactComponent implements OnInit {
     let item1 = this.person.find(i => i.id === this.person.length);
     persona.id = item1.id + 1;
     return this.personaservice.creaUtente(persona);
-  }
-
-  hide(): void {
-    this.modale.hide();
   }
 
 }

@@ -1,9 +1,10 @@
-import { Component,OnInit,Input,SimpleChanges,Output,EventEmitter} from '@angular/core';
+import { Component,OnInit,Input,SimpleChanges,Output,EventEmitter, ViewChild} from '@angular/core';
 import { Persona } from '../../model/persona';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { filtronumeri } from '../../validator/filtronumeri.validator';
 import { ActivatedRoute } from '@angular/router';
 import { PersonaService } from 'src/app/services/persona.service';
+import { ModalComponent } from '../modal/modal.component';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -15,6 +16,9 @@ export class FormComponent implements OnInit{
   profilo: FormGroup;
   parameterValue: number;
   utente: Persona;
+  @ViewChild(ModalComponent)child: ModalComponent;
+  headR: string;
+  bodyR: string;
   
   constructor(private fb: FormBuilder, private _ActivatedRoute:ActivatedRoute, private personaservice: PersonaService) {}
 
@@ -64,7 +68,9 @@ export class FormComponent implements OnInit{
       this.profilo.get('telefono').value,
       this.profilo.get('indirizzo').value
     );
-
+    this.headR = 'Profilo aggiornato';
+    this.bodyR = 'Il profilo di '+ persona.nome + ' ' + persona.cognome +' è stato aggiornato correttamente.';
+    this.child.show();
     return this.personaservice.modificaUtente(persona);
   }
 }
