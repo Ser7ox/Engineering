@@ -46,7 +46,7 @@ export class NewContactComponent implements OnInit {
     );
     this.profilo.reset();
     this.headR = 'Profilo creato';
-    this.bodyR = 'Il profilo di '+ persona.nome + ' ' + persona.cognome +' è stato inserito correttamente.';
+    this.bodyR = 'Il profilo di '+ persona.nomeCompleto +' è stato inserito correttamente.';
     this.child.show();
     let item1 = this.person.find(i => i.id === this.person.length);
     persona.id = item1.id + 1;

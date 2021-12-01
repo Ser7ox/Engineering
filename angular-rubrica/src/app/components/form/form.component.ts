@@ -69,7 +69,7 @@ export class FormComponent implements OnInit{
       this.profilo.get('indirizzo').value
     );
     this.headR = 'Profilo aggiornato';
-    this.bodyR = 'Il profilo di '+ persona.nome + ' ' + persona.cognome +' è stato aggiornato correttamente.';
+    this.bodyR = 'Il profilo di '+ persona.nomeCompleto +' è stato aggiornato correttamente.';
     this.child.show();
     return this.personaservice.modificaUtente(persona);
   }
