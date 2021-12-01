@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { Persona } from '../../model/persona';
 
 @Component({
   selector: 'app-modal',

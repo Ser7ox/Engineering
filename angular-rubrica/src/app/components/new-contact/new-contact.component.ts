@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Persona } from '../../model/persona';
 import { PersonaService } from 'src/app/services/persona.service';
 import { filtronumeri } from '../../validator/filtronumeri.validator';
-import { FormComponent } from '../form/form.component';
 import { Persone } from 'src/app/persona-server';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-new-contact',
@@ -15,6 +16,10 @@ export class NewContactComponent implements OnInit {
   
   profilo: FormGroup;
   person = Persone;
+  @ViewChild('modale') public modale:ModalDirective;
+  @ViewChild(ModalComponent)child: ModalComponent;
+  headR: string;
+  bodyR: string;
 
   constructor(private fb: FormBuilder, private personaservice: PersonaService) { }
 
@@ -41,10 +46,16 @@ export class NewContactComponent implements OnInit {
       this.profilo.get('indirizzo').value
     );
     this.profilo.reset();
+    this.headR = 'Profilo creato';
+    this.bodyR = 'Il profilo di '+ persona.nome + ' ' + persona.cognome +' è stato inserito correttamente.';
+    this.child.show();
     let item1 = this.person.find(i => i.id === this.person.length);
     persona.id = item1.id + 1;
     return this.personaservice.creaUtente(persona);
-    
+  }
+
+  hide(): void {
+    this.modale.hide();
   }
 
 }
