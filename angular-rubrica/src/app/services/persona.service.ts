@@ -7,7 +7,6 @@ import { Persona } from '../model/persona';
 })
 export class PersonaService {
   person = Persone;
-
   constructor() {}
 
   eliminaUtente(var1: Persona): Persona[] {
@@ -28,4 +27,11 @@ export class PersonaService {
     return this.person;
   }
   
+  recuperaDati(id: number): Persona {
+    let utente: Persona;
+    this.person.forEach((element, i) => {
+      if ( element.id === id ) utente = this.person[i]
+    });
+    return utente;
+  }
 }

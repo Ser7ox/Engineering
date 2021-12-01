@@ -1,0 +1,39 @@
+<div class="mx-5 shadow rounded">
+    <div class="row d-flex justify-content-center mt-5 px-4 py-4">
+      <div class="col-lg-4 col-md-6 px-5 py-3"> 
+        <form>
+            <div class="row align-items-center">
+              <label class="mt-2" for="nome">Nome:* </label>
+              <input id="nome" class="form-control" type="text" formControlName="nome" name="nome">
+              
+                  
+            <label class="mt-2" for="cognome">Cognome:* </label>
+            <input id="cognome" class="form-control" type="text" formControlName="cognome">
+            
+  
+            <label class="mt-2" for="datanascita">Data di nascita:* </label>
+            <input id="datanascita" class="form-control" type="date" formControlName="datanascita">
+            
+                    
+            <label class="mt-2" for="sesso">Sesso: </label>
+            <input id="sesso" class="form-control" type="text" formControlName="sesso" readonly>
+  
+            <label class="mt-2" for="indirizzo">Indirizzo: </label>
+            <input id="indirizzo" class="form-control" type="text" formControlName="indirizzo">
+  
+            <label class="mt-2" for="telefono">Telefono: </label>
+            <input id="telefono" class="form-control" type="text" formControlName="telefono">
+  
+            <button data-bs-dismiss="modal" type="submit" class="btn btn-success mt-3 ">Salva <i class="fas fa-save"></i></button>
+            <button class="btn btn-secondary mt-3"routerLink="/rubrica" routerLinkActive="active">Back <i class="fas fa-backward"></i></button>
+            
+            <div class="mt-3">
+              <span class="form-text">
+                *: Campi obbligatori
+              </span>
+            </div>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>

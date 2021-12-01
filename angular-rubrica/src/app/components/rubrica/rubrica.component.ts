@@ -3,6 +3,7 @@ import { Persona } from '../../model/persona';
 import { PersonaService } from 'src/app/services/persona.service';
 import { ModalComponent } from '../modal/modal.component';
 
+
 @Component({
   selector: 'app-rubrica',
   templateUrl: './rubrica.component.html',
@@ -56,8 +57,6 @@ export class RubricaComponent implements OnInit {
 
   editForm(persona: Persona) {
     this.saveperson = persona;
-    this.headR = 'Profilo di ' + this.saveperson.nomeCompleto;
-    this.bodyR = undefined;
     this.child.show(); 
   }
 }

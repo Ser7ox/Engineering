@@ -10,6 +10,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ModalComponent } from './components/modal/modal.component';
 import { GenericPipe } from './generic-pipe';
 import { MousehoverDirective } from './mousehover.directive';
+import { NewContactComponent } from './components/new-contact/new-contact.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,14 +20,16 @@ import { MousehoverDirective } from './mousehover.directive';
     FormComponent,
     ModalComponent,
     GenericPipe,
-    MousehoverDirective
+    MousehoverDirective,
+    NewContactComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
