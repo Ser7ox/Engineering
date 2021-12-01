@@ -16,10 +16,7 @@ export class RubricaComponent implements OnInit {
   saveperson: Persona;
   headR: string;
   bodyR: string;
-  buttonR: string;
-
-  @ViewChild(ModalComponent)
-  child: ModalComponent;
+  @ViewChild(ModalComponent)child: ModalComponent;
 
   constructor(private personaservice: PersonaService) {}
 
@@ -31,12 +28,7 @@ export class RubricaComponent implements OnInit {
     this.person = this.personaservice.eliminaUtente(persona);
     this.headR = 'Profilo Eliminato';
     this.bodyR = 'Il profilo è stato eliminato';
-    this.buttonR = "Close";
     this.child.show();
-  }
-
-  takeData(outputP: Persona) {
-    this.person = this.personaservice.dataUtente(outputP);
   }
 
   hide (): void {
@@ -51,12 +43,7 @@ export class RubricaComponent implements OnInit {
     } else {
       this.bodyR = this.saveperson.indirizzo;
     }
-    this.buttonR = "Close";
     this.child.show();
   }
 
-  editForm(persona: Persona) {
-    this.saveperson = persona;
-    this.child.show(); 
-  }
 }

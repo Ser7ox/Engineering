@@ -11,7 +11,6 @@ import { PersonaService } from 'src/app/services/persona.service';
 })
 export class FormComponent implements OnInit{
 
-  @Input() FormPerson: Persona;
   @Output() outputP = new EventEmitter<Persona>();
   profilo: FormGroup;
   parameterValue: number;
@@ -30,13 +29,13 @@ export class FormComponent implements OnInit{
       indirizzo: [undefined],
     });
 
-    this.setProfilo();
-
     this._ActivatedRoute.params.subscribe(param => {
-      this.parameterValue = +param.id
+      this.parameterValue = +param.id;
     })
 
     this.utente = this.personaservice.recuperaDati(this.parameterValue);
+
+    this.setProfilo();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -65,7 +64,7 @@ export class FormComponent implements OnInit{
       this.profilo.get('telefono').value,
       this.profilo.get('indirizzo').value
     );
-    this.outputP.emit(persona);
+    
   }
 
 }

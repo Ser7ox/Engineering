@@ -1,6 +1,6 @@
 <div class="mx-5 shadow rounded">
   <div class="row d-flex justify-content-center mt-5 px-4 py-4">
-    <div class="col-lg-4 col-md-6 px-5 py-3">
+    <div class="col-lg-3 col-md-6 px-5 py-3">
       <h4 class="text-center mb-3"> Modifica il contatto </h4>
       <form [formGroup]="profilo" (ngSubmit)="SaveForm()">
           <div class="row align-items-center">
@@ -22,7 +22,7 @@
             </div>
                 
           <label class="mt-2" for="cognome">Cognome:* </label>
-          <input id="cognome" class="form-control" type="text" formControlName="cognome" placeholder="{{ utente.cognome }}">
+          <input id="cognome" class="form-control" type="text" formControlName="cognome">
           <div *ngIf="profilo.get('cognome').invalid && (profilo.get('cognome').dirty || profilo.get('cognome').touched)">
             <small class="text-danger" *ngIf="profilo.get('cognome').hasError('required')">
                 Inserisci un cognome.
@@ -54,10 +54,11 @@
 
           <label class="mt-2" for="telefono">Telefono: </label>
           <input id="telefono" class="form-control" type="text" formControlName="telefono">
-
-          <button type="submit" class="btn btn-success mt-3 " [disabled]="profilo.invalid">Salva <i class="fas fa-save"></i></button>
-          <button  type="button" class="btn btn-secondary mt-3"routerLink="/rubrica" routerLinkActive="active">Back <i class="fas fa-backward"></i></button>
-          <div class="mt-3">
+          <div class="btn-group mt-3" role="group">
+            <button type="submit" class="btn btn-success me-4" [disabled]="profilo.invalid">Salva <i class="fas fa-save"></i></button>
+            <button  type="button" class="btn btn-secondary"routerLink="/rubrica" routerLinkActive="active">Back <i class="fas fa-backward"></i></button>
+          </div>
+            <div class="mt-3">
             <span class="form-text">
               *: Campi obbligatori
             </span>

@@ -20,12 +20,14 @@ export class PersonaService {
     return this.person;
   }
 
-  dataUtente(var2: Persona): Persona[] {
+  modificaUtente(var2: Persona): Persona[] {
     this.person.forEach((element, i) => {
       if (element.id === var2.id) this.person[i] = var2;
     });
     return this.person;
   }
+
+  // aggiungiUtente(var3: Persona): Persona[] {}
   
   recuperaDati(id: number): Persona {
     let utente: Persona;
