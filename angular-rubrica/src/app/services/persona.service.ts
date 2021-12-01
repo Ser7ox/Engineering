@@ -27,7 +27,10 @@ export class PersonaService {
     return this.person;
   }
 
-  // aggiungiUtente(var3: Persona): Persona[] {}
+  creaUtente(var3: Persona): Persona[] {
+    this.person.push(var3)
+    return this.person;
+  }
   
   recuperaDati(id: number): Persona {
     let utente: Persona;

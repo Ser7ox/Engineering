@@ -64,7 +64,7 @@ export class FormComponent implements OnInit{
       this.profilo.get('telefono').value,
       this.profilo.get('indirizzo').value
     );
-    
-  }
 
+    return this.personaservice.modificaUtente(persona);
+  }
 }

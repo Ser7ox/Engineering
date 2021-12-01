@@ -34,6 +34,7 @@ export class RubricaComponent implements OnInit {
   hide (): void {
     this.child.hide();
   }
+  
 
   selectRow(persona: Persona) {
     this.saveperson = persona;
