@@ -28,7 +28,9 @@ export class PersonaService {
   }
 
   creaUtente(var3: Persona): Persona[] {
-    this.person.push(var3)
+    let item = this.person.find(i => i.id === this.person.length);
+    var3.id = item.id + 1; 
+    this.person.push(var3);
     return this.person;
   }
   

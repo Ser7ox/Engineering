@@ -31,7 +31,7 @@
                   <button class="btn" (click)="deleteRow(persona)">
                     <i class="fas fa-trash-alt"></i>
                   </button>
-                  <button class="btn" [routerLink]="['/edit', persona.id]" routerLinkActive="active">
+                  <button class="btn" (click)="formId(persona.id)">
                     <i class="fas fa-edit"></i>
                   </button>
               </td>
@@ -45,7 +45,7 @@
         <div class="card-body">
           <h5 class="card-title">Creazione di un nuovo contatto</h5>
           <p class="card-text">Aggiungi un nuovo contatto sull'app rubrica!</p>
-          <button class="btn btn-dark" routerLink="/newcontact" routerLinkActive="active">Clicca qui</button>
+          <button class="btn btn-dark" (click)="form()">Clicca qui</button>
         </div>
     </div>
     </div>

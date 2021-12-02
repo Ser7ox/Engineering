@@ -10,7 +10,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ModalComponent } from './components/modal/modal.component';
 import { GenericPipe } from './generic-pipe';
 import { MousehoverDirective } from './mousehover.directive';
-import { NewContactComponent } from './components/new-contact/new-contact.component';
 import {RouterModule} from '@angular/router';
 
 @NgModule({
@@ -21,7 +20,6 @@ import {RouterModule} from '@angular/router';
     ModalComponent,
     GenericPipe,
     MousehoverDirective,
-    NewContactComponent
   ],
   imports: [
     BrowserModule,

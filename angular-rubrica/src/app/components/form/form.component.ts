@@ -1,4 +1,4 @@
-import { Component,OnInit,Input,SimpleChanges,Output,EventEmitter, ViewChild} from '@angular/core';
+import { Component,OnInit,SimpleChanges,Output,EventEmitter, ViewChild} from '@angular/core';
 import { Persona } from '../../model/persona';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { filtronumeri } from '../../validator/filtronumeri.validator';
@@ -12,32 +12,43 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class FormComponent implements OnInit{
 
-  @Output() outputP = new EventEmitter<Persona>();
+  @ViewChild(ModalComponent)child: ModalComponent;
   profilo: FormGroup;
   parameterValue: number;
+  editValue: string;
+  newValue: string;
   utente: Persona;
-  @ViewChild(ModalComponent)child: ModalComponent;
-  headR: string;
-  bodyR: string;
+  headF: string;
+  bodyF: string;
   
   constructor(private fb: FormBuilder, private _ActivatedRoute:ActivatedRoute, private personaservice: PersonaService) {}
 
   ngOnInit(): void {
     this.profilo = this.fb.group({
-      id: [undefined],
       nome: [undefined,[Validators.required, Validators.minLength(3), Validators.maxLength(20), filtronumeri]],
       cognome: [undefined,[Validators.required, Validators.minLength(3), Validators.maxLength(20), filtronumeri]],
       datanascita: [undefined,[Validators.required]],
-      sesso: [undefined],
-      telefono: [undefined],
-      indirizzo: [undefined],
+      sesso: [undefined,[Validators.required]],
+      telefono: [undefined,[Validators.required]],
+      indirizzo: [undefined,[Validators.required]],
     });
 
     this._ActivatedRoute.params.subscribe(param => {
-      this.parameterValue = +param.id;
+      this.parameterValue = +param.id; 
     })
 
-    this.utente = this.personaservice.recuperaDati(this.parameterValue);
+    this._ActivatedRoute.params.subscribe(para => {
+      this.editValue = para.titleEdit; 
+    })
+
+    this._ActivatedRoute.params.subscribe(prm => {
+      this.newValue = prm.titleNew;
+    })
+
+    
+    if ( this.parameterValue ) {
+      this.utente = this.personaservice.recuperaDati(this.parameterValue);
+    }
 
     this.setProfilo();
   }
@@ -49,7 +60,6 @@ export class FormComponent implements OnInit{
   }
 
   setProfilo() {
-    this.profilo.get('id').setValue(this.utente?.id);
     this.profilo.get('nome').setValue(this.utente?.nome);
     this.profilo.get('cognome').setValue(this.utente?.cognome);
     this.profilo.controls['datanascita'].setValue(this.utente?.dateUtente());    
@@ -59,18 +69,39 @@ export class FormComponent implements OnInit{
   }
 
   SaveForm() {
-    const persona = new Persona(
-      this.utente.id,
-      this.profilo.get('nome').value,
-      this.profilo.get('cognome').value,
-      this.profilo.get('datanascita').value,
-      this.profilo.get('sesso').value,
-      this.profilo.get('telefono').value,
-      this.profilo.get('indirizzo').value
-    );
-    this.headR = 'Profilo aggiornato';
-    this.bodyR = 'Il profilo di '+ persona.nomeCompleto +' è stato aggiornato correttamente.';
-    this.child.show();
-    return this.personaservice.modificaUtente(persona);
+    
+    if ( this.utente ) {
+      const persona = new Persona(
+        this.utente.id,
+        this.profilo.get('nome').value,
+        this.profilo.get('cognome').value,
+        this.profilo.get('datanascita').value,
+        this.profilo.get('sesso').value,
+        this.profilo.get('telefono').value,
+        this.profilo.get('indirizzo').value
+      );
+      this.profilo.get('sesso').disable();
+      this.headF = 'Profilo aggiornato';
+      this.bodyF = 'Il profilo di '+ persona.nomeCompleto +' è stato aggiornato correttamente.';
+      this.child.show();
+      this.personaservice.modificaUtente(persona);
+    }
+    else {
+      const persona = new Persona(
+        undefined,
+        this.profilo.get('nome').value,
+        this.profilo.get('cognome').value,
+        this.profilo.get('datanascita').value,
+        this.profilo.get('sesso').value,
+        this.profilo.get('telefono').value,
+        this.profilo.get('indirizzo').value
+      );
+      this.profilo.reset();
+      this.headF = 'Profilo creato';
+      this.bodyF = 'Il profilo di '+ persona.nomeCompleto +' è stato inserito correttamente.';
+      this.child.show();
+      this.personaservice.creaUtente(persona);
+    }
+    
   }
 }

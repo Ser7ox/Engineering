@@ -2,6 +2,7 @@ import { Component, OnInit, Pipe, PipeTransform, ViewChild } from '@angular/core
 import { Persona } from '../../model/persona';
 import { PersonaService } from 'src/app/services/persona.service';
 import { ModalComponent } from '../modal/modal.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -16,9 +17,11 @@ export class RubricaComponent implements OnInit {
   saveperson: Persona;
   headR: string;
   bodyR: string;
+  titleNew: string = "Crea contatto";
+  titleEdit: string = "Modifica contatto";
   @ViewChild(ModalComponent)child: ModalComponent;
 
-  constructor(private personaservice: PersonaService) {}
+  constructor(private personaservice: PersonaService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.person = this.personaservice.getutenti();
@@ -33,6 +36,14 @@ export class RubricaComponent implements OnInit {
 
   hide (): void {
     this.child.hide();
+  }
+
+  formId(id: number){
+    this.router.navigate(['/form', id, this.titleEdit]);
+  }
+
+  form(){
+    this.router.navigate(['/form', this.titleNew]);
   }
   
 
