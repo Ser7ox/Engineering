@@ -7,8 +7,8 @@ const routes: Routes = [
   { path: 'rubrica', component: RubricaComponent},
   { path: 'form',  
     children: [
-      { path: '', component: FormComponent, data :{ titleNew:"Crea contatto"}},
-      { path: ':id', component: FormComponent, data :{ titleEdit:"Modifica contatto"}},
+      { path: '', component: FormComponent, data :{ title:"Crea contatto"}},
+      { path: ':id', component: FormComponent, data :{ title:"Modifica contatto"}},
     ]
   }, 
   { path: '**',   redirectTo: '/rubrica' },

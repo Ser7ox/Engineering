@@ -39,14 +39,14 @@ export class RubricaComponent implements OnInit {
     this.child.hide();
   }
 
-  formId(id: number){
-    this.router.navigate(['/form', id], { queryParams: { page: this.page + 1 } });
+  form(id?: number){
+    if (id) {
+      this.router.navigate(['/form', id], { queryParams: { page: this.page + 1 } });
+    }
+    else {
+      this.router.navigate(['/form'], { queryParams: { page: this.page + 2 } });
+    }
   }
-
-  form(){
-    this.router.navigate(['/form'], { queryParams: { page: this.page + 2 } });
-  }
-  
 
   selectRow(persona: Persona) {
     this.saveperson = persona;

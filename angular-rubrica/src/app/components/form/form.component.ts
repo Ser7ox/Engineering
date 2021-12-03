@@ -39,11 +39,7 @@ export class FormComponent implements OnInit{
     })
 
     this._ActivatedRoute.data.subscribe(data => {
-      this.value=data.titleEdit;
-    })
-
-    this._ActivatedRoute.data.subscribe(data => {
-      this.value2=data.titleNew;
+      this.value=data.title;
     })
 
     this._ActivatedRoute.queryParams.subscribe(param => {
