@@ -1,4 +1,4 @@
-import { Component, OnInit, Pipe, PipeTransform, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Persona } from '../../model/persona';
 import { PersonaService } from 'src/app/services/persona.service';
 import { ModalComponent } from '../modal/modal.component';

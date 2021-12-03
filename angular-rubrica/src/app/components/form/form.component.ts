@@ -21,6 +21,11 @@ export class FormComponent implements OnInit{
   headF: string;
   bodyF: string;
   page: number;
+  obs1: any;
+  obs2: any;
+  obs3: any;
+  html: string;
+  classDynamic: any;
   
   constructor(private fb: FormBuilder, private _ActivatedRoute:ActivatedRoute, private personaservice: PersonaService) {}
 
@@ -34,30 +39,37 @@ export class FormComponent implements OnInit{
       indirizzo: [undefined],
     });
 
-    this._ActivatedRoute.params.subscribe(prm => {
+    this.obs1 = this._ActivatedRoute.params.subscribe(prm => {
       this.parameterValue = +prm.id; 
     })
 
-    this._ActivatedRoute.data.subscribe(data => {
+    this.obs2 = this._ActivatedRoute.data.subscribe(data => {
       this.value=data.title;
     })
 
-    this._ActivatedRoute.queryParams.subscribe(param => {
+    this.obs3 = this._ActivatedRoute.queryParams.subscribe(param => {
         this.page = +param['page'];
       });
 
-
     if ( this.parameterValue ) {
       this.utente = this.personaservice.recuperaDati(this.parameterValue);
+      this.profilo.controls['sesso'].disable();
     }
 
     this.setProfilo();
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.profilo) {
       this.setProfilo();
     }
+  }
+
+  ngOnDestroy() {
+    this.obs1.unsubscribe();
+    this.obs2.unsubscribe();
+    this.obs3.unsubscribe();
   }
 
   setProfilo() {
@@ -82,10 +94,12 @@ export class FormComponent implements OnInit{
         this.profilo.get('indirizzo').value
       );
       this.profilo.get('sesso').disable();
-      this.headF = 'Profilo aggiornato';
-      this.bodyF = 'Il profilo di '+ persona.nomeCompleto +' è stato aggiornato correttamente.';
-      this.child.show();
+      this.classDynamic = 'alert alert-primary alert-dismissible fade show m-0';
+      this.html = ' <i class="fas fa-thumbs-up"></i> ';
+      this.headF = 'Profilo salvato!';
+      this.bodyF = 'Ben fatto, il profilo di '+ persona.nomeCompleto +' è stato salvato correttamente.';
       this.personaservice.modificaUtente(persona);
+      
     }
     else {
       const persona = new Persona(
@@ -98,9 +112,10 @@ export class FormComponent implements OnInit{
         this.profilo.get('indirizzo').value
       );
       this.profilo.reset();
-      this.headF = 'Profilo creato';
-      this.bodyF = 'Il profilo di '+ persona.nomeCompleto +' è stato inserito correttamente.';
-      this.child.show();
+      this.classDynamic = 'alert alert-success alert-dismissible fade show m-0';
+      this.html = ' <i class="fas fa-check-circle"></i>';
+      this.headF = 'Profilo creato!';
+      this.bodyF = 'Ben fatto, l\'utente '+ persona.nomeCompleto +' è stato creato correttamente.';
       this.personaservice.creaUtente(persona);
     }
     

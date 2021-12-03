@@ -11,6 +11,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { GenericPipe } from './generic-pipe';
 import { MousehoverDirective } from './mousehover.directive';
 import {RouterModule} from '@angular/router';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {RouterModule} from '@angular/router';
     ModalComponent,
     GenericPipe,
     MousehoverDirective,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
