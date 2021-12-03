@@ -26,6 +26,7 @@ export class FormComponent implements OnInit{
   obs3: any;
   html: string;
   classDynamic: any;
+  variabile: boolean;
   
   constructor(private fb: FormBuilder, private _ActivatedRoute:ActivatedRoute, private personaservice: PersonaService) {}
 
@@ -98,7 +99,11 @@ export class FormComponent implements OnInit{
       this.html = ' <i class="fas fa-thumbs-up"></i> ';
       this.headF = 'Profilo salvato!';
       this.bodyF = 'Ben fatto, il profilo di '+ persona.nomeCompleto +' è stato salvato correttamente.';
+      this.variabile = true;
       this.personaservice.modificaUtente(persona);
+      setTimeout(()=>{
+        this.variabile = false;
+      }, 4000);
       
     }
     else {
