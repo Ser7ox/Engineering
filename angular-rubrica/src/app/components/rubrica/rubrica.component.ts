@@ -35,10 +35,6 @@ export class RubricaComponent implements OnInit {
     this.child.show();
   }
 
-  hide (): void {
-    this.child.hide();
-  }
-
   form(id?: number){
     if (id) {
       this.router.navigate(['/form', id], { queryParams: { page: this.page + 1 } });
