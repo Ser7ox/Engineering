@@ -13,13 +13,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class RubricaComponent implements OnInit {
   
-  person: Persona[];
-  saveperson: Persona;
-  headR: string;
-  bodyR: string;
-  titleNew: string = "Crea contatto";
-  titleEdit: string = "Modifica contatto";
+  person:Persona[];
+  saveperson:Persona;
+  headR:string;
+  bodyR:string;
+  titleNew:string = "Crea contatto";
+  titleEdit:string = "Modifica contatto";
   @ViewChild(ModalComponent)child: ModalComponent;
+  page = 0;
 
   constructor(private personaservice: PersonaService, private router: Router, private route: ActivatedRoute) {}
 
@@ -39,11 +40,11 @@ export class RubricaComponent implements OnInit {
   }
 
   formId(id: number){
-    this.router.navigate(['/form', id, this.titleEdit]);
+    this.router.navigate(['/form', id], { queryParams: { page: this.page + 1 } });
   }
 
   form(){
-    this.router.navigate(['/form', this.titleNew]);
+    this.router.navigate(['/form'], { queryParams: { page: this.page + 2 } });
   }
   
 

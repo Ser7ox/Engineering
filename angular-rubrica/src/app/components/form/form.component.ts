@@ -1,4 +1,4 @@
-import { Component,OnInit,SimpleChanges,Output,EventEmitter, ViewChild} from '@angular/core';
+import { Component,OnInit,SimpleChanges,ViewChild} from '@angular/core';
 import { Persona } from '../../model/persona';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { filtronumeri } from '../../validator/filtronumeri.validator';
@@ -15,11 +15,12 @@ export class FormComponent implements OnInit{
   @ViewChild(ModalComponent)child: ModalComponent;
   profilo: FormGroup;
   parameterValue: number;
-  editValue: string;
-  newValue: string;
+  value: string;
+  value2: string;
   utente: Persona;
   headF: string;
   bodyF: string;
+  page: number;
   
   constructor(private fb: FormBuilder, private _ActivatedRoute:ActivatedRoute, private personaservice: PersonaService) {}
 
@@ -30,22 +31,26 @@ export class FormComponent implements OnInit{
       datanascita: [undefined,[Validators.required]],
       sesso: [undefined,[Validators.required]],
       telefono: [undefined,[Validators.required]],
-      indirizzo: [undefined,[Validators.required]],
+      indirizzo: [undefined],
     });
 
-    this._ActivatedRoute.params.subscribe(param => {
-      this.parameterValue = +param.id; 
-    })
-
-    this._ActivatedRoute.params.subscribe(para => {
-      this.editValue = para.titleEdit; 
-    })
-
     this._ActivatedRoute.params.subscribe(prm => {
-      this.newValue = prm.titleNew;
+      this.parameterValue = +prm.id; 
     })
 
-    
+    this._ActivatedRoute.data.subscribe(data => {
+      this.value=data.titleEdit;
+    })
+
+    this._ActivatedRoute.data.subscribe(data => {
+      this.value2=data.titleNew;
+    })
+
+    this._ActivatedRoute.queryParams.subscribe(param => {
+        this.page = +param['page'];
+      });
+
+
     if ( this.parameterValue ) {
       this.utente = this.personaservice.recuperaDati(this.parameterValue);
     }

@@ -1,7 +1,7 @@
 <div class="mx-5 shadow rounded">
   <div class="row d-flex justify-content-center mt-5 px-4 py-4">
     <div class="col-lg-3 col-md-6 px-5 py-3">
-      <h4> {{ editValue }} {{ newValue }} </h4>
+      <blockquote class="blockquote text-center mb-4"> {{ value }} {{ value2 }} </blockquote>
       <form [formGroup]="profilo" (ngSubmit)="SaveForm()">
           <div class="row align-items-center">
             <label class="mt-2" for="nome">Nome:* </label>
@@ -46,7 +46,7 @@
             </small>
           </div>
                   
-          <label class="mt-2" for="sesso">Sesso: </label>
+          <label class="mt-2" for="sesso">Sesso:* </label>
               <select class="form-select" id="sesso" type="text" formControlName="sesso">
                 <option value="M">M</option>
                 <option value="F">F</option>
@@ -59,13 +59,9 @@
     
               <label class="mt-2" for="indirizzo">Indirizzo: </label>
               <input id="indirizzo" class="form-control" type="text" formControlName="indirizzo">
-              <div *ngIf="profilo.get('indirizzo').invalid && (profilo.get('indirizzo').dirty || profilo.get('indirizzo').touched)">
-                <small class="text-danger" *ngIf="profilo.get('indirizzo').hasError('required')">
-                    Inserisci un indirizzo valido.
-                </small>
-              </div>
+              
     
-              <label class="mt-2" for="telefono">Telefono: </label>
+              <label class="mt-2" for="telefono">Telefono:* </label>
               <input id="telefono" class="form-control" type="text" formControlName="telefono">
               <div *ngIf="profilo.get('telefono').invalid && (profilo.get('telefono').dirty || profilo.get('telefono').touched)">
                 <small class="text-danger" *ngIf="profilo.get('telefono').hasError('required')">
