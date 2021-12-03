@@ -11,7 +11,6 @@ export class AlertComponent implements OnInit {
   @Input() bodyA: string;
   @Input() htmlToAdd: string;
   @Input() dynamicClass: any;
-  variabile: boolean = false;
 
   constructor() { }
 
