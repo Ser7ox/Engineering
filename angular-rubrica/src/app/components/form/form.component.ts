@@ -95,9 +95,9 @@ export class FormComponent implements OnInit{
         this.profilo.get('indirizzo').value
       );
       this.profilo.get('sesso').disable();
-      this.classDynamic = 'alert alert-primary alert-dismissible fade show m-0';
-      this.html = ' <i class="fas fa-thumbs-up"></i> ';
-      this.headF = 'Profilo salvato!';
+      this.classDynamic = 'primary';
+      this.html = ' fas fa-thumbs-up ';
+      this.headF = 'Profilo salvato! ';
       this.bodyF = 'Ben fatto, il profilo di '+ persona.nomeCompleto +' è stato salvato correttamente.';
       this.variabile = true;
       this.personaservice.modificaUtente(persona);
@@ -117,9 +117,9 @@ export class FormComponent implements OnInit{
         this.profilo.get('indirizzo').value
       );
       this.profilo.reset();
-      this.classDynamic = 'alert alert-success alert-dismissible fade show m-0';
-      this.html = ' <i class="fas fa-check-circle"></i>';
-      this.headF = 'Profilo creato!';
+      this.classDynamic = 'success';
+      this.html = ' fas fa-check-circle ';
+      this.headF = 'Profilo creato! ';
       this.bodyF = 'Ben fatto, l\'utente '+ persona.nomeCompleto +' è stato creato correttamente.';
       this.variabile = true;
       this.personaservice.creaUtente(persona);

@@ -1,5 +1,9 @@
-<div [ngClass]="[dynamicClass]" role="alert">
-    <strong>{{ headA }}</strong> <strong [innerHtml]="htmlToAdd"></strong> <p class="mt-1 mb-0"> {{ bodyA }} </p>
+<div class="alert alert-{{ dynamicClass }} alert-dismissible fade show m-0" role="alert">
+    <strong>{{ headA }}  </strong> <strong><i class=" {{ htmlToAdd }} "></i></strong> <p class="mt-1 mb-0"> {{ bodyA }} </p>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
+
+<!-- 
+    
+-->
 
