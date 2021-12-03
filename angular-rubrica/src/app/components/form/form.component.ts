@@ -103,7 +103,7 @@ export class FormComponent implements OnInit{
       this.personaservice.modificaUtente(persona);
       setTimeout(()=>{
         this.variabile = false;
-      }, 4000);
+      }, 5000);
       
     }
     else {
@@ -121,7 +121,11 @@ export class FormComponent implements OnInit{
       this.html = ' <i class="fas fa-check-circle"></i>';
       this.headF = 'Profilo creato!';
       this.bodyF = 'Ben fatto, l\'utente '+ persona.nomeCompleto +' è stato creato correttamente.';
+      this.variabile = true;
       this.personaservice.creaUtente(persona);
+      setTimeout(()=>{
+        this.variabile = false;
+      }, 5000);
     }
     
   }
