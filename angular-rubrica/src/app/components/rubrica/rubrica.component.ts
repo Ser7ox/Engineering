@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Persona } from '../../model/persona';
 import { PersonaService } from 'src/app/services/persona.service';
 import { ModalComponent } from '../modal/modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Persona } from 'src/app/model/persona';
 
 
 @Component({
@@ -13,26 +13,40 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class RubricaComponent implements OnInit {
   
-  person:Persona[];
-  saveperson:Persona;
-  headR:string;
-  bodyR:string;
-  titleNew:string = "Crea contatto";
-  titleEdit:string = "Modifica contatto";
+  person:Persona[] = []; utente: Persona; headR:string; bodyR:string; page = 0;
   @ViewChild(ModalComponent)child: ModalComponent;
-  page = 0;
 
   constructor(private personaservice: PersonaService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.person = this.personaservice.getutenti();
+    this.estraiUsers();
   }
 
-  deleteRow(persona: Persona) {
-    this.person = this.personaservice.eliminaUtente(persona);
-    this.headR = 'Profilo Eliminato';
+  estraiUsers() {
+    this.personaservice.getUtenti().subscribe((data: Persona[]) => {
+      this.person = data;
+    })
+  }
+
+  remove(id:number) {
+    this.personaservice.eliminaUtente(id).subscribe(res => {})
+    this.headR = 'Profilo Eliminato!';
     this.bodyR = 'Il profilo è stato eliminato';
     this.child.show();
+  }
+
+  address(id: number) {
+    let address: string;
+    this.personaservice.getUtente(id).subscribe((data: Persona) => {
+      address = data.indirizzo;
+      this.headR = 'Indirizzo di ' + data.nome + ' ' + data.cognome;
+      if (!address) {
+        this.bodyR = "Informazione non disponibile per quest'utente.";
+      } else {
+        this.bodyR = address;
+      }
+      this.child.show();
+    })
   }
 
   form(id?: number){
@@ -42,17 +56,6 @@ export class RubricaComponent implements OnInit {
     else {
       this.router.navigate(['/form'], { queryParams: { page: this.page + 2 } });
     }
-  }
-
-  selectRow(persona: Persona) {
-    this.saveperson = persona;
-    this.headR = 'Indirizzo di ' + this.saveperson.nomeCompleto;
-    if (!this.saveperson.indirizzo) {
-      this.bodyR = "Informazione non disponibile per quest'utente.";
-    } else {
-      this.bodyR = this.saveperson.indirizzo;
-    }
-    this.child.show();
   }
 
 }

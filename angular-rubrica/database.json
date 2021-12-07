@@ -1,0 +1,67 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Francesca",
+      "surname": "Ross",
+      "birthDay": "1998-09-04",
+      "sex": "M",
+      "number": "3334591762",
+      "address": ""
+    },
+    {
+      "id": 2,
+      "name": "Leonardo",
+      "surname": "Marchetto",
+      "birthDay": "1987-10-17",
+      "sex": "F",
+      "number": "3468433958",
+      "address": ""
+    },
+    {
+      "id": 3,
+      "name": "Roberta",
+      "surname": "Manci",
+      "birthDay": "1998-09-04",
+      "sex": "F",
+      "number": "3963853869",
+      "address": "Via Pordeto 81, 00157, Roma"
+    },
+    {
+      "id": 4,
+      "name": "Leonardo",
+      "surname": "Portaro",
+      "birthDay": "1974-11-05",
+      "sex": "M",
+      "number": "3289546713",
+      "address": "Via Mandrione 98, 67942, Novara"
+    },
+    {
+      "id": 5,
+      "name": "Riccardo",
+      "surname": "Paoloni",
+      "birthDay": "1994-05-17",
+      "sex": "M",
+      "number": "3668971264",
+      "address": "Piazzale dell'agricoltura 24, 00144, Roma"
+    },
+    {
+      "name": "Marco",
+      "surname": "Rossi",
+      "birthDay": "1998-09-04",
+      "sex": "M",
+      "number": "3963853869",
+      "address": "Via Alatri 105, 00128, Roma",
+      "id": 6
+    },
+    {
+      "name": "Giacomo",
+      "surname": "Luce",
+      "birthDay": "1998-12-27",
+      "sex": "M",
+      "number": "3458756945",
+      "address": "Via Gennaro Cassiani, 20 Roma",
+      "id": 7
+    }
+  ]
+}

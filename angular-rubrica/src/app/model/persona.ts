@@ -1,9 +1,16 @@
-
-import { DatePipe } from '@angular/common';
-
 export class Persona {
-  
-    private _id: number;
+  constructor(
+    public id: number,
+    public nome: string,
+    public cognome: string,
+    public dataNascita: Date,
+    public sesso: string,
+    public telefono: number,
+    public indirizzo?: string
+  ) {}
+}
+
+/* private _id: number;
     private _nome: string;
     private _cognome: string;
     private _datanascita: Date;
@@ -38,17 +45,19 @@ export class Persona {
     }
 
     public set cognome(cognome: string) {
-        this._cognome = cognome; //passo in input al set il valore cognome interessato
+        this._cognome = cognome;
+         //passo in input al set il valore cognome interessato
     }
     public get cognome(): string {
-        return this._cognome; //output -> _cognome
+        return this._cognome;  //output -> _cognome
     }
     
     public set dataNascita(datanascita: Date) {
         this._datanascita = datanascita; //passo in input al set il valore datanascita interessato
     }
     public get dataNascita(): Date {
-        return this._datanascita; //output -> _datanascita
+        return this._datanascita;
+         //output -> _datanascita
     }
     dateUtente() {
         const dataUtente = new Date(this.dataNascita);
@@ -85,11 +94,4 @@ export class Persona {
 		this._cognome = parti[1] || '';
     }   // <--- set and get per ottenere nome e cognome completo in un'unica riga
 
-    
-}
-
-/*  aggiungere data nascita sulla tabella con formato date ( dd/MM/YYYY ) OK
-    togliere ng-content header e metterlo da modale OK
-    inserire data nascita su form per poterla modificare OK
-    direttiva custom, al passaggio del mouse su riga tabella, questa diventa grigia 
 */

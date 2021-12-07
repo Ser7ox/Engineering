@@ -25,13 +25,13 @@
               </td>
               <td>{{ persona.telefono }}</td>
               <td>
-                  <button class="btn" (click)="selectRow(persona)">
+                  <button class="btn" (click)="address(persona.id)">
                     <i class="fas fa-map-marker-alt"></i>
                   </button>
-                  <button class="btn" (click)="deleteRow(persona)">
+                  <button class="btn" (click)="remove(persona.id)">
                     <i class="fas fa-trash-alt"></i>
                   </button>
-                  <button class="btn" (click)="form(persona.id)">
+                  <button class="btn" (click)="form(persona.id)"> 
                     <i class="fas fa-edit"></i>
                   </button>
               </td>
@@ -45,7 +45,7 @@
         <div class="card-body">
           <h5 class="card-title">Creazione di un nuovo contatto</h5>
           <p class="card-text">Aggiungi un nuovo contatto sull'app rubrica!</p>
-          <button class="btn btn-dark" (click)="form()">Clicca qui</button>
+          <button class="btn btn-dark" (click)="form()">Clicca qui</button> 
         </div>
     </div>
     </div>
@@ -58,6 +58,6 @@
 
 <app-modal [headM]="headR"> 
     <div content *ngIf="bodyR" class="mt-3 mb-3"> {{ bodyR }} </div>
-</app-modal>
+</app-modal> 
 
 

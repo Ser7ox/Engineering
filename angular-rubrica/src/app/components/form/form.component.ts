@@ -5,6 +5,7 @@ import { filtronumeri } from '../../validator/filtronumeri.validator';
 import { ActivatedRoute } from '@angular/router';
 import { PersonaService } from 'src/app/services/persona.service';
 import { ModalComponent } from '../modal/modal.component';
+import { Observer } from 'rxjs';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -18,6 +19,7 @@ export class FormComponent implements OnInit{
   value: string;
   value2: string;
   utente: Persona;
+  person: Persona[];
   headF: string;
   bodyF: string;
   page: number;
@@ -41,24 +43,23 @@ export class FormComponent implements OnInit{
     });
 
     this.obs1 = this._ActivatedRoute.params.subscribe(prm => {
-      this.parameterValue = +prm.id; 
+      this.parameterValue = +prm.id;
     })
-
     this.obs2 = this._ActivatedRoute.data.subscribe(data => {
       this.value=data.title;
     })
-
     this.obs3 = this._ActivatedRoute.queryParams.subscribe(param => {
         this.page = +param['page'];
       });
 
     if ( this.parameterValue ) {
-      this.utente = this.personaservice.recuperaDati(this.parameterValue);
+      this.personaservice.getUtente(this.parameterValue).subscribe((data: Persona) => {
+      this.utente = data;
+      this.setProfilo();
+    })
       this.profilo.controls['sesso'].disable();
     }
-
-    this.setProfilo();
-
+    
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -76,7 +77,7 @@ export class FormComponent implements OnInit{
   setProfilo() {
     this.profilo.get('nome').setValue(this.utente?.nome);
     this.profilo.get('cognome').setValue(this.utente?.cognome);
-    this.profilo.controls['datanascita'].setValue(this.utente?.dateUtente());    
+    this.profilo.controls['datanascita'].setValue(this.utente?.dataNascita);    
     this.profilo.get('sesso').setValue(this.utente?.sesso);
     this.profilo.get('telefono').setValue(this.utente?.telefono);
     this.profilo.get('indirizzo').setValue(this.utente?.indirizzo);
@@ -94,13 +95,12 @@ export class FormComponent implements OnInit{
         this.profilo.get('telefono').value,
         this.profilo.get('indirizzo').value
       );
-      this.profilo.get('sesso').disable();
       this.classDynamic = 'primary';
       this.html = ' fas fa-thumbs-up ';
       this.headF = 'Profilo salvato! ';
-      this.bodyF = 'Ben fatto, il profilo di '+ persona.nomeCompleto +' è stato salvato correttamente.';
+      this.bodyF = 'Ben fatto, il profilo di '+ persona.nome + ' ' + persona.cognome +' è stato salvato correttamente.';
       this.variabile = true;
-      this.personaservice.modificaUtente(persona);
+      this.personaservice.modificaUtente(persona.id,persona).subscribe();
       setTimeout(()=>{
         this.variabile = false;
       }, 5000);
@@ -120,9 +120,9 @@ export class FormComponent implements OnInit{
       this.classDynamic = 'success';
       this.html = ' fas fa-check-circle ';
       this.headF = 'Profilo creato! ';
-      this.bodyF = 'Ben fatto, l\'utente '+ persona.nomeCompleto +' è stato creato correttamente.';
+      this.bodyF = 'Ben fatto, l\'utente '+ persona.nome + ' ' + persona.cognome +' è stato creato correttamente.';
       this.variabile = true;
-      this.personaservice.creaUtente(persona);
+      this.personaservice.creaUtente(persona).subscribe();
       setTimeout(()=>{
         this.variabile = false;
       }, 5000);

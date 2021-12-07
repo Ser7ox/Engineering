@@ -10,8 +10,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ModalComponent } from './components/modal/modal.component';
 import { GenericPipe } from './generic-pipe';
 import { MousehoverDirective } from './mousehover.directive';
-import {RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AlertComponent } from './components/alert/alert.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AlertComponent } from './components/alert/alert.component';
     ReactiveFormsModule,
     FormsModule,
     ModalModule.forRoot(),
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
