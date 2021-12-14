@@ -71,10 +71,10 @@ export class PersonaService {
     )
   }
 
-  checkPhone(telefono: number, id?: number): Observable<boolean> {
-    return this.httpClient.get<PersonaDto[]>(this.endPoint + '/users' + '?number=' + telefono + '&id=' + id)
+  checkPhone(telefono: number): Observable<boolean> {
+    return this.httpClient.get<PersonaDto[]>(this.endPoint + '/users' + '?number=' + telefono)
     .pipe(map( (arrayBackEnd: PersonaDto[]) => {
-      return (arrayBackEnd.length === 0 && !id) ? true : false;
+      return (arrayBackEnd.length === 0) ? false : true;
       })
     )
   }

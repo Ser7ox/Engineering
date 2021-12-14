@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PersonaService } from 'src/app/services/persona.service';
-import { ModalComponent } from '../modal/modal.component';
+import { ModalComponent } from '../../shared/modal/modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Persona } from 'src/app/model/persona';
 
@@ -42,11 +42,7 @@ export class RubricaComponent implements OnInit {
     this.personaservice.getUtente(id).subscribe((data: Persona) => {
       address = data.indirizzo;
       this.headR = 'Indirizzo di ' + data.nome + ' ' + data.cognome;
-      if (!address) {
-        this.bodyR = "Informazione non disponibile per quest'utente.";
-      } else {
-        this.bodyR = address;
-      }
+      this.bodyR = address;
       this.child.show();
     })
   }

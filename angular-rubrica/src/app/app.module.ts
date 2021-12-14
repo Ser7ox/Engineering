@@ -7,22 +7,19 @@ import { RubricaComponent } from './components/rubrica/rubrica.component';
 import { FormComponent } from './components/form/form.component';
 import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { ModalComponent } from './components/modal/modal.component';
 import { GenericPipe } from './generic-pipe';
 import { MousehoverDirective } from './mousehover.directive';
 import { RouterModule } from '@angular/router';
-import { AlertComponent } from './components/alert/alert.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     RubricaComponent,
     FormComponent,
-    ModalComponent,
     GenericPipe,
-    MousehoverDirective,
-    AlertComponent,
+    MousehoverDirective
   ],
   imports: [
     BrowserModule,
@@ -31,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ModalModule.forRoot(),
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

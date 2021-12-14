@@ -61,25 +61,13 @@
     
           <label class="mt-2" for="indirizzo">Indirizzo:* </label>
           <input id="indirizzo" class="form-control" type="text" formControlName="indirizzo">
-          <div *ngIf="profilo.get('indirizzo').invalid && (profilo.get('indirizzo').dirty || profilo.get('indirizzo').touched)">
-            <small class="text-danger" *ngIf="profilo.get('indirizzo').hasError('required')">
-              Inserisci l'indirizzo.
-            </small>
-            <br>
             <small class="text-danger" *ngIf="profilo.errors?.misMatch">
               I campi Telefono ed Indirizzo devono essere entrambi compilati.
             </small>
-          </div>
-              
-              
 
           <label class="mt-2" for="telefono">Telefono:* </label>
           <input id="telefono" class="form-control" type="text" formControlName="telefono">
-          <div *ngIf="profilo.get('telefono').invalid && (profilo.get('telefono').dirty || profilo.get('telefono').touched)">
-            <small class="text-danger" *ngIf="profilo.get('telefono').hasError('required')">
-              Inserisci il telefono.
-            </small>
-            <br>
+          <div *ngIf="(profilo.get('telefono').dirty || profilo.get('telefono').touched)">
             <small class="text-danger" *ngIf="profilo.errors?.misMatch">
               I campi Telefono ed Indirizzo devono essere entrambi compilati.
             </small>

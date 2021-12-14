@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { LazyRoutingModule } from './lazy-routing.module';
-import { TestcComponent } from './testc/testc.component';
+import { TestComponent } from './test/test.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
-  declarations: [
-    TestcComponent
-  ],
+  declarations: [TestComponent],
   imports: [
     CommonModule,
-    LazyRoutingModule
-  ]
+    LazyRoutingModule,
+    SharedModule,
+  ],
+  exports: [TestComponent]
 })
 export class LazyModule { }

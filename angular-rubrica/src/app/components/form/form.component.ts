@@ -4,7 +4,7 @@ import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationEr
 import { filtronumeri } from '../../validator/filtronumeri.validator';
 import { ActivatedRoute } from '@angular/router';
 import { PersonaService } from 'src/app/services/persona.service';
-import { ModalComponent } from '../modal/modal.component';
+import { ModalComponent } from '../../shared/modal/modal.component';
 import { Observable, Subscription } from 'rxjs';
 import { CustomValidators } from 'src/app/validator/custom-validators';
 import { map } from 'rxjs/operators';
@@ -42,11 +42,9 @@ export class FormComponent implements OnInit{
       cognome: [undefined,[Validators.required, Validators.minLength(3), Validators.maxLength(20), filtronumeri]],
       datanascita: [undefined,[Validators.required]],
       sesso: [undefined,[Validators.required]],
-      indirizzo: [undefined,[Validators.required]],
-      telefono: [undefined,[Validators.required]],
+      indirizzo: [undefined],
+      telefono: [undefined, [], [this.phoneValidator()]],
     }, { validators:CustomValidators.phoneAddress });
-
-    this.addAsyncValidator();
 
     this.idSub = this._ActivatedRoute.params.subscribe(prm => {
       this.idValue = +prm.id;
@@ -97,7 +95,9 @@ export class FormComponent implements OnInit{
     this.profilo.get('cognome').setValue(this.utente?.cognome);
     this.profilo.controls['datanascita'].setValue(this.utente?.dataNascita);    
     this.profilo.get('sesso').setValue(this.utente?.sesso);
+    this.profilo.controls['telefono'].clearAsyncValidators();
     this.profilo.get('telefono').setValue(this.utente?.telefono);
+    this.profilo.controls['telefono'].setAsyncValidators([this.phoneValidator(this.utente?.telefono)]);
     this.profilo.get('indirizzo').setValue(this.utente?.indirizzo);
   }
 
@@ -160,17 +160,18 @@ export class FormComponent implements OnInit{
     
   }
 
-  phoneValidator(): AsyncValidatorFn { return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.personaservice.checkPhone(control.value, this.utente?.id).pipe(
+  phoneValidator(telefono?: number): AsyncValidatorFn { 
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      if ( !control || !control.value || control.value === telefono ) {
+        return new Observable<null>();
+      }
+      return this.personaservice.checkPhone(control.value).pipe(
         map((exists: boolean) => {
           return exists ? { phoneCheck: true } : null;
         })
+        
       )
     }
-  }
-
-  addAsyncValidator() {
-    this.profilo.controls['telefono'].setAsyncValidators([this.phoneValidator()]);
   }
 
 }
