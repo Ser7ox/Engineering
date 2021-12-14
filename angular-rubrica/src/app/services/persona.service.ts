@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { Persona } from '../model/persona';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError, map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { PersonaDto } from '../dto/persona.dto';
 import { PersonaConverter } from '../converter/personaConverter';
+import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -26,9 +27,9 @@ export class PersonaService {
   getUtenti(): Observable<Persona[]> {
     return this.httpClient.get<PersonaDto[]>(this.endPoint + '/users')
     .pipe(map( (rispostaBackEnd: PersonaDto[]) => { 
-      let persona: Persona[] = []; 
-      rispostaBackEnd.forEach(element => {
-      persona.push(this.Converter.DaDtoaModel(element))
+                  let persona: Persona[] = []; 
+                  rispostaBackEnd.forEach(element => {
+                    persona.push(this.Converter.DaDtoaModel(element))
     })
     return persona;
     })
@@ -43,31 +44,39 @@ export class PersonaService {
     )
   }
 
-  eliminaUtente(id: number): Observable<Persona[]> {
-    let prova;
-    prova = this.httpClient.delete<Persona[]>(this.endPoint + '/users/' + id, this.httpHeader)
-    .pipe(
-      retry(1),
-      catchError(this.httpError)
+  eliminaUtente(id: number): Observable<Persona> {
+    return this.httpClient.delete<PersonaDto>(this.endPoint + '/users/' + id, this.httpHeader)
+    .pipe(map( (personaDto: PersonaDto) => { 
+      return this.Converter.DaDtoaModel(personaDto);
+    })
     )
-    return prova;
   }
 
-  modificaUtente(id: number, data: Persona): Observable<Persona> {
-    let personaDto;
+  modificaUtente(data: Persona): Observable<Persona> {
+    let personaDto: PersonaDto;
     personaDto = this.Converter.DaModelaDto(data);
-    return this.httpClient.put<PersonaDto>(this.endPoint + '/users/' + id, personaDto, this.httpHeader)
-    .pipe(
-      map( (personaDto) => { return this.Converter.DaDtoaModel(personaDto) } )
+    return this.httpClient.put<PersonaDto>(this.endPoint + '/users/' + personaDto.id, personaDto, this.httpHeader)
+    .pipe(map( (personaDto) => {
+      return this.Converter.DaDtoaModel(personaDto);
+    })
     )
   }
 
   creaUtente(persona: Persona): Observable<Persona> {
-    let personaDto;
+    let personaDto: PersonaDto;
     personaDto = this.Converter.DaModelaDto(persona);
     return this.httpClient.post<PersonaDto>(this.endPoint + '/users', personaDto, this.httpHeader)
-    .pipe(
-      map( (personaDto) => { return this.Converter.DaDtoaModel(personaDto) } )
+    .pipe(map( (personaDto) => {
+      return this.Converter.DaDtoaModel(personaDto); 
+    })
+    )
+  }
+
+  checkPhone(telefono: number): Observable<boolean> {
+    return this.httpClient.get<PersonaDto[]>(this.endPoint + '/users' + '?number=' + telefono)
+    .pipe(map( (arrayBackEnd: PersonaDto[]) => {
+      return (arrayBackEnd.length === 0) ? false : true;
+     }) 
     )
   }
 
@@ -84,3 +93,7 @@ export class PersonaService {
     return throwError(msg);
   }
 }
+
+
+
+// mi creo un modulo di prova e ci metto component dentro. Lo carico in lazyloading ( cos'è )

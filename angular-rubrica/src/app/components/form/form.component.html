@@ -1,4 +1,4 @@
-<app-alert *ngIf="variabile" [headA]="headF" [bodyA]="bodyF" [htmlToAdd]="html" [dynamicClass]="classDynamic" > 
+<app-alert *ngIf="alertShow" [headA]="headF" [bodyA]="bodyF" [htmlToAdd]="htmlIcon" [dynamicClass]="classDynamic" > 
 </app-alert>
 <div class="mx-5 shadow rounded">
   <div class="row d-flex justify-content-center mt-5 px-4 py-4">
@@ -35,14 +35,14 @@
             <small class="text-danger" *ngIf="profilo.get('cognome').hasError('maxlength')">
                 La lunghezza massima per questo campo è {{profilo.get('cognome').errors.maxlength.requiredLength}} caratteri.
             </small>
-            <small class="text-danger" *ngIf="profilo.get('nome').hasError('gte')">
+            <small class="text-danger" *ngIf="profilo.get('nome').hasError('filtronumeri')">
                 Il campo non deve contenere numeri o caratteri speciali.
             </small>
           </div>
 
           <label class="mt-2" for="datanascita">Data di nascita:* </label>
           <input id="datanascita" class="form-control" type="date" formControlName="datanascita">
-          <div *ngIf="profilo.get('datanascita').invalid && (profilo.get('cognome').dirty || profilo.get('cognome').touched)">
+          <div *ngIf="profilo.get('datanascita').invalid && (profilo.get('datanascita').dirty || profilo.get('datanascita').touched)">
             <small class="text-danger" *ngIf="profilo.get('datanascita').hasError('required')">
                 Inserisci una data di nascita valida.
             </small>
@@ -59,18 +59,35 @@
                 </small>
               </div>
     
-              <label class="mt-2" for="indirizzo">Indirizzo: </label>
-              <input id="indirizzo" class="form-control" type="text" formControlName="indirizzo">
+          <label class="mt-2" for="indirizzo">Indirizzo:* </label>
+          <input id="indirizzo" class="form-control" type="text" formControlName="indirizzo">
+          <div *ngIf="profilo.get('indirizzo').invalid && (profilo.get('indirizzo').dirty || profilo.get('indirizzo').touched)">
+            <small class="text-danger" *ngIf="profilo.get('indirizzo').hasError('required')">
+              Inserisci l'indirizzo.
+            </small>
+            <br>
+            <small class="text-danger" *ngIf="profilo.errors?.misMatch">
+              I campi Telefono ed Indirizzo devono essere entrambi compilati.
+            </small>
+          </div>
               
-    
-              <label class="mt-2" for="telefono">Telefono:* </label>
-              <input id="telefono" class="form-control" type="text" formControlName="telefono">
-              <div *ngIf="profilo.get('telefono').invalid && (profilo.get('telefono').dirty || profilo.get('telefono').touched)">
-                <small class="text-danger" *ngIf="profilo.get('telefono').hasError('required')">
-                    Inserisci un telefono valido.
-                </small>
-              </div>
+              
 
+          <label class="mt-2" for="telefono">Telefono:* </label>
+          <input id="telefono" class="form-control" type="text" formControlName="telefono">
+          <div *ngIf="profilo.get('telefono').invalid && (profilo.get('telefono').dirty || profilo.get('telefono').touched)">
+            <small class="text-danger" *ngIf="profilo.get('telefono').hasError('required')">
+              Inserisci il telefono.
+            </small>
+            <br>
+            <small class="text-danger" *ngIf="profilo.errors?.misMatch">
+              I campi Telefono ed Indirizzo devono essere entrambi compilati.
+            </small>
+            <small class="text-danger" *ngIf="profilo.get('telefono').hasError('phoneCheck')">
+              Questo numero di telefono è già presente nel database.
+            </small>
+          </div>
+              
           <div class="btn-group mt-3" role="group">
             <button type="submit" class="btn btn-success me-4" [disabled]="profilo.invalid">Salva <i class="fas fa-save"></i></button>
             <button  type="button" class="btn btn-secondary"routerLink="/rubrica" routerLinkActive="active">Back <i class="fas fa-backward"></i></button>

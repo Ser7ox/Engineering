@@ -13,7 +13,7 @@ import { Persona } from 'src/app/model/persona';
 
 export class RubricaComponent implements OnInit {
   
-  person:Persona[] = []; utente: Persona; headR:string; bodyR:string; page = 0;
+  person:Persona[] = []; headR:string; bodyR:string; page = 0;
   @ViewChild(ModalComponent)child: ModalComponent;
 
   constructor(private personaservice: PersonaService, private router: Router, private route: ActivatedRoute) {}
@@ -29,7 +29,9 @@ export class RubricaComponent implements OnInit {
   }
 
   remove(id:number) {
-    this.personaservice.eliminaUtente(id).subscribe(res => {})
+    this.personaservice.eliminaUtente(id).subscribe(() => {
+      this.estraiUsers();
+    })
     this.headR = 'Profilo Eliminato!';
     this.bodyR = 'Il profilo è stato eliminato';
     this.child.show();
