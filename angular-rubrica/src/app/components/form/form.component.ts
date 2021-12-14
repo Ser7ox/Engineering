@@ -161,7 +161,7 @@ export class FormComponent implements OnInit{
   }
 
   phoneValidator(): AsyncValidatorFn { return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.personaservice.checkPhone(control.value).pipe(
+      return this.personaservice.checkPhone(control.value, this.utente?.id).pipe(
         map((exists: boolean) => {
           return exists ? { phoneCheck: true } : null;
         })

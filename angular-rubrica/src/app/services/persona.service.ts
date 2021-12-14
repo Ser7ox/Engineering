@@ -39,7 +39,7 @@ export class PersonaService {
     return this.httpClient.get<PersonaDto>(this.endPoint + '/users/' + id)
     .pipe( map( (personaDto: PersonaDto) => { 
       return this.Converter.DaDtoaModel(personaDto);
-    })   
+      })   
     )
   }
 
@@ -47,7 +47,7 @@ export class PersonaService {
     return this.httpClient.delete<PersonaDto>(this.endPoint + '/users/' + id, this.httpHeader)
     .pipe(map( (personaDto: PersonaDto) => { 
       return this.Converter.DaDtoaModel(personaDto);
-    })
+      })
     )
   }
 
@@ -57,7 +57,7 @@ export class PersonaService {
     return this.httpClient.put<PersonaDto>(this.endPoint + '/users/' + personaDto.id, personaDto, this.httpHeader)
     .pipe(map( (personaDto) => {
       return this.Converter.DaDtoaModel(personaDto);
-    })
+      })
     )
   }
 
@@ -67,15 +67,15 @@ export class PersonaService {
     return this.httpClient.post<PersonaDto>(this.endPoint + '/users', personaDto, this.httpHeader)
     .pipe(map( (personaDto) => {
       return this.Converter.DaDtoaModel(personaDto); 
-    })
+      })
     )
   }
 
-  checkPhone(telefono: number): Observable<boolean> {
-    return this.httpClient.get<PersonaDto[]>(this.endPoint + '/users' + '?number=' + telefono)
+  checkPhone(telefono: number, id?: number): Observable<boolean> {
+    return this.httpClient.get<PersonaDto[]>(this.endPoint + '/users' + '?number=' + telefono + '&id=' + id)
     .pipe(map( (arrayBackEnd: PersonaDto[]) => {
-      return (arrayBackEnd.length === 0) ? false : true;
-     }) 
+      return (arrayBackEnd.length === 0 && !id) ? true : false;
+      })
     )
   }
 
