@@ -17,22 +17,21 @@ import { map } from 'rxjs/operators';
 export class FormComponent implements OnInit{
 
   @ViewChild(ModalComponent)child: ModalComponent;
+  utente: Persona;
   profilo: FormGroup;
-  parameterValue: number; 
-  value: string; 
-  value2: string;
-  utente: Persona; 
+  alertShow: boolean;
+  idValue: number;
+  page: number;
+  titleValue: string;
   headF: string; 
   bodyF: string;
-  page: number; 
+  htmlIcon: string;
   idSub: Subscription; 
   titleSub: Subscription; 
   pageSub: Subscription;
   modificaSub: Subscription;
-  creaSub: Subscription;
-  htmlIcon: string; 
+  creaSub: Subscription; 
   classDynamic: any; 
-  alertShow: boolean;
   
   constructor(private fb: FormBuilder, private _ActivatedRoute:ActivatedRoute, private personaservice: PersonaService) {}
 
@@ -50,17 +49,17 @@ export class FormComponent implements OnInit{
     this.addAsyncValidator();
 
     this.idSub = this._ActivatedRoute.params.subscribe(prm => {
-      this.parameterValue = +prm.id;
+      this.idValue = +prm.id;
     })
     this.titleSub = this._ActivatedRoute.data.subscribe(data => {
-      this.value=data.title;
+      this.titleValue=data.title;
     })
     this.pageSub = this._ActivatedRoute.queryParams.subscribe(param => {
       this.page = +param['page'];
     });
 
-    if ( this.parameterValue ) {
-      this.personaservice.getUtente(this.parameterValue).subscribe((data: Persona) => {
+    if ( this.idValue ) {
+      this.personaservice.getUtente(this.idValue).subscribe((data: Persona) => {
       this.utente = data;
       this.setProfilo();
     })

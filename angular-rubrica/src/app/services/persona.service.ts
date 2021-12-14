@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { Persona } from '../model/persona';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { PersonaDto } from '../dto/persona.dto';
 import { PersonaConverter } from '../converter/personaConverter';
-import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
