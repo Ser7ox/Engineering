@@ -4,6 +4,10 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { AlertComponent } from './alert/alert.component';
 import { ModalComponent } from './modal/modal.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { PersonaModule } from '../persona/persona.module';
+import { AppRoutingModule } from '../app-routing.module';
+import { RouterModule } from '@angular/router';
+import { AppModule } from '../app.module';
 
 
 @NgModule({

@@ -3,10 +3,10 @@ import { Persona } from '../../model/persona';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { filtronumeri } from '../../validator/filtronumeri.validator';
 import { ActivatedRoute } from '@angular/router';
-import { PersonaService } from 'src/app/services/persona.service';
-import { ModalComponent } from '../../shared/modal/modal.component';
+import { PersonaService } from 'src/app/persona/services/persona.service';
+import { ModalComponent } from '../../../shared/modal/modal.component';
 import { Observable, Subscription } from 'rxjs';
-import { CustomValidators } from 'src/app/validator/custom-validators';
+import { CustomValidators } from 'src/app/persona/validator/custom-validators';
 import { map } from 'rxjs/operators';
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PersonaService } from 'src/app/services/persona.service';
-import { ModalComponent } from '../../shared/modal/modal.component';
+import { PersonaService } from 'src/app/persona/services/persona.service';
+import { ModalComponent } from '../../../shared/modal/modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Persona } from 'src/app/model/persona';
+import { Persona } from 'src/app/persona/model/persona';
 
 
 @Component({
@@ -49,10 +49,10 @@ export class RubricaComponent implements OnInit {
 
   form(id?: number){
     if (id) {
-      this.router.navigate(['/form', id], { queryParams: { page: this.page + 1 } });
+      this.router.navigate(['persona/form', id], { queryParams: { page: this.page + 1 } });
     }
     else {
-      this.router.navigate(['/form'], { queryParams: { page: this.page + 2 } });
+      this.router.navigate(['persona/form'], { queryParams: { page: this.page + 2 } });
     }
   }
 
