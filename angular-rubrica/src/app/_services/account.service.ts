@@ -17,16 +17,9 @@ export class AccountService {
   constructor(private httpClient: HttpClient) { }
 
   checkLogin(email:string, password:string): Observable<Account> {
-    return this.httpClient.get<AccountDto>(this.endPoint + '/account' + '?email=' + email + '&password=' + password)
-    .pipe(map( (arrayBackEnd: AccountDto) => {
-                if (arrayBackEnd) { 
-                  let account: Account; 
-                  account = arrayBackEnd;
-                  return account;
-          }
-          else {
-            return null;
-          }
+    return this.httpClient.get<AccountDto[]>(this.endPoint + '/account' + '?email=' + email + '&password=' + password)
+    .pipe(map( (arrayBackEnd: AccountDto[]) => {
+                return arrayBackEnd[0]; 
         }
         
       )

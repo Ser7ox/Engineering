@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscriber, Subscription } from 'rxjs';
 import { LocalStorageService } from './_services/local-storage.service';
 
 @Component({
@@ -9,19 +10,33 @@ import { LocalStorageService } from './_services/local-storage.service';
 })
 export class AppComponent {
   title = 'Angular';
-  myInfo = this.localStorageService.account.getValue();
+  mostraEmail: string;
+  emailSub: Subscription;
+  showNav: boolean;
 
   constructor (private localStorageService: LocalStorageService, private router: Router) {}
-  
-  /*showNav (): null {
-    if () {
-      return null;
+
+  ngOnInit() {
+    this.emailSub = this.localStorageService.myData.subscribe(data => {
+      if (data) {
+        this.mostraEmail = data.email;
+        this.showNav = true;
+      } else {
+        this.showNav = false;
+      }
+    })
+
+  }
+
+  ngOnDestroy() {
+    if ( this.emailSub ) {
+      this.emailSub.unsubscribe();
     }
-    return null;
-  } */
+  }
   
-  clearStorage() {
+  logout() {
     this.localStorageService.clearAllLocalStorage();
     this.router.navigate(['login']);
+    this.showNav = false;
   }
 }

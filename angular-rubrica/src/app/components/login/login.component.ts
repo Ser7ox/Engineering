@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   isLoggedIn: boolean = false;
   isLoginFailed: boolean;
   errorMessage = '';
-  myInfo = this.localStorageService.account.getValue();
 
   constructor(private fb: FormBuilder, private localStorageService: LocalStorageService, private accountService: AccountService, private router: Router) { }
 
@@ -27,7 +26,6 @@ export class LoginComponent implements OnInit {
       password: [undefined,[Validators.required]]
     })
 
-    this.localStorageService.clearAllLocalStorage();
   }
 
   onSubmit(): void {

@@ -1,11 +1,8 @@
-h3 {
-    text-align: center;
-    font-weight: lighter;
-    margin-top: 20px;
-
-}  
-
 .noHover{
     pointer-events: none;
     color: black;
+}
+
+.atext {
+    text-decoration: none;
 }

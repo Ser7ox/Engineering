@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="showNav">
     <div class="container-fluid">
       <a class="navbar-brand">{{title}}</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,8 +17,8 @@
           </li>
         </ul>
       </div>
-      <a class="me-3 noHover" >Welcome on board, {{ myInfo?.email || "no name set" }}</a>
-      <a class="" type="submit" (click)="clearStorage()" >Log out</a>
+      <a class="me-4 noHover" >Welcome on board, {{ mostraEmail }}</a>
+      <a class="atext text-danger" type="submit" (click)="logout()" >Log out</a>
     </div>
 </nav>
 
