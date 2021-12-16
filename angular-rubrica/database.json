@@ -54,5 +54,11 @@
       "number": "3663877969",
       "address": "Via Alatri 105, 00128, Roma"
     }
+  ],
+  "account": [
+    {
+      "email": "flavio.fantasia@eng.it",
+      "password": "Flavio1!"
+    }
   ]
 }

@@ -2,7 +2,7 @@ import { Component,OnInit,SimpleChanges,ViewChild} from '@angular/core';
 import { Persona } from '../../model/persona';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { filtronumeri } from '../../validator/filtronumeri.validator';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PersonaService } from 'src/app/persona/services/persona.service';
 import { ModalComponent } from '../../../shared/modal/modal.component';
 import { Observable, Subscription } from 'rxjs';
@@ -33,7 +33,7 @@ export class FormComponent implements OnInit{
   creaSub: Subscription; 
   classDynamic: any; 
   
-  constructor(private fb: FormBuilder, private _ActivatedRoute:ActivatedRoute, private personaservice: PersonaService) {}
+  constructor(private fb: FormBuilder, private _ActivatedRoute:ActivatedRoute, private personaservice: PersonaService, private router: Router) {}
 
   ngOnInit(): void {
     
@@ -172,6 +172,10 @@ export class FormComponent implements OnInit{
         
       )
     }
+  }
+
+  back() {
+    this.router.navigate(['persona/rubrica']);
   }
 
 }
