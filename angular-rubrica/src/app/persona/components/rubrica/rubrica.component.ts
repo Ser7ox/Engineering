@@ -17,14 +17,11 @@ export class RubricaComponent implements OnInit {
   person:Persona[] = []; headR:string; bodyR:string; page = 0;
   @ViewChild(ModalComponent)child: ModalComponent;
   currentUser: any;
-  myInfo = this.localStorageService.myData;
-  
 
   constructor(private personaservice: PersonaService, private router: Router, private route: ActivatedRoute, private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
     this.estraiUsers();
-    console.log(this.myInfo)
   }
 
   estraiUsers() {

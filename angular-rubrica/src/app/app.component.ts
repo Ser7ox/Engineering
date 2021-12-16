@@ -9,6 +9,7 @@ import { LocalStorageService } from './_services/local-storage.service';
 })
 export class AppComponent {
   title = 'Angular';
+  myInfo = this.localStorageService.account.getValue();
 
   constructor (private localStorageService: LocalStorageService, private router: Router) {}
   

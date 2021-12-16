@@ -7,8 +7,7 @@ import { LocalStorageRefService } from './local-storage-ref.service';
 
 export class LocalStorageService {
    private localStorage: Storage;
-   private account = new BehaviorSubject<Account>(null);
-   public myData = this.account.asObservable();
+   public account = new BehaviorSubject<Account>(null);
 
    constructor(private LocalStorageRef: LocalStorageRefService) {
       this.localStorage = LocalStorageRef.localStorage;
@@ -17,7 +16,6 @@ export class LocalStorageService {
    setInfo(data: Account) {
       this.localStorage.setItem('myData', JSON.stringify(data));
       this.account.next(data);
-      console.log(this.account);
    }
 
    loadInfo() {

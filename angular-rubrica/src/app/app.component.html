@@ -17,7 +17,7 @@
           </li>
         </ul>
       </div>
-      <a class="me-3 noHover" >Welcome on board, name</a>
+      <a class="me-3 noHover" >Welcome on board, {{ myInfo?.email || "no name set" }}</a>
       <a class="" type="submit" (click)="clearStorage()" >Log out</a>
     </div>
 </nav>

@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   isLoggedIn: boolean = false;
   isLoginFailed: boolean;
   errorMessage = '';
-  myInfo = this.localStorageService.myData;
+  myInfo = this.localStorageService.account.getValue();
 
   constructor(private fb: FormBuilder, private localStorageService: LocalStorageService, private accountService: AccountService, private router: Router) { }
 
