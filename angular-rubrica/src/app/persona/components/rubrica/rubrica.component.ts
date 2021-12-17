@@ -17,6 +17,7 @@ export class RubricaComponent implements OnInit {
   person:Persona[] = []; headR:string; bodyR:string; page = 0;
   @ViewChild(ModalComponent)child: ModalComponent;
   currentUser: any;
+  showLoad: boolean = true;
 
   constructor(private personaservice: PersonaService, private router: Router, private route: ActivatedRoute, private localStorageService: LocalStorageService) {}
 
@@ -25,9 +26,13 @@ export class RubricaComponent implements OnInit {
   }
 
   estraiUsers() {
-    this.personaservice.getUtenti().subscribe((data: Persona[]) => {
-      this.person = data;
-    })
+    setTimeout(()=>{
+      this.personaservice.getUtenti().subscribe((data: Persona[]) => {
+        this.showLoad = false;
+        this.person = data;
+      })
+    }, 1000);
+    
   }
 
   remove(id:number) {
@@ -57,5 +62,4 @@ export class RubricaComponent implements OnInit {
       this.router.navigate(['persona/form'], { queryParams: { page: this.page + 2 } });
     }
   }
-
 }
