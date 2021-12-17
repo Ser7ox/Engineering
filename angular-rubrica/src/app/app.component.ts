@@ -33,6 +33,18 @@ export class AppComponent {
       this.emailSub.unsubscribe();
     }
   }
+
+  home() {
+    this.router.navigate(['persona/rubrica']);
+  }
+
+  personaNew() {
+    this.router.navigate(['persona/form']);
+  }
+
+  lazy() {
+    this.router.navigate(['lazy']);
+  }
   
   logout() {
     this.localStorageService.clearAllLocalStorage();

@@ -6,3 +6,7 @@
 .atext {
     text-decoration: none;
 }
+
+a:hover {
+    cursor:context-menu;
+}

@@ -1,24 +1,24 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="showNav">
     <div class="container-fluid">
       <a class="navbar-brand">{{title}}</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="cont collapse navbar-collapse">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" routerLink="persona/rubrica" routerLinkActive="active">Home</a>
+            <a class="nav-link" (click)="home()">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" routerLink="persona/form" routerLinkActive="active">New contact</a>
+            <a class="nav-link" (click)="personaNew()">New contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" routerLink="/lazy" routerLinkActive="active">Lazy</a>
+            <a class="nav-link" (click)="lazy()">Lazy</a>
           </li>
         </ul>
       </div>
       <a class="me-4 noHover" >Welcome on board, {{ mostraEmail }}</a>
-      <a class="atext text-danger" type="submit" (click)="logout()" >Log out</a>
+      <a class="atext text-danger" type="submit" (click)="logout()">Log out</a>
     </div>
 </nav>
 

@@ -13,7 +13,7 @@
                     <span class="input-group-text"><i class="fas fa-unlock"></i></span>
                     <input id="password" type="password" class="form-control" placeholder="Password" formControlName="password" name="password">
                 </div>
-                <div class="text-center" *ngIf="isLoginFailed">
+                <div class="text-center text-danger mb-3" *ngIf="isLoginFailed">
                     L'email o la password non sono valide.
                 </div>
                 <div class="text-center">

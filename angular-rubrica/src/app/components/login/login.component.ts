@@ -37,10 +37,15 @@ export class LoginComponent implements OnInit {
 
     this.accountService.checkLogin(account.email, account.password).subscribe(
       (data) => {
-        this.localStorageService.setInfo(data);
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.reloadPage();
+        if (data) {
+          this.localStorageService.setInfo(data);
+          this.isLoginFailed = false;
+          this.isLoggedIn = true;
+          this.reloadPage();
+        } else {
+          this.isLoginFailed = true;
+          this.localStorageService.clearAllLocalStorage();
+        }
       },
       error => {
         this.isLoginFailed = true;

@@ -8,10 +8,11 @@ import { PersonaModule } from '../persona/persona.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
 import { AppModule } from '../app.module';
+import { LoadingComponent } from './loading/loading.component';
 
 
 @NgModule({
-  declarations: [AlertComponent, ModalComponent],
+  declarations: [AlertComponent, ModalComponent, LoadingComponent],
   imports: [
     CommonModule,
     SharedRoutingModule,
