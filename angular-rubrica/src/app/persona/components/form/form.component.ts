@@ -20,6 +20,7 @@ export class FormComponent implements OnInit{
   utente: Persona;
   profilo: FormGroup;
   alertShow: boolean;
+  showLoad: boolean = false;
   idValue: number;
   page: number;
   titleValue: string;
@@ -31,7 +32,8 @@ export class FormComponent implements OnInit{
   pageSub: Subscription;
   modificaSub: Subscription;
   creaSub: Subscription; 
-  classDynamic: any; 
+  classDynamic: any;
+
   
   constructor(private fb: FormBuilder, private _ActivatedRoute:ActivatedRoute, private personaservice: PersonaService, private router: Router) {}
 
@@ -57,11 +59,18 @@ export class FormComponent implements OnInit{
     });
 
     if ( this.idValue ) {
-      this.personaservice.getUtente(this.idValue).subscribe((data: Persona) => {
-      this.utente = data;
-      this.setProfilo();
-    })
-      this.profilo.controls['sesso'].disable();
+      this.showLoad=true;
+      setTimeout( () => {
+        this.personaservice.getUtente(this.idValue).subscribe((data: Persona) => {
+        this.utente = data;
+        this.setProfilo();
+        this.showLoad = false;
+        })
+        this.profilo.controls['sesso'].disable();
+      },300);
+    } else {
+      this.showLoad = true;
+      setTimeout( () => { this.showLoad = false; },300);
     }
     
   }
@@ -91,14 +100,14 @@ export class FormComponent implements OnInit{
   }
   
   setProfilo() {
-    this.profilo.get('nome').setValue(this.utente?.nome);
-    this.profilo.get('cognome').setValue(this.utente?.cognome);
-    this.profilo.controls['datanascita'].setValue(this.utente?.dataNascita);    
-    this.profilo.get('sesso').setValue(this.utente?.sesso);
-    this.profilo.controls['telefono'].clearAsyncValidators();
-    this.profilo.get('telefono').setValue(this.utente?.telefono);
-    this.profilo.controls['telefono'].setAsyncValidators([this.phoneValidator(this.utente?.telefono)]);
-    this.profilo.get('indirizzo').setValue(this.utente?.indirizzo);
+      this.profilo.get('nome').setValue(this.utente?.nome);
+      this.profilo.get('cognome').setValue(this.utente?.cognome);
+      this.profilo.controls['datanascita'].setValue(this.utente?.dataNascita);    
+      this.profilo.get('sesso').setValue(this.utente?.sesso);
+      this.profilo.controls['telefono'].clearAsyncValidators();
+      this.profilo.get('telefono').setValue(this.utente?.telefono);
+      this.profilo.controls['telefono'].setAsyncValidators([this.phoneValidator(this.utente?.telefono)]);
+      this.profilo.get('indirizzo').setValue(this.utente?.indirizzo);
   }
 
   SaveForm() {

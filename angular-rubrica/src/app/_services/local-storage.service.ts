@@ -6,7 +6,8 @@ import { LocalStorageRefService } from './local-storage-ref.service';
 @Injectable({ providedIn: 'root' })
 
 export class LocalStorageService {
-   private localStorage: Storage;
+
+   public localStorage: Storage;
    public utenteLoggato: Account;
    private account = new BehaviorSubject<Account>(null);
    public myData = this.account.asObservable();

@@ -2,7 +2,9 @@
   <div class="row d-flex justify-content-center mt-5 px-4 py-4">
     <div class="col-lg-8 col-md-12 px-5 py-3">
       <div class="table-responsive">
-        <app-loading *ngIf="showLoad"></app-loading>
+        <div class="text-center px-5 py-5 mt-5" *ngIf="showLoad">
+          <app-loading ></app-loading>
+        </div>
         <table class="table" *ngIf="person.length > 0">
           <thead>
             <tr>
@@ -29,10 +31,10 @@
                   <button class="btn" (click)="address(persona.id)">
                     <i class="fas fa-map-marker-alt"></i>
                   </button>
-                  <button class="btn" (click)="remove(persona.id)">
+                  <button class="btn" (click)="remove(persona.id)" *ngIf="showAdmin">
                     <i class="fas fa-trash-alt"></i>
                   </button>
-                  <button class="btn" (click)="form(persona.id)"> 
+                  <button class="btn" (click)="form(persona.id)" *ngIf="showAdmin"> 
                     <i class="fas fa-edit"></i>
                   </button>
               </td>
@@ -41,12 +43,16 @@
         </table>
       </div>
     </div>
-    <div class="col-lg-4 col-md-12 px-5 py-3 d-flex justify-content-center">
-      <div class="card cardcontact ">
+    <div class="col-lg-4 col-md-12 px-5 py-3" *ngIf="showAdmin">
+      <div class="card">
+        <div class="card-header text-center"> <h4> Admin's control room </h4></div>
         <div class="card-body">
-          <h5 class="card-title">Creazione di un nuovo contatto</h5>
-          <p class="card-text">Aggiungi un nuovo contatto sull'app rubrica!</p>
-          <button class="btn btn-dark" (click)="form()">Clicca qui</button> 
+          <h5 class="card-title mb-3">New contact</h5>
+          <button class="btn btn-dark" (click)="form()"> Add </button>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title mb-3">Other info</h5>
+          <button class="btn btn-dark"> See </button>
         </div>
       </div>
     </div>

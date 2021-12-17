@@ -16,6 +16,9 @@ export class LoginComponent implements OnInit {
   isLoggedIn: boolean = false;
   isLoginFailed: boolean;
   errorMessage = '';
+  loading = false;
+  error = '';
+  submitted: boolean = false;
 
   constructor(private fb: FormBuilder, private localStorageService: LocalStorageService, private accountService: AccountService, private router: Router) { }
 
@@ -29,26 +32,29 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-
+    this.submitted = true;
     const account = new Account(
       this.login.get('email').value,
-      this.login.get('password').value
+      this.login.get('password').value,
+      undefined
     );
-
+    this.loading = true;
     this.accountService.checkLogin(account.email, account.password).subscribe(
       (data) => {
         if (data) {
-          this.localStorageService.setInfo(data);
-          this.isLoginFailed = false;
-          this.isLoggedIn = true;
-          this.reloadPage();
+          setTimeout(()=>{
+            this.localStorageService.setInfo(data);
+            this.isLoginFailed = false;
+            this.isLoggedIn = true;
+            this.reloadPage();
+          }, 200);
         } else {
-          this.isLoginFailed = true;
-          this.localStorageService.clearAllLocalStorage();
+          setTimeout(()=>{
+            this.isLoginFailed = true;
+            this.localStorageService.clearAllLocalStorage();
+            this.loading = false;
+          }, 200);
         }
-      },
-      error => {
-        this.isLoginFailed = true;
       }
     );
   }

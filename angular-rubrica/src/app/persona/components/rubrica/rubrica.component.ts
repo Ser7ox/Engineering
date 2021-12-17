@@ -4,6 +4,7 @@ import { ModalComponent } from '../../../shared/modal/modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Persona } from 'src/app/persona/model/persona';
 import { LocalStorageService } from 'src/app/_services/local-storage.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -18,11 +19,32 @@ export class RubricaComponent implements OnInit {
   @ViewChild(ModalComponent)child: ModalComponent;
   currentUser: any;
   showLoad: boolean = true;
+  role: string;
+  roleSub: Subscription;
+  showAdmin: boolean;
 
   constructor(private personaservice: PersonaService, private router: Router, private route: ActivatedRoute, private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
+    this.roleSub = this.localStorageService.myData.subscribe(data => {
+      if (data) {
+        this.role = data.role;
+      }
+    })
+
+    if (this.role === "admin") {
+      this.showAdmin = true;
+    } else if( this.role === "user") {
+      this.showAdmin = false;
+    }
+
     this.estraiUsers();
+  }
+
+  ngOnDestroy() {
+    if ( this.roleSub ) {
+      this.roleSub.unsubscribe();
+    }
   }
 
   estraiUsers() {
@@ -31,7 +53,7 @@ export class RubricaComponent implements OnInit {
         this.showLoad = false;
         this.person = data;
       })
-    }, 1000);
+    }, 300);
     
   }
 
@@ -63,3 +85,5 @@ export class RubricaComponent implements OnInit {
     }
   }
 }
+//hhtp interceptor, header con la mail dell'utente se l'utente è loggato
+//ruolo admin posso fare tutto , ruolo user non ha nè modifica nè crea nè elimina

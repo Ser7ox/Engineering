@@ -44,21 +44,24 @@
       "sex": "F",
       "number": "3963673561",
       "address": "Piazzale dell'agricoltura 24, 00144, Roma"
-    },
-    {
-      "id": 6,
-      "name": "Marco",
-      "surname": "Rossi",
-      "birthDay": "1998-09-04",
-      "sex": "M",
-      "number": "3663877969",
-      "address": "Via Alatri 105, 00128, Roma"
     }
   ],
   "account": [
     {
       "email": "flavio.fantasia@eng.it",
-      "password": "Flavio1!"
+      "password": "Flavio1!",
+      "role": "admin"
+    },
+    {
+      "email": "user@user.it",
+      "password": "user",
+      "role": "user"
+    }
+  ],
+  "sesso": [
+    {
+      "Uomo": "M",
+      "Donna": "F"
     }
   ]
 }
