@@ -13,30 +13,18 @@ export class InterceptorService implements HttpInterceptor {
 
   constructor(private LocalStorageService: LocalStorageService) { }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>> {
-    
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.emailSub = this.LocalStorageService.myData.subscribe(data => {
       if (data) {
         this.email = data.email;
       }
     })
-
-    const authReq = req.clone({
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        setHeaders: this.email
-      })
+    const modifiedReq = req.clone({ 
+      headers: req.headers.set('Email', `${this.email}`),
     });
-  
-    console.log('Intercepted HTTP call', authReq);
-  
-    return next.handle(authReq);
+    console.log('Intercepted HTTP call', modifiedReq);
+    return next.handle(modifiedReq);
   }
   
-  ngOnDestroy() {
-    if ( this.emailSub ) {
-      this.emailSub.unsubscribe();
-    }
-  }
 }
 

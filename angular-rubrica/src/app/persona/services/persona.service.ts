@@ -5,6 +5,9 @@ import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PersonaDto } from '../dto/persona.dto';
 import { PersonaConverter } from '../converter/personaConverter';
+import { Sesso } from '../model/sesso';
+import { SessoDto } from '../dto/sesso.dto';
+import { SessoConverter } from '../converter/sessoConverter';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +17,7 @@ export class PersonaService {
   
   endPoint = 'http://localhost:3000';
   Converter: PersonaConverter = new PersonaConverter;
+  sessoConverter: SessoConverter = new SessoConverter;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -32,6 +36,15 @@ export class PersonaService {
     })
     return persona;
     })
+    )
+  }
+
+  getSesso(): Observable<Sesso> {
+    return this.httpClient.get<SessoDto[]>(this.endPoint + '/sesso')
+    .pipe(map( (rispostaBackEnd: SessoDto[]) => {
+                return this.sessoConverter.SessoDaDtoaModel(rispostaBackEnd[0]);
+                }          
+      )
     )
   }
 

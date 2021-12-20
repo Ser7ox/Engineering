@@ -19,7 +19,7 @@ export class AccountService {
   checkLogin(email:string, password:string): Observable<Account> {
     return this.httpClient.get<AccountDto[]>(this.endPoint + '/account' + '?email=' + email + '&password=' + password)
     .pipe(map( (arrayBackEnd: AccountDto[]) => {
-                return arrayBackEnd[0]; 
+                return this.Converter.AccountDaDtoaModel(arrayBackEnd[0]); 
         }
         
       )

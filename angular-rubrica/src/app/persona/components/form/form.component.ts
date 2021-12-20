@@ -8,6 +8,7 @@ import { ModalComponent } from '../../../shared/modal/modal.component';
 import { Observable, Subscription } from 'rxjs';
 import { CustomValidators } from 'src/app/persona/validator/custom-validators';
 import { map } from 'rxjs/operators';
+import { Sesso } from 'src/app/persona/model/sesso';
 
 @Component({
   selector: 'app-form',
@@ -18,6 +19,7 @@ export class FormComponent implements OnInit{
 
   @ViewChild(ModalComponent)child: ModalComponent;
   utente: Persona;
+  sesso: Sesso;
   profilo: FormGroup;
   alertShow: boolean;
   showLoad: boolean = false;
@@ -66,12 +68,13 @@ export class FormComponent implements OnInit{
         this.setProfilo();
         this.showLoad = false;
         })
-        this.profilo.controls['sesso'].disable();
       },300);
     } else {
       this.showLoad = true;
       setTimeout( () => { this.showLoad = false; },300);
     }
+
+    this.estraiSesso();
     
   }
 
@@ -98,16 +101,22 @@ export class FormComponent implements OnInit{
       this.creaSub.unsubscribe();
     }
   }
+
+  estraiSesso() {
+    this.personaservice.getSesso().subscribe((data: Sesso) => {
+      this.sesso = data;
+    })
+  }
   
   setProfilo() {
-      this.profilo.get('nome').setValue(this.utente?.nome);
-      this.profilo.get('cognome').setValue(this.utente?.cognome);
-      this.profilo.controls['datanascita'].setValue(this.utente?.dataNascita);    
-      this.profilo.get('sesso').setValue(this.utente?.sesso);
-      this.profilo.controls['telefono'].clearAsyncValidators();
-      this.profilo.get('telefono').setValue(this.utente?.telefono);
-      this.profilo.controls['telefono'].setAsyncValidators([this.phoneValidator(this.utente?.telefono)]);
-      this.profilo.get('indirizzo').setValue(this.utente?.indirizzo);
+    this.profilo.get('nome').setValue(this.utente?.nome);
+    this.profilo.get('cognome').setValue(this.utente?.cognome);
+    this.profilo.controls['datanascita'].setValue(this.utente?.dataNascita);    
+    this.profilo.get('sesso').setValue(this.utente?.sesso);
+    this.profilo.controls['telefono'].clearAsyncValidators();
+    this.profilo.get('telefono').setValue(this.utente?.telefono);
+    this.profilo.controls['telefono'].setAsyncValidators([this.phoneValidator(this.utente?.telefono)]);
+    this.profilo.get('indirizzo').setValue(this.utente?.indirizzo);
   }
 
   SaveForm() {

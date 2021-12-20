@@ -11,6 +11,7 @@ export class LocalStorageService {
    public utenteLoggato: Account;
    private account = new BehaviorSubject<Account>(null);
    public myData = this.account.asObservable();
+   roleAs: string;
 
    constructor(private LocalStorageRef: LocalStorageRefService) {
       
@@ -46,4 +47,5 @@ export class LocalStorageService {
       this.localStorage.clear();
       this.utenteLoggato = null;
    }
+
 }

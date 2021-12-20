@@ -9,6 +9,7 @@ import { LocalStorageService } from '../_services/local-storage.service';
 export class AuthGuard implements CanActivate {
 
   constructor (private localStorageService: LocalStorageService, private router: Router) {}
+  userRole = this.localStorageService.utenteLoggato.role;
   
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -19,4 +20,5 @@ export class AuthGuard implements CanActivate {
       }
       return true;
   }
+
 }
