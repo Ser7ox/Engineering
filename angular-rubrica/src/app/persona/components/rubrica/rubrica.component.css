@@ -2,7 +2,13 @@ button {
     border: none;
 }
 
+.btn-primary {
+    background-color:#1A2238!important;
+}
 
+.btn-primary:hover {
+    background-color:#2b385c!important;
+}
 
 /*
 .sessoM {

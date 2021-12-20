@@ -28,7 +28,12 @@ export class LoginComponent implements OnInit {
       email: [undefined,[Validators.required]],
       password: [undefined,[Validators.required]]
     })
-
+    
+    if ( this.localStorageService.utenteLoggato ) {
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+    }
   }
 
   onSubmit(): void {

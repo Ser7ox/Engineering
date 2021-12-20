@@ -85,5 +85,3 @@ export class RubricaComponent implements OnInit {
     }
   }
 }
-//hhtp interceptor, header con la mail dell'utente se l'utente è loggato
-//ruolo admin posso fare tutto , ruolo user non ha nè modifica nè crea nè elimina

@@ -7,3 +7,11 @@ form {
     max-width: 40rem;
     margin: auto;
 }
+
+.btn-primary {
+    background-color:#1A2238!important;
+}
+
+.btn-primary:hover {
+    background-color:#2b385c!important;
+}

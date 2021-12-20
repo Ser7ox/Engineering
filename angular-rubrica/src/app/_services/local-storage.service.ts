@@ -12,15 +12,17 @@ export class LocalStorageService {
    private account = new BehaviorSubject<Account>(null);
    public myData = this.account.asObservable();
 
-
    constructor(private LocalStorageRef: LocalStorageRefService) {
+      
       this.localStorage = LocalStorageRef.localStorage;
       this.utenteLoggato = JSON.parse(this.localStorage.getItem('myData'));
+
       if (this.utenteLoggato) {
          this.account.next(this.utenteLoggato);
       } else {
          this.account.next(null);
-      } 
+      }
+
    }
 
    setInfo(data: Account) {
