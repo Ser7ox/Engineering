@@ -6,10 +6,11 @@ import { FormComponent } from './components/form/form.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { filterNames } from './filterPipe';
 
 
 @NgModule({
-  declarations: [RubricaComponent, FormComponent],
+  declarations: [RubricaComponent, FormComponent, filterNames],
   imports: [
     CommonModule,
     PersonaRoutingModule,

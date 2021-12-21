@@ -4,7 +4,8 @@ import { ModalComponent } from '../../../shared/modal/modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Persona } from 'src/app/persona/model/persona';
 import { LocalStorageService } from 'src/app/_services/local-storage.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -15,15 +16,22 @@ import { Subscription } from 'rxjs';
 
 export class RubricaComponent implements OnInit {
   
-  person:Persona[] = []; headR:string; bodyR:string; page = 0;
+  person:Persona[] = [];
+  allPerson:Persona[] = [];
+  headR:string; 
+  bodyR:string; 
+  page = 0;
   @ViewChild(ModalComponent)child: ModalComponent;
   currentUser: any;
   showLoad: boolean = true;
   role: string;
   roleSub: Subscription;
   showAdmin: boolean;
+  filterName: string;
+  private searchTerms = new Subject<string>();
+  persona$!: Observable<Persona[]>;
 
-  constructor(private personaservice: PersonaService, private router: Router, private route: ActivatedRoute, private localStorageService: LocalStorageService) {}
+  constructor(private personaService: PersonaService, private router: Router, private route: ActivatedRoute, private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
     this.roleSub = this.localStorageService.myData.subscribe(data => {
@@ -49,16 +57,17 @@ export class RubricaComponent implements OnInit {
 
   estraiUsers() {
     setTimeout(()=>{
-      this.personaservice.getUtenti().subscribe((data: Persona[]) => {
+      this.personaService.getUtenti().subscribe((data: Persona[]) => {
         this.showLoad = false;
         this.person = data;
+        this.allPerson = this.person;
       })
     }, 300);
     
   }
 
   remove(id:number) {
-    this.personaservice.eliminaUtente(id).subscribe(() => {
+    this.personaService.eliminaUtente(id).subscribe(() => {
       this.estraiUsers();
     })
     this.headR = 'Profilo Eliminato!';
@@ -68,7 +77,7 @@ export class RubricaComponent implements OnInit {
 
   address(id: number) {
     let address: string;
-    this.personaservice.getUtente(id).subscribe((data: Persona) => {
+    this.personaService.getUtente(id).subscribe((data: Persona) => {
       address = data.indirizzo;
       this.headR = 'Indirizzo di ' + data.nome + ' ' + data.cognome;
       this.bodyR = address;

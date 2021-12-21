@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Persona } from '../model/persona';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { PersonaDto } from '../dto/persona.dto';
 import { PersonaConverter } from '../converter/personaConverter';
 import { Sesso } from '../model/sesso';
@@ -83,6 +83,16 @@ export class PersonaService {
       })
     )
   }
+
+  /*searchHeroes(term: string): Observable<Persona[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+    let ciao = this.httpClient.get<PersonaDto[]>(`${this.endPoint}/users/?name=${term}`).pipe(
+      return this.Converter.DaDtoaModel(ciao);
+      );
+    
+  } */
 
   checkPhone(telefono: number): Observable<boolean> {
     return this.httpClient.get<PersonaDto[]>(this.endPoint + '/users' + '?number=' + telefono)

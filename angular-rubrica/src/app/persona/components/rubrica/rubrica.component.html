@@ -1,9 +1,13 @@
 <div class="mx-5 shadow rounded">
   <div class="row d-flex justify-content-center mt-5 px-4 py-4">
-    <div class="col-lg-8 col-md-12 px-5 py-3">
-      <div class="table-responsive">
+    <div class="col-lg-8 col-md-12 px-4 py-3">
+      <div class="table-responsive px-1 py-1">
+        <div class="form-floating mb-3 w-50">
+          <input type="search" class="form-control" placeholder="type here" [(ngModel)]="filterName" >
+          <label class="label-size"><small><i class="fas fa-filter"></i> Filtra per nome</small></label>
+        </div>
         <div class="text-center px-5 py-5 mt-5" *ngIf="showLoad">
-          <app-loading ></app-loading>
+          <app-loading></app-loading>
         </div>
         <table class="table" *ngIf="person.length > 0">
           <thead>
@@ -18,7 +22,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let persona of person">
+            <tr *ngFor="let persona of person | filterNames: filterName;">
               <th scope="row">{{ persona.id }}</th>
               <td>{{ persona.nome }}</td>
               <td>{{ persona.cognome }}</td>
