@@ -4,7 +4,7 @@
             <div class="table-responsive px-1 py-1">
                 <nav>
                     <ul class="pagination justify-content-center">
-                      <li class="page-item" > <!-- [ngClass]="{'disabled':pagina === 1}" -->
+                      <li class="page-item" [ngClass]="{'disabled':page === 1}">
                         <a class="page-link" (click)="fetchData(false)">
                             <i class="fas fa-arrow-left"></i>
                         </a>
