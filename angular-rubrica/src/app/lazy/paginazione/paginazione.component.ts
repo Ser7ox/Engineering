@@ -34,8 +34,14 @@ export class PaginazioneComponent implements OnInit {
 
   estraiPosts() {
     this.postsService.getDatafromPage(this.page).subscribe((data: Posts[]) => {
-        this.postsData = data;
-        this.showLoad = false;
+      if (data.length) {
+          this.postsData = data;
+          this.showLoad = false;
+          this.forward = false;
+      } else {
+        this.forward = true;
+        this.page--;
+      }
     }) 
   }
 

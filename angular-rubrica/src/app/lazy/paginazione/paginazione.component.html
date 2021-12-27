@@ -10,7 +10,7 @@
                         </a>
                       </li>
                       <li class="page-item"><p class="page-link">{{ page }}</p></li> 
-                      <li class="page-item" *ngIf="!forward">
+                      <li class="page-item" [ngClass]="{'disabled':forward}">
                         <a class="page-link" (click)="fetchData(true)">
                             <i class="fas fa-arrow-right"></i>
                         </a>
