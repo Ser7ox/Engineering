@@ -28,8 +28,6 @@ export class RubricaComponent implements OnInit {
   roleSub: Subscription;
   showAdmin: boolean;
   filterName: string;
-  private searchTerms = new Subject<string>();
-  persona$!: Observable<Persona[]>;
 
   constructor(private personaService: PersonaService, private router: Router, private route: ActivatedRoute, private localStorageService: LocalStorageService) {}
 
@@ -60,7 +58,6 @@ export class RubricaComponent implements OnInit {
       this.personaService.getUtenti().subscribe((data: Persona[]) => {
         this.showLoad = false;
         this.person = data;
-        this.allPerson = this.person;
       })
     }, 300);
     

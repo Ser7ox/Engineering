@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TestComponent } from './test/test.component';
+import { PaginazioneComponent } from './paginazione/paginazione.component';
 
 const routes: Routes = [
-  {path: '', component: TestComponent}
+  {path: '', component: PaginazioneComponent}
 ];
 
 @NgModule({

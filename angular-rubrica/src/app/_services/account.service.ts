@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AccountConverter } from '../converter/accountConverter';
 import { AccountDto } from '../dto/account.dto';
-import { Account } from '../model/account';
+import { Account } from '../_model/account';
 
 @Injectable({
   providedIn: 'root'

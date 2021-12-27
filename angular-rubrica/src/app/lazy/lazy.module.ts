@@ -1,21 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { LazyRoutingModule } from './lazy-routing.module';
-import { TestComponent } from './test/test.component';
 import { SharedModule } from '../shared/shared.module';
-import { AppRoutingModule } from '../app-routing.module';
-import { RouterModule } from '@angular/router';
-import { AppModule } from '../app.module';
+import { PaginazioneComponent } from './paginazione/paginazione.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
-  declarations: [TestComponent],
+  declarations: [PaginazioneComponent],
   imports: [
     CommonModule,
     LazyRoutingModule,
     SharedModule,
+    NgxPaginationModule
   ],
-  exports: [TestComponent]
+  exports: [PaginazioneComponent]
 })
 export class LazyModule { }

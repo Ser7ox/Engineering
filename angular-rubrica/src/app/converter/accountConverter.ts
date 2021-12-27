@@ -1,5 +1,5 @@
 import { AccountDto } from "../dto/account.dto";
-import { Account } from "../model/account";
+import { Account } from "../_model/account";
 
 export class AccountConverter {
 

@@ -84,16 +84,6 @@ export class PersonaService {
     )
   }
 
-  /*searchHeroes(term: string): Observable<Persona[]> {
-    if (!term.trim()) {
-      return of([]);
-    }
-    let ciao = this.httpClient.get<PersonaDto[]>(`${this.endPoint}/users/?name=${term}`).pipe(
-      return this.Converter.DaDtoaModel(ciao);
-      );
-    
-  } */
-
   checkPhone(telefono: number): Observable<boolean> {
     return this.httpClient.get<PersonaDto[]>(this.endPoint + '/users' + '?number=' + telefono)
     .pipe(map( (arrayBackEnd: PersonaDto[]) => {

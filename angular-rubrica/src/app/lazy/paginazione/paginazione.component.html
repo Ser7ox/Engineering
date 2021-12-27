@@ -1,0 +1,31 @@
+<div class="mx-5 shadow rounded">
+    <div class="row d-flex justify-content-center mt-5 px-4 py-4">
+        <div class="col-lg-12 px-4 py-3">
+            <div class="table-responsive px-1 py-1">
+                <div class="d-flex justify-content-center">
+                    <pagination-controls (pageChange)="pageChange($event)"></pagination-controls>
+                </div>
+                <div class="text-center px-5 py-5 mt-5" *ngIf="showLoad">
+                    <app-loading></app-loading>
+                </div>
+                <table class="table" *ngIf="jsonData.length">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Head</th>
+                            <th scope="col">Body</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let items of jsonData | paginate:{itemsPerPage: 5, currentPage:page}">
+                            <td> {{items.id }}</td>
+                            <td> {{items.title }}</td>
+                            <td> {{items.body }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+        

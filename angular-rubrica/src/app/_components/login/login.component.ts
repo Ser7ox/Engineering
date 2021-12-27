@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Account } from 'src/app/model/account';
+import { Account } from 'src/app/_model/account';
 import { AccountService } from 'src/app/_services/account.service';
 import { LocalStorageService } from 'src/app/_services/local-storage.service';
 
