@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Json } from '../model/json';
-import { JsonService } from '../service/json.service';
+import { Posts } from '../model/posts';
+import { PostsService } from '../service/posts.service';
 
 @Component({
   selector: 'app-paginazione',
@@ -9,25 +9,34 @@ import { JsonService } from '../service/json.service';
 })
 export class PaginazioneComponent implements OnInit {
 
-  jsonData:Json[] = [];
-  page = 1;
+  postsData:Posts[] = [];
   showLoad = true;
+  page = 1;
+  forward: boolean;
 
-  constructor(private jsonService: JsonService) { }
+  constructor(private postsService: PostsService) { }
 
   ngOnInit(): void {
-    this.fetchData();
+  
+    this.estraiPosts();
+    
   }
 
-
-  fetchData() {
-    this.jsonService.getData().subscribe((data: Json[]) => {
-      this.jsonData = data;
-      this.showLoad = false;
-    })
+  fetchData(parameter: boolean) {
+    if (parameter) {
+      this.page++;
+    } else {
+      this.page--;
+    }
+      this.estraiPosts();
+    
   }
 
-  pageChange(event: number) {
-    this.page = event;
+  estraiPosts() {
+    this.postsService.getDatafromPage(this.page).subscribe((data: Posts[]) => {
+        this.postsData = data;
+        this.showLoad = false;
+    }) 
   }
+
 }

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { LazyRoutingModule } from './lazy-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { PaginazioneComponent } from './paginazione/paginazione.component';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -11,8 +10,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   imports: [
     CommonModule,
     LazyRoutingModule,
-    SharedModule,
-    NgxPaginationModule
+    SharedModule
   ],
   exports: [PaginazioneComponent]
 })
