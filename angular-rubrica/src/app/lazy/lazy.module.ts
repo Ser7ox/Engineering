@@ -2,16 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LazyRoutingModule } from './lazy-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { PaginazioneComponent } from './paginazione/paginazione.component';
+import { PaginazioneComponent } from './components/paginazione/paginazione.component';
+import { PostsDetailsComponent } from './components/posts-details/posts-details.component';
 
 
 @NgModule({
-  declarations: [PaginazioneComponent],
+  declarations: [PaginazioneComponent, PostsDetailsComponent],
   imports: [
     CommonModule,
     LazyRoutingModule,
     SharedModule
   ],
-  exports: [PaginazioneComponent]
+  exports: [PaginazioneComponent, PostsDetailsComponent]
 })
 export class LazyModule { }

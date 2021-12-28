@@ -26,6 +26,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Title</th>
                             <th scope="col">Body</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +34,11 @@
                             <td> {{items.id }}</td>
                             <td> {{items.title }}</td>
                             <td> {{items.body }}</td>
+                            <td>
+                                <button class="btn ms-2" (click)="details(items.id)">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

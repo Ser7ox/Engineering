@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Posts } from '../model/posts';
-import { PostsService } from '../service/posts.service';
+import { Router } from '@angular/router';
+import { Posts } from '../../model/posts';
+import { PostsService } from '../../service/posts.service';
 
 @Component({
   selector: 'app-paginazione',
@@ -14,7 +15,7 @@ export class PaginazioneComponent implements OnInit {
   page = 1;
   forward: boolean;
 
-  constructor(private postsService: PostsService) { }
+  constructor(private postsService: PostsService, private router: Router) { }
 
   ngOnInit(): void {
   
@@ -37,6 +38,10 @@ export class PaginazioneComponent implements OnInit {
       this.postsData = data;
       this.showLoad = false;
     }) 
+  }
+
+  details(id: number) {
+    this.router.navigate(['lazy/details', id]);
   }
 
 }
