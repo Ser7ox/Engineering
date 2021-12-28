@@ -22,7 +22,7 @@ export class PaginazioneComponent implements OnInit {
     
   }
 
-  fetchData(parameter: boolean) {
+  setPage(parameter: boolean) {
     if (parameter) {
       this.page++;
     } else {
@@ -34,14 +34,8 @@ export class PaginazioneComponent implements OnInit {
 
   estraiPosts() {
     this.postsService.getDatafromPage(this.page).subscribe((data: Posts[]) => {
-      if (data.length) {
-          this.postsData = data;
-          this.showLoad = false;
-          this.forward = false;
-      } else {
-        this.forward = true;
-        this.page--;
-      }
+      this.postsData = data;
+      this.showLoad = false;
     }) 
   }
 

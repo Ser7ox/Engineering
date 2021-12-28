@@ -5,13 +5,13 @@
                 <nav>
                     <ul class="pagination justify-content-center">
                       <li class="page-item" [ngClass]="{'disabled':page === 1}">
-                        <a class="page-link" (click)="fetchData(false)">
+                        <a class="page-link" (click)="setPage(false)">
                             <i class="fas fa-arrow-left"></i>
                         </a>
                       </li>
                       <li class="page-item"><p class="page-link">{{ page }}</p></li> 
-                      <li class="page-item" [ngClass]="{'disabled':forward}">
-                        <a class="page-link" (click)="fetchData(true)">
+                      <li class="page-item" [ngClass]="{'disabled':page === 10}">
+                        <a class="page-link" (click)="setPage(true)">
                             <i class="fas fa-arrow-right"></i>
                         </a>
                       </li>
