@@ -73,7 +73,14 @@ export class LoginComponent implements OnInit {
   }
 
   reloadPage(): void {
-    this.router.navigate(['persona/rubrica']);
+    this.router.navigate(['persona']);
   }
 
 }
+
+// lifecycle componenti
+// generare un cookie nelle richieste con l'email dell'utente su service
+
+
+// searchbase paginator per webkit OK
+// alert per massimo 10 persone webkit OK

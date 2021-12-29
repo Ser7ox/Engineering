@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'persona', loadChildren: () => import('./persona/persona.module').then(m => m.PersonaModule),canActivate:[AuthGuard]},
   { path: 'lazy', loadChildren: () => import('./lazy/lazy.module').then(m => m.LazyModule),canActivate:[AuthGuard]},
-  { path: '**',   redirectTo: '/login' },
+  { path: '**',   redirectTo: '/persona'},
 ];
 
 @NgModule({

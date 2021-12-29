@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { filterNames } from './filterPipe';
+import { CookieModule } from 'ngx-cookie';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { filterNames } from './filterPipe';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    CookieModule.forRoot()
   ],
   exports: [RubricaComponent,FormComponent]
 })

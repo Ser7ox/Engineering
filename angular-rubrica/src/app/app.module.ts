@@ -11,6 +11,7 @@ import { PersonaModule } from './persona/persona.module';
 import { LazyModule } from './lazy/lazy.module';
 import { LoginComponent } from './_components/login/login.component';
 import { InterceptorService } from './_services/interceptor.service';
+import { CookieModule } from 'ngx-cookie';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { InterceptorService } from './_services/interceptor.service';
     HttpClientModule,
     SharedModule,
     PersonaModule,
-    LazyModule
+    LazyModule,
+    CookieModule.forRoot()
   ],
   exports: [LoginComponent],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },],

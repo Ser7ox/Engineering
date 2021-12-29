@@ -1,18 +1,18 @@
 <div class="mx-4 my-4 px-4 py-4 shadow rounded">
     <div class="row px-5 py-5">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-6 mb-3">
                 <h1> Detail's post:</h1>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-6 d-flex justify-content-center mt-3">
                 <div class="card" >
                     <div class="text-center px-5 py-5 mt-5" *ngIf="showLoad">
                         <app-loading></app-loading>
                     </div>
                     <div class="card-body">
-                        <h5>{{postsDetail?.dataResolver.title}} </h5>
-                        <h6 class="card-subtitle mb-2 mt-2 text-muted"> ID:  {{postsDetail?.dataResolver.id }} </h6>
-                        <p class="card-text"> {{postsDetail?.dataResolver.body }} </p>
+                        <h5>{{postsDetail?.title}} </h5>
+                        <h6 class="card-subtitle mb-2 mt-2 text-muted"> ID:  {{postsDetail?.id }} </h6>
+                        <p class="card-text"> {{postsDetail?.body }} </p>
                         <a (click)="back()" class="card-link"><i class="far fa-arrow-alt-circle-left fa-2x "></i></a>
                     </div>
                 </div>

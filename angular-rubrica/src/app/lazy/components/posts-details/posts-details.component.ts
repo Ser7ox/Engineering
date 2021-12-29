@@ -16,8 +16,10 @@ export class PostsDetailsComponent implements OnInit {
 
     this.actRoute.data.subscribe(data => {
       setTimeout(() => {
-      this.postsDetail = data;
-      this.showLoad = false;
+        if (data) {
+          this.postsDetail = data.dataResolver;
+          this.showLoad = false;
+        }
     },300);
     })
   }

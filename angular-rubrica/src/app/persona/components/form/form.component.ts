@@ -193,7 +193,7 @@ export class FormComponent implements OnInit{
   }
 
   back() {
-    this.router.navigate(['persona/rubrica']);
+    this.router.navigate(['persona']);
   }
 
 }

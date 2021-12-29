@@ -4,8 +4,7 @@ import { ModalComponent } from '../../../shared/modal/modal.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Persona } from 'src/app/persona/model/persona';
 import { LocalStorageService } from 'src/app/_services/local-storage.service';
-import { Observable, Subject, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -25,9 +24,12 @@ export class RubricaComponent implements OnInit {
   currentUser: any;
   showLoad: boolean = true;
   role: string;
+  email: string;
   roleSub: Subscription;
+  getUtente: Subscription;
   showAdmin: boolean;
   filterName: string;
+  emailDisplay: string;
 
   constructor(private personaService: PersonaService, private router: Router, private route: ActivatedRoute, private localStorageService: LocalStorageService) {}
 
@@ -35,6 +37,7 @@ export class RubricaComponent implements OnInit {
     this.roleSub = this.localStorageService.myData.subscribe(data => {
       if (data) {
         this.role = data.role;
+        this.email = data.email;
       }
     })
 
@@ -45,6 +48,9 @@ export class RubricaComponent implements OnInit {
     }
 
     this.estraiUsers();
+
+    this.personaService.setCookie({name:'email',value:this.email, expireDays:1 });
+
   }
 
   ngOnDestroy() {
