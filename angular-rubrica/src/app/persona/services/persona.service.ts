@@ -116,11 +116,9 @@ export class PersonaService {
         + (location.protocol === 'https:' && params.secure && params.secure == true ? "secure":"");
   }
 
-  public deleteCookie(cookieName: any) {
+  public deleteCookie(cookieName: string) {
     this.setCookie({name:cookieName,value:'',expireDays:-1});
   }
 }
 
 
-
-// mi creo un modulo di prova e ci metto component dentro. Lo carico in lazyloading ( cos'è )

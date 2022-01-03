@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie';
 import { Subscription } from 'rxjs';
 import { PersonaService } from './persona/services/persona.service';
 import { LocalStorageService } from './_services/local-storage.service';
@@ -18,7 +19,7 @@ export class AppComponent {
   showNav: boolean;
   loading: boolean = false;
 
-  constructor (private localStorageService: LocalStorageService, private router: Router, private personaService: PersonaService) {}
+  constructor (private localStorageService: LocalStorageService, private router: Router, private personaService: PersonaService, private cookieService: CookieService) {}
 
   ngOnInit() {
     this.emailSub = this.localStorageService.myData.subscribe(data => {
@@ -62,8 +63,8 @@ export class AppComponent {
       this.localStorageService.clearAllLocalStorage();
       this.router.navigate(['login']);
       this.showNav = false;
-      this.personaService.deleteCookie({name:'email'});
-      
+      //this.personaService.deleteCookie('email');
+      this.cookieService.removeAll();
     },500);
   }
 }

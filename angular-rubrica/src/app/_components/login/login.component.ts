@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Account } from 'src/app/_model/account';
 import { AccountService } from 'src/app/_services/account.service';
 import { LocalStorageService } from 'src/app/_services/local-storage.service';
+import { CookieService } from 'ngx-cookie';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +21,8 @@ export class LoginComponent implements OnInit {
   loading = false;
   error = '';
   submitted: boolean = false;
+  roleSub: Subscription;
+  email: string;
 
   constructor(private fb: FormBuilder, private localStorageService: LocalStorageService, private accountService: AccountService, private router: Router) { }
 
@@ -28,12 +32,20 @@ export class LoginComponent implements OnInit {
       email: [undefined,[Validators.required]],
       password: [undefined,[Validators.required]]
     })
+
+    this.roleSub = this.localStorageService.myData.subscribe(data => {
+      if (data) {
+        this.email = data.email;
+      }
+    })
     
     if ( this.localStorageService.utenteLoggato ) {
       this.isLoggedIn = true;
     } else {
       this.isLoggedIn = false;
     }
+
+    
   }
 
   onSubmit(): void {
@@ -62,6 +74,12 @@ export class LoginComponent implements OnInit {
         }
       }
     );
+  }
+
+  ngOnDestroy() {
+    if (this.roleSub) {
+      this.roleSub.unsubscribe;
+    }
   }
 
   clearInfo() {

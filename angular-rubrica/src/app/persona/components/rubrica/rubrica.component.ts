@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Persona } from 'src/app/persona/model/persona';
 import { LocalStorageService } from 'src/app/_services/local-storage.service';
 import { Subscription } from 'rxjs';
+import { CookieService } from 'ngx-cookie';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class RubricaComponent implements OnInit {
   filterName: string;
   emailDisplay: string;
 
-  constructor(private personaService: PersonaService, private router: Router, private route: ActivatedRoute, private localStorageService: LocalStorageService) {}
+  constructor(private personaService: PersonaService, private cookieService: CookieService, private router: Router, private route: ActivatedRoute, private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
     this.roleSub = this.localStorageService.myData.subscribe(data => {
@@ -49,8 +50,8 @@ export class RubricaComponent implements OnInit {
 
     this.estraiUsers();
 
-    this.personaService.setCookie({name:'email',value:this.email, expireDays:1 });
-
+    //this.personaService.setCookie({name:'email',value:this.email, expireDays:1 });
+    this.cookieService.put('email', this.email);
   }
 
   ngOnDestroy() {
