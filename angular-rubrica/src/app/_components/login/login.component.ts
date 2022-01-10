@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   roleSub: Subscription;
   email: string;
 
-  constructor(private fb: FormBuilder, private localStorageService: LocalStorageService, private accountService: AccountService, private router: Router) { }
+  constructor(private fb: FormBuilder, private cookieService: CookieService, private localStorageService: LocalStorageService, private accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -61,6 +61,7 @@ export class LoginComponent implements OnInit {
         if (data) {
           setTimeout(()=>{
             this.localStorageService.setInfo(data);
+            this.cookieService.put('email', this.email);
             this.isLoginFailed = false;
             this.isLoggedIn = true;
             this.reloadPage();

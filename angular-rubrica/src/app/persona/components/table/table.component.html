@@ -1,0 +1,46 @@
+<div class="table-responsive px-1 py-1">
+    <div class="form-floating mb-3 w-50">
+      <input type="search" class="form-control" placeholder="type here" [(ngModel)]="filterName" >
+      <label class="label-size"><small><i class="fas fa-filter"></i> Filtra per nome</small></label>
+    </div>
+    <div class="text-center px-5 py-5 mt-5" *ngIf="showLoad">
+      <app-loading></app-loading>
+    </div>
+    <table class="table" *ngIf="person.length > 0">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Cognome</th>
+          <th scope="col">Data di nascita</th>
+          <th scope="col">Sesso</th>
+          <th scope="col">Telefono</th>
+          <th scope="col">Azioni user</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let persona of person | filterNames: filterName;">
+          <th scope="row">{{ persona.id }}</th>
+          <td>{{ persona.nome }}</td>
+          <td>{{ persona.cognome }}</td>
+          <td> {{ persona.dataNascita | date: 'dd/MM/yyyy' }} </td>
+          <td [ngClass]="{sessoM: persona.sesso === 'M',sessoF: persona.sesso === 'F'}">
+            {{ persona.sesso }}
+          </td>
+          <td>{{ persona.telefono }}</td>
+          <td>
+              <button class="btn" (click)="address(persona.id)">
+                <i class="fas fa-map-marker-alt"></i>
+              </button>
+              <button class="btn"  *ngIf="showAdmin" (click)="remove(persona.id)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+              <button class="btn" (click)="form(persona.id)" *ngIf="showAdmin"> 
+                <i class="fas fa-edit"></i>
+              </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+

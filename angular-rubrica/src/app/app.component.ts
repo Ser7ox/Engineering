@@ -60,11 +60,11 @@ export class AppComponent {
   logout() {
     this.loading = true;
     setTimeout( () => {
-      this.localStorageService.clearAllLocalStorage();
+      this.localStorageService.clearInfo();
       this.router.navigate(['login']);
       this.showNav = false;
       //this.personaService.deleteCookie('email');
-      this.cookieService.removeAll();
+      this.cookieService.remove('email');
     },500);
   }
 }

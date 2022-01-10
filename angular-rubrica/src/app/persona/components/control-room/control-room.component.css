@@ -1,0 +1,13 @@
+button {
+    border: none;
+}
+
+.card {
+    border-radius: 8px;
+    border: none;
+    background-color: #F5F7FA!important;
+}
+.color-card {
+    background: linear-gradient(to right, #1A2238, rgb(255, 255, 255)) !important;
+    color: #fff;
+}

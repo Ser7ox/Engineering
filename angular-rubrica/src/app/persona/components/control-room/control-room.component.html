@@ -1,0 +1,64 @@
+<!-- <div class="row card">
+    <div class="card-header text-center"> <h4> Admin's control room </h4></div>
+    <div class="col-lg-4 ">
+      <h5 class="col card-title mb-3">New contact</h5>
+      <button class="btn btn-primary" > Add </button>  (click)="form()" 
+    </div>
+    <div class="col-lg-4 c">
+      <h5 class="card-title mb-3">Other info</h5>
+      <button class="btn btn-primary"> See </button>
+    </div>
+    <div class="col-lg-4 ">
+        <h5 class="card-title mb-3">Numero di utenti registrati: </h5>
+        <p class="lead"> {{ lengthPersona }} </p> 
+    </div>
+</div> -->
+<div class="row d-flex justify-content-center my-3">
+    <div class="col-lg-10">
+        <div class="card color-card">
+            <div class="p-4">
+                <div class="mb-4">
+                    <h5 class="card-title mb-0"><i class="fas fa-address-book"></i> Add new contact</h5>
+                </div>
+                <div class="row align-items-center mb-3 d-flex">
+                    <div class="col-8">
+                        <button class="btn btn-light" (click)="form()"> Click here </button>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-10 mt-5">
+        <div class="card color-card">
+            <div class="p-4">
+                <div class="mb-4">
+                    <h5 class="card-title mb-0"><i class="fas fa-users"></i> Registered users</h5>
+                </div>
+                <div class="row align-items-center mb-3 d-flex">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center mb-0"> {{ lengthPersona }} </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-10 mt-5">
+        <div class="card">
+            <div class="card-content">
+              <div class="card-body">
+                <div class="media d-flex">
+                  <div class="align-self-center">
+                    <i class="fas fa-users fa-3x"></i>
+                  </div>
+                  <div class="media-body text-right">
+                    <h3>{{ lengthPersona }}</h3>
+                    <span>Registered users</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+
+  

@@ -17,7 +17,6 @@ import { Sesso } from 'src/app/persona/model/sesso';
 })
 export class FormComponent implements OnInit{
 
-  @ViewChild(ModalComponent)child: ModalComponent;
   utente: Persona;
   sesso: Sesso;
   profilo: FormGroup;

@@ -15,22 +15,20 @@ import { CookieService } from 'ngx-cookie';
 })
 
 export class RubricaComponent implements OnInit {
-  
-  person:Persona[] = [];
+
   allPerson:Persona[] = [];
-  headR:string; 
-  bodyR:string; 
   page = 0;
-  @ViewChild(ModalComponent)child: ModalComponent;
+  showAdmin: boolean;
   currentUser: any;
-  showLoad: boolean = true;
   role: string;
   email: string;
   roleSub: Subscription;
   getUtente: Subscription;
-  showAdmin: boolean;
   filterName: string;
   emailDisplay: string;
+  headR:string;
+  bodyR:string;
+  @ViewChild(ModalComponent)child: ModalComponent;
 
   constructor(private personaService: PersonaService, private cookieService: CookieService, private router: Router, private route: ActivatedRoute, private localStorageService: LocalStorageService) {}
 
@@ -48,8 +46,6 @@ export class RubricaComponent implements OnInit {
       this.showAdmin = false;
     }
 
-    this.estraiUsers();
-
     //this.personaService.setCookie({name:'email',value:this.email, expireDays:1 });
     this.cookieService.put('email', this.email);
   }
@@ -60,41 +56,12 @@ export class RubricaComponent implements OnInit {
     }
   }
 
-  estraiUsers() {
-    setTimeout(()=>{
-      this.personaService.getUtenti().subscribe((data: Persona[]) => {
-        this.showLoad = false;
-        this.person = data;
-      })
-    }, 300);
-    
-  }
-
   remove(id:number) {
     this.personaService.eliminaUtente(id).subscribe(() => {
-      this.estraiUsers();
     })
     this.headR = 'Profilo Eliminato!';
     this.bodyR = 'Il profilo è stato eliminato';
     this.child.show();
-  }
+  } 
 
-  address(id: number) {
-    let address: string;
-    this.personaService.getUtente(id).subscribe((data: Persona) => {
-      address = data.indirizzo;
-      this.headR = 'Indirizzo di ' + data.nome + ' ' + data.cognome;
-      this.bodyR = address;
-      this.child.show();
-    })
-  }
-
-  form(id?: number){
-    if (id) {
-      this.router.navigate(['persona/form', id], { queryParams: { page: this.page + 1 } });
-    }
-    else {
-      this.router.navigate(['persona/form'], { queryParams: { page: this.page + 2 } });
-    }
-  }
 }

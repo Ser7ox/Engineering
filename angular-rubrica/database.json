@@ -2,12 +2,12 @@
   "users": [
     {
       "id": 1,
-      "name": "Francesca",
-      "surname": "Rossini",
-      "birthDay": "1998-09-04",
-      "sex": "F",
-      "number": "3335645181",
-      "address": "Via Marietti 72, 46924, Milano"
+      "name": "Giacomo",
+      "surname": "Tufelli",
+      "birthDay": "1993-01-10",
+      "sex": "M",
+      "number": "3663845928",
+      "address": "Via Paciotti 10, 00177, Roma"
     },
     {
       "id": 2,
@@ -44,15 +44,6 @@
       "sex": "F",
       "number": "3963673561",
       "address": "Piazzale dell'agricoltura 24, 00144, Roma"
-    },
-    {
-      "name": "Francesca",
-      "surname": "Petacchi",
-      "birthDay": "1993-12-01",
-      "sex": "F",
-      "number": "3254687195",
-      "address": "Via Marconi 134, 00145 Roma",
-      "id": 6
     }
   ],
   "account": [

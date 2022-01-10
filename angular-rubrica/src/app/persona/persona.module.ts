@@ -8,10 +8,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { filterNames } from './filterPipe';
 import { CookieModule } from 'ngx-cookie';
+import { TableComponent } from './components/table/table.component';
+import { ControlRoomComponent } from './components/control-room/control-room.component';
 
 
 @NgModule({
-  declarations: [RubricaComponent, FormComponent, filterNames],
+  declarations: [RubricaComponent, FormComponent, filterNames, TableComponent, ControlRoomComponent],
   imports: [
     CommonModule,
     PersonaRoutingModule,
