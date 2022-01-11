@@ -65,7 +65,7 @@ export class TableComponent implements OnInit {
     })
   }
 
-  form(id?: number){
+  form(id?: number) {
     if (id) {
       this.router.navigate(['persona/form', id], { queryParams: { page: this.page + 1 } });
     }
@@ -74,7 +74,7 @@ export class TableComponent implements OnInit {
     }
   }
 
-  remove (id: number) {
+  remove(id: number) {
     this.idToPass.emit(id);
     this.estraiUsers();
   }

@@ -28,6 +28,7 @@ export class RubricaComponent implements OnInit {
   emailDisplay: string;
   headR:string;
   bodyR:string;
+  lengthPersona: number;
   @ViewChild(ModalComponent)child: ModalComponent;
 
   constructor(private personaService: PersonaService, private cookieService: CookieService, private router: Router, private route: ActivatedRoute, private localStorageService: LocalStorageService) {}
@@ -38,6 +39,10 @@ export class RubricaComponent implements OnInit {
         this.role = data.role;
         this.email = data.email;
       }
+    })
+
+    this.personaService.getUtenti().subscribe((data:Persona[]) => {
+      this.lengthPersona = data.length;
     })
 
     if (this.role === "admin") {
@@ -62,6 +67,7 @@ export class RubricaComponent implements OnInit {
     this.headR = 'Profilo Eliminato!';
     this.bodyR = 'Il profilo è stato eliminato';
     this.child.show();
+    this.ngOnInit();
   } 
 
 }

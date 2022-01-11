@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Persona } from '../../model/persona';
 import { PersonaService } from '../../services/persona.service';
@@ -11,15 +11,11 @@ import { PersonaService } from '../../services/persona.service';
 export class ControlRoomComponent implements OnInit {
 
   persona: Persona[];
-  lengthPersona: number;
+  @Input() lengthPersona: number;
 
   constructor(private personaService: PersonaService, private router: Router) { }
 
   ngOnInit(): void {
-    this.personaService.getUtenti().subscribe((data:Persona[]) => {
-      this.persona = data;
-      this.lengthPersona = this.persona.length;
-    })
   }
 
   form(id?: number){
