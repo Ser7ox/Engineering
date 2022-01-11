@@ -4,7 +4,7 @@ import { Persona } from '../../model/persona';
 import { PersonaService } from '../../services/persona.service';
 
 @Component({
-  selector: 'controlRoom',
+  selector: 'app-controlRoom',
   templateUrl: './control-room.component.html',
   styleUrls: ['./control-room.component.css']
 })

@@ -7,7 +7,7 @@ import { Persona } from '../../model/persona';
 import { PersonaService } from '../../services/persona.service';
 
 @Component({
-  selector: 'tabella',
+  selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })

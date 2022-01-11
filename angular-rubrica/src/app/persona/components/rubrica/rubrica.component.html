@@ -1,18 +1,14 @@
 <div class="mx-5 shadow rounded">
   <div class="row d-flex justify-content-center mt-5 px-4 py-4">
     <div class="col-lg-8 col-md-12 px-4 py-3">
-      <tabella (idToPass)="remove($event)"></tabella>
+      <app-table (idToPass)="remove($event)"></app-table>
     </div>
     <div class="col-lg-4 col-md-12 px-5 py-3" *ngIf="showAdmin">
-      <controlRoom [lengthPersona]="lengthPersona"></controlRoom> 
+      <app-controlRoom [lengthPersona]="lengthPersona"></app-controlRoom>
     </div>
+  </div>
 </div>
 
-<app-modal [headM]="headR"> 
-  <div content *ngIf="bodyR" class="mt-3 mb-3"> {{ bodyR }} </div>
-</app-modal> 
-
-
-
-
-
+<app-modal [headM]="headR">
+  <div content *ngIf="bodyR" class="mt-3 mb-3">{{ bodyR }}</div>
+</app-modal>
