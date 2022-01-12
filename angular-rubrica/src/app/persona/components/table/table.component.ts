@@ -24,7 +24,8 @@ export class TableComponent implements OnInit {
   roleSub: Subscription;
   page = 0;
   @ViewChild(ModalComponent)child: ModalComponent;
-  @Output() idToPass = new EventEmitter<number>();
+  @Output() idOutput = new EventEmitter<number>();
+  @Output() personaOutput = new EventEmitter<Persona[]>();
 
   constructor(private personaService: PersonaService, private localStorageService: LocalStorageService, private router: Router) { }
 
@@ -51,6 +52,7 @@ export class TableComponent implements OnInit {
       this.personaService.getUtenti().subscribe((data: Persona[]) => {
         this.showLoad = false;
         this.person = data;
+        this.personaOutput.emit(data);
       })
     }, 300);
   }
@@ -75,7 +77,7 @@ export class TableComponent implements OnInit {
   }
 
   remove(id: number) {
-    this.idToPass.emit(id);
+    this.idOutput.emit(id);
     this.estraiUsers();
   }
 

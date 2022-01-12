@@ -1,7 +1,7 @@
 <div class="mx-5 shadow rounded">
   <div class="row d-flex justify-content-center mt-5 px-4 py-4">
     <div class="col-lg-8 col-md-12 px-4 py-3">
-      <app-table (idToPass)="remove($event)"></app-table>
+      <app-table (idOutput)="remove($event)" (personaOutput)="updateTable($event)"></app-table>
     </div>
     <div class="col-lg-4 col-md-12 px-5 py-3" *ngIf="showAdmin">
       <app-controlRoom [lengthPersona]="lengthPersona"></app-controlRoom>
@@ -12,3 +12,7 @@
 <app-modal [headM]="headR">
   <div content *ngIf="bodyR" class="mt-3 mb-3">{{ bodyR }}</div>
 </app-modal>
+
+<div *ngIf="alertShow" class="alert-fixed">
+  <app-alert [headA]="headContact" [bodyA]="bodyContact" [dynamicClass]="classAlert" ></app-alert>
+</div>

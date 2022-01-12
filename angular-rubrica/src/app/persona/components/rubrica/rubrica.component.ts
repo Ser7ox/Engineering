@@ -6,6 +6,7 @@ import { Persona } from 'src/app/persona/model/persona';
 import { LocalStorageService } from 'src/app/_services/local-storage.service';
 import { Subscription } from 'rxjs';
 import { CookieService } from 'ngx-cookie';
+import { AlertComponent } from 'src/app/shared/alert/alert.component';
 
 
 @Component({
@@ -28,21 +29,22 @@ export class RubricaComponent implements OnInit {
   emailDisplay: string;
   headR:string;
   bodyR:string;
+  alertShow = false;
   lengthPersona: number;
-  @ViewChild(ModalComponent)child: ModalComponent;
+  headContact: string;
+  bodyContact: string;
+  classAlert: string;
+  @ViewChild(ModalComponent)modalChild: ModalComponent;
 
   constructor(private personaService: PersonaService, private cookieService: CookieService, private router: Router, private route: ActivatedRoute, private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
+
     this.roleSub = this.localStorageService.myData.subscribe(data => {
       if (data) {
         this.role = data.role;
         this.email = data.email;
       }
-    })
-
-    this.personaService.getUtenti().subscribe((data:Persona[]) => {
-      this.lengthPersona = data.length;
     })
 
     if (this.role === "admin") {
@@ -66,8 +68,19 @@ export class RubricaComponent implements OnInit {
     })
     this.headR = 'Profilo Eliminato!';
     this.bodyR = 'Il profilo è stato eliminato';
-    this.child.show();
-    this.ngOnInit();
-  } 
+    this.modalChild.show();
+    this.updateTable();
+  }
+
+  updateTable(person?: Persona[]) {
+    this.lengthPersona = person?.length;
+    console.log(this.lengthPersona);
+    if (this.lengthPersona === 0) {
+      this.headContact = 'Non ci sono più persone!';
+      this.bodyContact = 'Aggiungile ora';
+      this.classAlert = 'warning';
+      this.alertShow = true;
+    }
+  }
 
 }
