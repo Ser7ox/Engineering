@@ -9,11 +9,12 @@ import { Router } from '@angular/router';
 export class ControlRoomComponent implements OnInit {
 
   @Input() lengthPersona: number;
-  showLoad: boolean = true;
+  showLoad = true;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    
   }
 
   form(){this.router.navigate(['persona/form']);}

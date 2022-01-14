@@ -11,8 +11,6 @@ export class ModalComponent implements OnInit {
   @Input() headM: string;
   @ViewChild('modale') public modale:ModalDirective;
 
-  constructor() { }
-
   ngOnInit(): void {
   }
   

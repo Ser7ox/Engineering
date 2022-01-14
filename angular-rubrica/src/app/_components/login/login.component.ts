@@ -15,12 +15,12 @@ import { Subscription } from 'rxjs';
 export class LoginComponent implements OnInit {
 
   login: FormGroup;
-  isLoggedIn: boolean = false;
+  isLoggedIn = false;
   isLoginFailed: boolean;
   errorMessage = '';
   loading = false;
   error = '';
-  submitted: boolean = false;
+  submitted = false;
   roleSub: Subscription;
   email: string;
 

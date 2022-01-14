@@ -90,7 +90,7 @@ export class PersonaService {
     )
   }
 
-  httpError(error: { error: { message: string; }; status: any; message: any; }) {
+  httpError(error: { error: { message: string; }; status: string; message: string; }) {
     let msg = '';
     if(error.error instanceof ErrorEvent) {
       // client side error
@@ -103,6 +103,7 @@ export class PersonaService {
     return throwError(msg);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public setCookie(params:any) 
   {
     const d: Date = new Date();

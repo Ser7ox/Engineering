@@ -20,13 +20,11 @@ export class AccountService {
     return this.httpClient.get<AccountDto[]>(this.endPoint + '/account' + '?email=' + email + '&password=' + password)
     .pipe(map( (arrayBackEnd: AccountDto[]) => {
                 return this.Converter.AccountDaDtoaModel(arrayBackEnd[0]); 
-        }
-        
-      )
+        })
     )
   }
 
-  httpError(error: { error: { message: string; }; status: any; message: any; }) {
+  httpError(error: { error: { message: string; }; status: string; message: string; }) {
     let msg = '';
     if(error.error instanceof ErrorEvent) {
       // client side error

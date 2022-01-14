@@ -19,7 +19,7 @@ export class PostsService {
   getAllData(): Observable<Posts[]> {
     return this.httpClient.get<PostsDto[]>(this.endPoint + '/posts')
     .pipe(map( (rispostaBackEnd: PostsDto[]) => { 
-                  let data: Posts[] = []; 
+                  const data: Posts[] = []; 
                   rispostaBackEnd.forEach(element => {
                     data.push(this.Converter.convertToModel(element))
     })
@@ -31,7 +31,7 @@ export class PostsService {
   getDatafromPage(pageNumber: number): Observable<Posts[]> {
     return this.httpClient.get<PostsDto[]>(this.endPoint + '/posts?_page=' + pageNumber)
     .pipe(map( (rispostaBackEnd: PostsDto[]) => {
-        let data: Posts[] = []; 
+        const data: Posts[] = []; 
         rispostaBackEnd.forEach(element => {
           data.push(this.Converter.convertToModel(element))
         })

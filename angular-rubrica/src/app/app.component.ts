@@ -17,7 +17,7 @@ export class AppComponent {
   emailSub: Subscription;
   showAdmin: boolean;
   showNav: boolean;
-  loading: boolean = false;
+  loading = false;
 
   constructor (private localStorageService: LocalStorageService, private router: Router, private personaService: PersonaService, private cookieService: CookieService) {}
 

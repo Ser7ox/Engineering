@@ -32,6 +32,8 @@ export class RubricaComponent implements OnInit {
   headContact: string;
   bodyContact: string;
   classAlert: string;
+  showLoad = true;
+  person:Persona[] = [];
   @ViewChild(ModalComponent)modalChild: ModalComponent;
 
   constructor(private personaService: PersonaService, private cookieService: CookieService, private router: Router, private route: ActivatedRoute, private localStorageService: LocalStorageService) {}
@@ -53,12 +55,22 @@ export class RubricaComponent implements OnInit {
 
     //this.personaService.setCookie({name:'email',value:this.email, expireDays:1 });
     this.cookieService.put('email', this.email);
+
+    this.estraiUsers();
   }
 
   ngOnDestroy() {
     if ( this.roleSub ) {
       this.roleSub.unsubscribe();
     }
+  }
+
+  estraiUsers() {
+      this.personaService.getUtenti().subscribe((data: Persona[]) => {
+        this.person = data;
+        this.lengthPersona = data.length;
+        console.log(this.lengthPersona);
+      })
   }
 
   remove(id:number) {
@@ -69,15 +81,15 @@ export class RubricaComponent implements OnInit {
     this.updateTable();
   }
 
-  updateTable(person?: Persona[]) {
-    this.lengthPersona = person?.length;
-    console.log(this.lengthPersona);
+  updateTable() {
+    this.estraiUsers();
     if (this.lengthPersona === 0) {
       this.headContact = 'Non ci sono più persone!';
       this.bodyContact = 'Aggiungile ora';
       this.classAlert = 'warning';
       this.alertShow = true;
     }
+    
   }
 
 }

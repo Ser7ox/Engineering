@@ -8,7 +8,7 @@ import { ActivatedRoute, Data, Router } from '@angular/router';
 })
 export class PostsDetailsComponent implements OnInit {
   postsDetail: Data;
-  showLoad: boolean = true;
+  showLoad = true;
 
   constructor(private actRoute: ActivatedRoute, private router: Router) { }
 

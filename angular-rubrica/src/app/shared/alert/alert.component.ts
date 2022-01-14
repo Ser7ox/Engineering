@@ -10,10 +10,8 @@ export class AlertComponent implements OnInit {
   @Input() headA: string;
   @Input() bodyA: string;
   @Input() htmlToAdd: string;
-  @Input() dynamicClass: any;
+  @Input() dynamicClass: string;
   showAlert= false;
-
-  constructor() { }
 
   ngOnInit(): void { }
   

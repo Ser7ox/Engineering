@@ -1,4 +1,4 @@
-import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
@@ -13,7 +13,7 @@ export class InterceptorService implements HttpInterceptor {
 
   constructor(private LocalStorageService: LocalStorageService) { }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<string>, next: HttpHandler): Observable<HttpEvent<string>> {
     this.emailSub = this.LocalStorageService.myData.subscribe(data => {
       if (data) {
         this.email = data.email;

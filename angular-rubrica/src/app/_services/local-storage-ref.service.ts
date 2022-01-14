@@ -8,8 +8,6 @@ function getLocalStorage(): Storage {
 
 export class LocalStorageRefService {
 
-  constructor() { }
-
   get localStorage(): Storage {
     return getLocalStorage();
   }

@@ -1,10 +1,9 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { LocalStorageService } from 'src/app/_services/local-storage.service';
 import { Persona } from '../../model/persona';
-import { PersonaService } from '../../services/persona.service';
 
 @Component({
   selector: 'app-table',
@@ -15,7 +14,6 @@ export class TableComponent implements OnInit {
 
   showLoad = true;
   showAdmin: boolean;
-  person:Persona[] = [];
   filterName: string;
   headT:string;
   bodyT:string;
@@ -23,11 +21,11 @@ export class TableComponent implements OnInit {
   email: string;
   roleSub: Subscription;
   page = 0;
-  @ViewChild(ModalComponent)child: ModalComponent;
+  @ViewChild(ModalComponent)modalChild: ModalComponent;
   @Output() idOutput = new EventEmitter<number>();
-  @Output() personaOutput = new EventEmitter<Persona[]>();
+  @Input() person: Persona[];
 
-  constructor(private personaService: PersonaService, private localStorageService: LocalStorageService, private router: Router) { }
+  constructor(private localStorageService: LocalStorageService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -44,27 +42,12 @@ export class TableComponent implements OnInit {
       this.showAdmin = false;
     }
 
-    this.estraiUsers();
   }
 
-  estraiUsers() {
-    setTimeout(()=>{
-      this.personaService.getUtenti().subscribe((data: Persona[]) => {
-        this.showLoad = false;
-        this.person = data;
-        this.personaOutput.emit(data);
-      })
-    }, 300);
-  }
-
-  address(id: number) {
-    let address: string;
-    this.personaService.getUtente(id).subscribe((data: Persona) => {
-      address = data.indirizzo;
-      this.headT = 'Indirizzo di ' + data.nome + ' ' + data.cognome;
-      this.bodyT = address;
-      this.child.show();
-    })
+  address(persona: Persona) {
+      this.headT = 'Indirizzo di ' + persona.nome + ' ' + persona.cognome;
+      this.bodyT = persona.indirizzo;
+      this.modalChild.show();
   }
 
   form(id?: number) {
@@ -78,7 +61,6 @@ export class TableComponent implements OnInit {
 
   remove(id: number) {
     this.idOutput.emit(id);
-    this.estraiUsers();
   }
 
 }

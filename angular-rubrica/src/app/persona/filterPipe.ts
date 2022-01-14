@@ -6,7 +6,7 @@ import { Persona } from './model/persona';
 })
 
 export class filterNames implements PipeTransform {
-  transform(list: Persona[], filterText: string): any {
+  transform(list: Persona[], filterText: string): Persona[] {
     return list ? list.filter(item => item.nome.search(new RegExp(filterText, 'i')) > -1) : [];
   }
 }

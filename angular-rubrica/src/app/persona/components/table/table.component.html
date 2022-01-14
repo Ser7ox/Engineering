@@ -3,9 +3,9 @@
       <input type="search" class="form-control" placeholder="type here" [(ngModel)]="filterName" >
       <label class="label-size"><small><i class="fas fa-filter"></i> Filtra per nome</small></label>
     </div>
-    <div class="text-center px-5 py-5 mt-5" *ngIf="showLoad">
+    <!-- <div class="text-center px-5 py-5 mt-5" *ngIf="showLoad">
       <app-loading></app-loading>
-    </div>
+    </div> -->
     <table class="table" *ngIf="person.length > 0">
       <thead>
         <tr>
@@ -29,7 +29,7 @@
           </td>
           <td>{{ persona.telefono }}</td>
           <td>
-              <button class="btn" (click)="address(persona.id)">
+              <button class="btn" (click)="address(persona)">
                 <i class="fas fa-map-marker-alt"></i>
               </button>
               <button class="btn"  *ngIf="showAdmin" (click)="remove(persona.id)">
@@ -44,3 +44,6 @@
     </table>
   </div>
 
+  <app-modal [headM]="headT">
+    <div content *ngIf="bodyT" class="mt-3 mb-3">{{ bodyT }}</div>
+  </app-modal>
