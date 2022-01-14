@@ -1,0 +1,40 @@
+{
+  "persone": [
+    {
+      "id": 1,
+      "firstName": "Giacomo",
+      "lastName": "Tufelli",
+      "address": "Via Paciotti 10, 00177, Roma"
+    },
+    {
+      "id": 2,
+      "firstName": "Leonardo",
+      "lastName": "Marchetti",
+      "address": "Via Francesconi 230, 25486, Ascoli Piceno"
+    },
+    {
+      "id": 3,
+      "firstName": "Roberta",
+      "lastName": "Mancine",
+      "address": "Via Pordeto 81, 00157, Roma"
+    },
+    {
+      "id": 4,
+      "firstName": "Luca",
+      "lastName": "Ermandi",
+      "address": "Via Mandrione 98, 67942, Novara"
+    },
+    {
+      "id": 5,
+      "firstName": "Giacomo",
+      "lastName": "Ermandino",
+      "address": "Via Nasello 18, 24597, Milano"
+    },
+    {
+      "id": 6,
+      "firstName": "Marco",
+      "lastName": "Sparetti",
+      "address": "Via Masini 78, 24597, Nemi"
+    }
+  ]
+}
