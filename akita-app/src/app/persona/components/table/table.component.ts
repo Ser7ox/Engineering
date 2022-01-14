@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Persona } from '../../model/persona.model';
 import { PersonaService } from '../../service/persona.service';
 import { PersonaQuery } from '../../store/persona.query';
@@ -11,7 +12,7 @@ import { PersonaQuery } from '../../store/persona.query';
 export class TableComponent implements OnInit {
 
   persona: Persona[] = [];
-  constructor(private personaS: PersonaService, private personaQuery: PersonaQuery) {}
+  constructor(private personaS: PersonaService, private personaQuery: PersonaQuery, protected router: Router) {}
 
   ngOnInit(): void {
     this.personaS.getPersone();
@@ -26,6 +27,10 @@ export class TableComponent implements OnInit {
       return;
     }
     this.personaS.removePersona(persona.id);
+  }
+
+  user() {
+    this.router.navigate(['home/card']);
   }
 
 }

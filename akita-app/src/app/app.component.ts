@@ -23,4 +23,8 @@ export class AppComponent implements OnInit {
   home() {
     this.router.navigate(['home/table']);
   }
+
+  card() {
+    this.router.navigate(['home/card']);
+  }
 }
