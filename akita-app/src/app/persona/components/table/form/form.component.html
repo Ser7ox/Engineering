@@ -1,0 +1,51 @@
+<div class="px-3 shadow rounded">
+  <div class="row mt-5 px-4 py-4">
+    <div class="col-lg-7 p-4">
+      <form class="w-75" [formGroup]="profilo" (ngSubmit)="saveForm()">
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" formControlName="nome" placeholder="esempio">
+            <label for="floatingInput">Nome</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" formControlName="cognome" placeholder="esempio">
+            <label for="floatingInput">Cognome</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" formControlName="indirizzo" placeholder="esempio">
+            <label for="floatingInput">Indirizzo</label>
+          </div>
+
+          <div class="btn-group mt-3" role="group">
+            <button
+              type="button"
+              class="btn btn-secondary me-4"
+              (click)="back()"
+              routerLinkActive="active">
+              Back <i class="fas fa-backward"></i>
+            </button>
+            <button
+              type="submit"
+              class="btn btn-success">
+              Salva <i class="fas fa-save"></i>
+            </button>
+          </div>
+        
+      </form>
+    </div>
+    <div class="col-lg-5 p-4">
+      <div class="card mt-2 mb-3">
+        <div class="mx-auto white">
+            <i class="far fa-user fa-5x"></i>
+        </div>
+        <div class="card-body text-center">
+        <h4 class="card-title font-weight-bold">{{persona?.nome}} {{persona?.cognome}}</h4>
+        <p class="lead"><i class="fas fa-fingerprint"></i> {{persona?.id}} </p>
+        <hr>
+        <p><i class="fas fa-map-pin"></i> {{persona?.indirizzo}}</p>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>

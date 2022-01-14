@@ -33,13 +33,36 @@ export class PersonaService {
       ).subscribe(data => this.store.set(data));
   }
 
-  removePersona(id: number): void {
+  getPersona(id: number): void {
+    this.httpClient
+      .get<PersonaDto>(this.endPoint + '/persone/' + id)
+      .pipe(map( (personaDto: PersonaDto) => { 
+          return this.converter.DaDtoaModel(personaDto);
+          })
+      )
+      .subscribe(data => this.store.add(data));
+  }
+
+  removePersona(id: number | undefined): void {
     this.httpClient
     .delete<PersonaDto>(this.endPoint + '/persone/' + id, this.httpHeader)
     .pipe(map( (personaDto: PersonaDto) => { 
       return this.converter.DaDtoaModel(personaDto);
         })
       ).subscribe(() => this.store.remove(id));
+  }
+
+  updatePersona(persona: Persona): void {
+    let personaDto: PersonaDto;
+    personaDto = this.converter.DaModelaDto(persona);
+    this.httpClient
+      .put<PersonaDto>(this.endPoint + '/persone/' + personaDto.id, personaDto, this.httpHeader)
+      .pipe(
+        map( (personaDto) => {
+          return this.converter.DaDtoaModel(personaDto);
+          })
+      )
+      .subscribe(data => this.store.update(personaDto.id, { ...data }));
   }
   
 }

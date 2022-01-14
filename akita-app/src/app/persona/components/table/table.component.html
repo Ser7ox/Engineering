@@ -16,9 +16,7 @@
               <div class="card-body">
                 <h5 class="card-title">User card</h5>
                 <p class="card-text">Detail's of user card</p>
-                <a class="btn btn-primary" (click)="user()"
-                  ><i class="fas fa-sign-in-alt"></i
-                ></a>
+                <a class="btn btn-dark" (click)="user()"><i class="fas fa-hand-pointer"></i></a>
               </div>
             </div>
         </div>
@@ -46,7 +44,7 @@
                 <button class="btn" (click)="delete(item)">
                   <i class="fas fa-minus-circle"></i>
                 </button>
-                <button class="btn" (click)="delete(item)">
+                <button class="btn" (click)="update(item.id)">
                   <i class="fas fa-pen"></i>
                 </button>
               </td>

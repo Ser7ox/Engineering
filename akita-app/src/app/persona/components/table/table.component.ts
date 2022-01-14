@@ -33,4 +33,13 @@ export class TableComponent implements OnInit {
     this.router.navigate(['home/card']);
   }
 
+  update(id?: number) {
+    if (id) {
+      this.router.navigate(['home/form', id]);
+    }
+    else {
+      this.router.navigate(['home/form']);
+    }
+  }
+
 }
