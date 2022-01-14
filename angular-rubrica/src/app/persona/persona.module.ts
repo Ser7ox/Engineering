@@ -23,6 +23,6 @@ import { ControlRoomComponent } from './components/control-room/control-room.com
     FormsModule,
     CookieModule.forRoot()
   ],
-  exports: [RubricaComponent,FormComponent]
+  exports: [RubricaComponent,FormComponent, TableComponent, ControlRoomComponent]
 })
 export class PersonaModule { }

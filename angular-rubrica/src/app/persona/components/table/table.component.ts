@@ -13,7 +13,7 @@ import { PersonaService } from '../../services/persona.service';
 })
 export class TableComponent implements OnInit {
 
-  showLoad: boolean = true;
+  showLoad = true;
   showAdmin: boolean;
   person:Persona[] = [];
   filterName: string;

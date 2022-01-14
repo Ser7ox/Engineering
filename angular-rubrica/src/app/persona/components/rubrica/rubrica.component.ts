@@ -6,7 +6,6 @@ import { Persona } from 'src/app/persona/model/persona';
 import { LocalStorageService } from 'src/app/_services/local-storage.service';
 import { Subscription } from 'rxjs';
 import { CookieService } from 'ngx-cookie';
-import { AlertComponent } from 'src/app/shared/alert/alert.component';
 
 
 @Component({
@@ -20,7 +19,6 @@ export class RubricaComponent implements OnInit {
   allPerson:Persona[] = [];
   page = 0;
   showAdmin: boolean;
-  currentUser: any;
   role: string;
   email: string;
   roleSub: Subscription;
@@ -64,8 +62,7 @@ export class RubricaComponent implements OnInit {
   }
 
   remove(id:number) {
-    this.personaService.eliminaUtente(id).subscribe(() => {
-    })
+    this.personaService.eliminaUtente(id).subscribe();
     this.headR = 'Profilo Eliminato!';
     this.bodyR = 'Il profilo è stato eliminato';
     this.modalChild.show();

@@ -1,10 +1,9 @@
-import { Component,OnInit,SimpleChanges,ViewChild} from '@angular/core';
+import { Component,OnInit} from '@angular/core';
 import { Persona } from '../../model/persona';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { filtronumeri } from '../../validator/filtronumeri.validator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PersonaService } from 'src/app/persona/services/persona.service';
-import { ModalComponent } from '../../../shared/modal/modal.component';
 import { Observable, Subscription } from 'rxjs';
 import { CustomValidators } from 'src/app/persona/validator/custom-validators';
 import { map } from 'rxjs/operators';
@@ -21,7 +20,7 @@ export class FormComponent implements OnInit{
   sesso: Sesso;
   profilo: FormGroup;
   alertShow: boolean;
-  showLoad: boolean = false;
+  showLoad = false;
   idValue: number;
   page: number;
   titleValue: string;
@@ -33,7 +32,7 @@ export class FormComponent implements OnInit{
   pageSub: Subscription;
   modificaSub: Subscription;
   creaSub: Subscription; 
-  classDynamic: any;
+  classDynamic: string;
 
   
   constructor(private fb: FormBuilder, private _ActivatedRoute:ActivatedRoute, private personaservice: PersonaService, private router: Router) {}
@@ -77,7 +76,7 @@ export class FormComponent implements OnInit{
     
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     if (this.profilo) {
       this.setProfilo();
     }
@@ -138,7 +137,7 @@ export class FormComponent implements OnInit{
         this.htmlIcon = 'fas fa-check-circle';
         this.headF = 'Profilo salvato! ';
         this.bodyF = 'Ben fatto, l\'utente '+ this.utente.nome + ' ' + this.utente.cognome +' è stato salvato correttamente.'; }, 
-        error => 
+        () => 
         { this.personaservice.httpError;
         this.classDynamic = 'danger';
         this.alertShow = true;
@@ -161,7 +160,7 @@ export class FormComponent implements OnInit{
         this.htmlIcon = 'fas fa-check-circle';
         this.headF = 'Profilo creato! ';
         this.bodyF = 'Ben fatto, l\'utente '+ this.utente.nome + ' ' + this.utente.cognome +' è stato creato correttamente.'; }, 
-        error => 
+        () => 
         { this.personaservice.httpError;
         this.classDynamic = 'danger';
         this.alertShow = true;

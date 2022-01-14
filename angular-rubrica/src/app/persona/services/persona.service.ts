@@ -30,7 +30,7 @@ export class PersonaService {
   getUtenti(): Observable<Persona[]> {
     return this.httpClient.get<PersonaDto[]>(this.endPoint + '/users')
     .pipe(map( (rispostaBackEnd: PersonaDto[]) => { 
-                  let persona: Persona[] = []; 
+                  const persona: Persona[] = []; 
                   rispostaBackEnd.forEach(element => {
                     persona.push(this.Converter.DaDtoaModel(element))
     })
@@ -65,8 +65,7 @@ export class PersonaService {
   }
 
   modificaUtente(data: Persona): Observable<Persona> {
-    let personaDto: PersonaDto;
-    personaDto = this.Converter.DaModelaDto(data);
+    const personaDto = this.Converter.DaModelaDto(data);
     return this.httpClient.put<PersonaDto>(this.endPoint + '/users/' + personaDto.id, personaDto, this.httpHeader)
     .pipe(map( (personaDto) => {
       return this.Converter.DaDtoaModel(personaDto);
@@ -75,8 +74,7 @@ export class PersonaService {
   }
 
   creaUtente(persona: Persona): Observable<Persona> {
-    let personaDto: PersonaDto;
-    personaDto = this.Converter.DaModelaDto(persona);
+    const personaDto = this.Converter.DaModelaDto(persona);
     return this.httpClient.post<PersonaDto>(this.endPoint + '/users', personaDto, this.httpHeader)
     .pipe(map( (personaDto) => {
       return this.Converter.DaDtoaModel(personaDto); 
@@ -107,7 +105,7 @@ export class PersonaService {
 
   public setCookie(params:any) 
   {
-    let d: Date = new Date();
+    const d: Date = new Date();
     d.setTime(d.getTime() + (params.expireDays ? params.expireDays:1) * 24 * 60 * 60 * 1000); 
     document.cookie = 
         (params.name? params.name:'') + "=" + (params.value?params.value:'') + ";"
