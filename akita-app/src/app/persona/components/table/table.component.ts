@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Persona } from '../../model/persona.model';
 import { PersonaService } from '../../service/persona.service';
 import { PersonaQuery } from '../../store/persona.query';
