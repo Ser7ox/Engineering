@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,8 +14,11 @@ export class ControlRoomComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes.lengthPersona.currentValue);
+}
 
   form(){this.router.navigate(['persona/form']);}
 

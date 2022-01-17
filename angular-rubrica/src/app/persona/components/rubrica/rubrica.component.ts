@@ -69,16 +69,16 @@ export class RubricaComponent implements OnInit {
     this.personaService.getUtenti().subscribe((data: Persona[]) => {
       this.person = data;
       this.lengthPersona = data.length;
-      console.log(this.lengthPersona);
     })
   }
 
-  remove(id:number) {
-    this.personaService.eliminaUtente(id).subscribe();
-    this.headR = 'Profilo Eliminato!';
-    this.bodyR = 'Il profilo è stato eliminato';
-    this.modalChild.show();
-    this.updateTable();
+  removeUser(id:number) {
+    this.personaService.eliminaUtente(id).subscribe(() => {
+      this.headR = 'Profilo Eliminato!';
+      this.bodyR = 'Il profilo è stato eliminato';
+      this.modalChild.show();
+      this.updateTable();
+    }); 
   }
 
   updateTable() {
