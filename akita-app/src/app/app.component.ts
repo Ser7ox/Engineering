@@ -11,7 +11,9 @@ import { PersonaQuery } from './persona/store/persona.query';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  persona?: Observable<Persona[]>;
+
+  persona!: Observable<Persona[]>;
+
   constructor(private personaS: PersonaService, private personaQuery: PersonaQuery, protected router: Router) {}
 
   ngOnInit(): void {

@@ -15,8 +15,12 @@ export class FormComponent implements OnInit {
 
   idSub: Subscription = new Subscription;
   idValue!: number;
-  persona!: Persona | undefined;
+  persona?: Persona;
   profilo!: FormGroup;
+  id?: number;
+  nome?: string;
+  cognome?: string;
+  indirizzo?: string;
   
   constructor(protected router: Router, private fb: FormBuilder, private _ActivatedRoute:ActivatedRoute, private personaS: PersonaService, private personaQ: PersonaQuery) { }
 
@@ -37,8 +41,9 @@ export class FormComponent implements OnInit {
       this.personaQ.selectEntity(this.idValue).subscribe(data => {
         this.persona = data;
       })
-      this.setProfilo();
     }
+    this.setProfilo();
+
   }
 
   ngOnDestroy() {
@@ -61,10 +66,25 @@ export class FormComponent implements OnInit {
       this.profilo.get('cognome')?.value,
       this.profilo.get('indirizzo')?.value
     )
-    this.personaS.updatePersona(persona);
-    this.personaQ.selectEntity(id).subscribe(data => {
+
+    if (this.persona) {
+      const isConfirmed = confirm(`Aggiorna ${persona.nome} ` +  `${persona.cognome}`);
+      if (!isConfirmed) {
+        return;
+      }
+      this.personaS.updatePersona(persona);
+      this.personaQ.selectEntity(id).subscribe(data => {
       this.persona = data;
     })
+    } else {
+      const isConfirmed = confirm(`Aggiungi ${persona.nome} ` +  `${persona.cognome}`);
+      if (!isConfirmed) {
+        return;
+      }
+      this.profilo.reset();
+      this.personaS.addPersona(persona);
+    }
+    this.personaS.getPersone();
   }
 
   back() {

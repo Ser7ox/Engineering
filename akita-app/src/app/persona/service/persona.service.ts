@@ -61,8 +61,17 @@ export class PersonaService {
         map( (personaDto) => {
           return this.converter.DaDtoaModel(personaDto);
           })
-      )
-      .subscribe(data => this.store.update(personaDto.id, { ...data }));
+      ).subscribe(data => this.store.update(personaDto.id, { ...data }));
+  }
+
+  addPersona(persona: Persona): void {
+    const personaDto = this.converter.DaModelaDto(persona);
+    this.httpClient
+      .post<PersonaDto>(this.endPoint + '/persone', personaDto, this.httpHeader)
+      .pipe(map( (personaDto) => {
+        return this.converter.DaDtoaModel(personaDto); 
+        })
+      ).subscribe(data => this.store.add(data));
   }
   
 }
