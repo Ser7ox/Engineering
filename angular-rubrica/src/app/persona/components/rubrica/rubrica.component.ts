@@ -66,11 +66,11 @@ export class RubricaComponent implements OnInit {
   }
 
   estraiUsers() {
-      this.personaService.getUtenti().subscribe((data: Persona[]) => {
-        this.person = data;
-        this.lengthPersona = data.length;
-        console.log(this.lengthPersona);
-      })
+    this.personaService.getUtenti().subscribe((data: Persona[]) => {
+      this.person = data;
+      this.lengthPersona = data.length;
+      console.log(this.lengthPersona);
+    })
   }
 
   remove(id:number) {
