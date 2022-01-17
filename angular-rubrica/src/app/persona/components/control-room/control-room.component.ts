@@ -17,8 +17,8 @@ export class ControlRoomComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes.lengthPersona.currentValue);
-}
+    console.log("Counter of users: " + changes.lengthPersona.currentValue);
+  }
 
   form(){this.router.navigate(['persona/form']);}
 

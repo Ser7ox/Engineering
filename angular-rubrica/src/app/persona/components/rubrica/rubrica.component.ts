@@ -89,7 +89,6 @@ export class RubricaComponent implements OnInit {
       this.classAlert = 'warning';
       this.alertShow = true;
     }
-    
   }
 
 }
