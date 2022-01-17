@@ -4,13 +4,13 @@
       <app-table (idOutput)="removeUser($event)" [person]="person"></app-table>
     </div>
     <div class="col-lg-4 col-md-12 px-5 py-3" *ngIf="showAdmin">
-      <app-controlRoom [lengthPersona]="lengthPersona"></app-controlRoom>
+      <app-controlRoom [lunghezza]="lengthPersona"></app-controlRoom>
     </div>
   </div>
 </div>
 
 <div *ngIf="alertShow" class="alert-fixed">
-  <app-alert [headA]="headContact" [bodyA]="bodyContact" [dynamicClass]="classAlert" ></app-alert>
+  <app-alert [headA]="headContact" [bodyA]="bodyContact" [dynamicClass]="classAlert"></app-alert>
 </div>
 
 <app-modal [headM]="headR">
