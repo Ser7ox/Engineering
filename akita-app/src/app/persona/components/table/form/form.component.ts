@@ -17,19 +17,15 @@ export class FormComponent implements OnInit {
   idValue!: number;
   persona?: Persona;
   profilo!: FormGroup;
-  id?: number;
-  nome?: string;
-  cognome?: string;
-  indirizzo?: string;
   
   constructor(protected router: Router, private fb: FormBuilder, private _ActivatedRoute:ActivatedRoute, private personaS: PersonaService, private personaQ: PersonaQuery) { }
 
   ngOnInit(): void {
 
     this.profilo = this.fb.group({
-      nome: [undefined,[Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-      cognome: [undefined,[Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-      indirizzo: [undefined,[Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      nome: [undefined,[Validators.required]],
+      cognome: [undefined,[Validators.required]],
+      indirizzo: [undefined,[Validators.required]],
     },);
 
     this.idSub = this._ActivatedRoute.params.subscribe(prm => {

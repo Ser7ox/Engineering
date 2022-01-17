@@ -16,7 +16,7 @@
               <div class="card-body">
                 <h5 class="card-title">Create user</h5>
                 <p class="card-text">New user</p>
-                <a class="btn btn-dark" (click)="update()"><i class="fas fa-hand-pointer"></i></a>
+                <a class="btn btn-dark" (click)="form()"><i class="fas fa-hand-pointer"></i></a>
               </div>
             </div>
         </div>
@@ -54,8 +54,19 @@
                 <button class="btn" (click)="delete(item)">
                   <i class="fas fa-minus-circle"></i>
                 </button>
-                <button class="btn" (click)="update(item.id)">
+                <button class="btn" (click)="form(item.id)">
                   <i class="fas fa-pen"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <th></th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <button class="btn ms-3" (click)="form()">
+                  <i class="fas fa-plus-circle"></i>
                 </button>
               </td>
             </tr>
