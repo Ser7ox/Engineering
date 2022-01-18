@@ -8,8 +8,8 @@ const routes: Routes = [
   {path: 'table', component: TableComponent},
   {path: 'card', component: UserCardComponent},
   {path: 'form', children: [ 
-    { path: '', component: FormComponent},
-    { path: ':id', component: FormComponent}],}
+    { path: '', component: FormComponent, data :{ title:"Crea contatto"}},
+    { path: ':id', component: FormComponent, data :{ title:"Modifica contatto"}}],}
 ];
 
 @NgModule({

@@ -1,11 +1,13 @@
+import { ID } from "@datorama/akita";
+
 export class Persona {
 
-    private _id: number | undefined;
+    private _id: ID;
     private _nome: string;
 	private _cognome: string;
 	private _indirizzo: string;
 
-    constructor(id: number | undefined, nome: string, cognome: string, indirizzo: string ) {
+    constructor(id: ID, nome: string, cognome: string, indirizzo: string ) {
     this._id = id;
     this._nome = nome;
     this._cognome = cognome;
@@ -28,7 +30,7 @@ export class Persona {
 		return this._indirizzo;
 	}
 
-    public set id(id: number | undefined) {
+    public set id(id: ID) {
 		this._id = id;
 	}
 

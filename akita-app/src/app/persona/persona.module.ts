@@ -6,6 +6,7 @@ import { PersonaRoutingModule } from './persona-routing.module';
 import { UserCardComponent } from './components/table/user-card/user-card.component';
 import { FormComponent } from './components/table/form/form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
 
 
 
@@ -22,6 +23,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PersonaRoutingModule,
     FormsModule,
     ReactiveFormsModule
+  ],
+  providers: [
+    {
+      provide: NG_ENTITY_SERVICE_CONFIG,
+      useValue: {
+        baseUrl: 'http://localhost:3000/persona'
+      }
+    }
   ],
   exports: [TableComponent, UserCardComponent, FormComponent]
 })

@@ -7,7 +7,7 @@
               <div class="card-body">
                 <h5 class="card-title">User card</h5>
                 <p class="card-text">Detail's of user card</p>
-                <a class="btn btn-dark" (click)="user()"><i class="fas fa-hand-pointer"></i></a>
+                <a class="btn btn-dark" (click)="usersCard(persona)"><i class="fas fa-hand-pointer"></i></a>
               </div>
             </div>
         </div>
@@ -34,7 +34,8 @@
     </div>
     <div class="col-lg-8 col-md-12 px-4 py-3">
       <div class="table-responsive px-1 py-1">
-        <table class="table">
+        <span *ngIf="(loaders.get$ | async)">Loading...</span>
+        <table class="table" *ngIf="persona.length">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -56,17 +57,6 @@
                 </button>
                 <button class="btn" (click)="form(item.id)">
                   <i class="fas fa-pen"></i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th></th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <button class="btn ms-3" (click)="form()">
-                  <i class="fas fa-plus-circle"></i>
                 </button>
               </td>
             </tr>

@@ -13,10 +13,12 @@ import { PersonaQuery } from 'src/app/persona/store/persona.query';
 })
 export class FormComponent implements OnInit {
 
-  idSub: Subscription = new Subscription;
-  idValue!: number;
-  persona?: Persona;
-  profilo!: FormGroup;
+  idSub: Subscription;
+  titleSub: Subscription;
+  idValue: number;
+  persona: Persona;
+  profilo: FormGroup;
+  headerForm: string;
   
   constructor(protected router: Router, private fb: FormBuilder, private _ActivatedRoute:ActivatedRoute, private personaS: PersonaService, private personaQ: PersonaQuery) { }
 
@@ -32,13 +34,17 @@ export class FormComponent implements OnInit {
       this.idValue = +prm['id'];
     })
 
+    this.titleSub = this._ActivatedRoute.data.subscribe(data => {
+      this.headerForm=data['title'];
+    })
+
     if (this.idValue) {
       this.personaS.getPersona(this.idValue);
       this.personaQ.selectEntity(this.idValue).subscribe(data => {
         this.persona = data;
+        this.setProfilo();
       })
     }
-    this.setProfilo();
 
   }
 
@@ -46,32 +52,32 @@ export class FormComponent implements OnInit {
     if ( this.idSub ) {
       this.idSub.unsubscribe();
     }
+    if ( this.titleSub) {
+      this.titleSub.unsubscribe();
+    }
   }
 
   setProfilo() {
-    this.profilo.get('nome')?.setValue(this.persona?.nome);
-    this.profilo.get('cognome')?.setValue(this.persona?.cognome);
-    this.profilo.get('indirizzo')?.setValue(this.persona?.indirizzo);
+    this.profilo.get('nome').setValue(this.persona?.nome);
+    this.profilo.get('cognome').setValue(this.persona?.cognome);
+    this.profilo.get('indirizzo').setValue(this.persona?.indirizzo);
   }
 
   saveForm() {
     const id = this.persona ? this.persona.id : undefined;
     const persona = new Persona(
       id,
-      this.profilo.get('nome')?.value,
-      this.profilo.get('cognome')?.value,
-      this.profilo.get('indirizzo')?.value
+      this.profilo.get('nome').value,
+      this.profilo.get('cognome').value,
+      this.profilo.get('indirizzo').value
     )
-
     if (this.persona) {
       const isConfirmed = confirm(`Aggiorna ${persona.nome} ` +  `${persona.cognome}`);
       if (!isConfirmed) {
         return;
       }
-      this.personaS.updatePersona(persona);
-      this.personaQ.selectEntity(id).subscribe(data => {
-      this.persona = data;
-    })
+      this.persona = persona;
+      this.personaS.updatePersona(persona);  
     } else {
       const isConfirmed = confirm(`Aggiungi ${persona.nome} ` +  `${persona.cognome}`);
       if (!isConfirmed) {
@@ -80,7 +86,6 @@ export class FormComponent implements OnInit {
       this.profilo.reset();
       this.personaS.addPersona(persona);
     }
-    this.personaS.getPersone();
   }
 
   back() {

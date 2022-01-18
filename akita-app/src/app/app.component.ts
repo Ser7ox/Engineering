@@ -12,21 +12,23 @@ import { PersonaQuery } from './persona/store/persona.query';
 })
 export class AppComponent implements OnInit {
 
-  persona!: Observable<Persona[]>;
+  persona: Persona[];
 
   constructor(private personaS: PersonaService, private personaQuery: PersonaQuery, protected router: Router) {}
 
   ngOnInit(): void {
-    this.personaS.getPersone();
-    this.persona = this.personaQuery.selectAll();
+    this.personaQuery.selectAll().subscribe(data => {
+      this.persona = data;
+    })
   }
+  
   title = 'Akita state manager';
 
   home() {
     this.router.navigate(['home/table']);
   }
 
-  card() {
-    this.router.navigate(['home/card']);
+  usersCard() {
+    this.router.navigate(['home/card'],{ state: { usersCard: this.persona }});
   }
 }

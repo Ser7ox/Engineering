@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Persona } from 'src/app/persona/model/persona.model';
-import { PersonaQuery } from 'src/app/persona/store/persona.query';
 
 @Component({
   selector: 'app-user-card',
@@ -10,12 +10,11 @@ import { PersonaQuery } from 'src/app/persona/store/persona.query';
 export class UserCardComponent implements OnInit {
 
   persona: Persona[] = [];
-  constructor(private personaQuery: PersonaQuery) { }
-
-  ngOnInit(): void {
-    this.personaQuery.selectAll().subscribe(data => {
-      this.persona = data;
-    })
+  constructor(protected router: Router) {
+    const navigation = this.router.getCurrentNavigation().extras.state as {usersCard: Persona[]};
+    this.persona = navigation.usersCard;
   }
+
+  ngOnInit(): void {}
 
 }
