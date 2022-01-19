@@ -7,6 +7,7 @@ import { UserCardComponent } from './components/table/user-card/user-card.compon
 import { FormComponent } from './components/table/form/form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -22,7 +23,8 @@ import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
     HttpClientModule,
     PersonaRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [
     {

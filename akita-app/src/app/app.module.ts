@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { PersonaModule } from './persona/persona.module';
 import { environment } from '../environments/environment';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
     AppRoutingModule,
     HttpClientModule,
     PersonaModule,
-    environment.production ? [] : AkitaNgDevtools.forRoot()
+    environment.production ? [] : AkitaNgDevtools.forRoot(),
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

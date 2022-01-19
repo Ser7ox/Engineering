@@ -30,11 +30,14 @@
             </div>
           </div>
         </div>
+        <div class="text-danger mt-5" *ngIf="error | async as err"><h5>{{ err }}</h5></div>
       </div>
     </div>
     <div class="col-lg-8 col-md-12 px-4 py-3">
       <div class="table-responsive px-1 py-1">
-        <span *ngIf="(loaders.get$ | async)">Loading...</span>
+        <div class="text-center px-5 py-5 mt-5" *ngIf="isLoading | async as loading">
+          <loading></loading>
+        </div>
         <table class="table" *ngIf="persona.length">
           <thead>
             <tr>

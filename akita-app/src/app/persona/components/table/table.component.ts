@@ -14,16 +14,21 @@ import { PersonaQuery } from '../../store/persona.query';
 export class TableComponent implements OnInit {
 
   persona: Persona[] = [];
-  showLoad = true;
-  loaders = this.loader.loadersFor('persona');
+  isLoading = this.personaQuery.selectLoading();
+  showLoad: boolean;
+  error = this.personaQuery.selectError();
 
-  constructor(private personaS: PersonaService, private personaQuery: PersonaQuery, protected router: Router, private loader: NgEntityServiceLoader) {}
+  constructor(private personaS: PersonaService, private personaQuery: PersonaQuery, protected router: Router) {}
 
   ngOnInit(): void {
-    this.personaS.getPersone();
-    this.personaQuery.selectAll().subscribe(data => {
-      this.persona = data;
-    })
+    
+    setTimeout(() => {
+      this.personaS.getPersone();
+      this.personaQuery.selectAll().subscribe(data => {
+        this.persona = data;
+      })
+    },300);
+
   }
 
   delete(persona: Persona): void {

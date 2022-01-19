@@ -2,20 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PersonaConverter } from '../converter/personaConverter';
 import { Persona } from '../model/persona.model';
-import { map } from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
 import { PersonaDto } from '../dto/persona.dto';
-import { PersonaState, PersonaStore } from '../store/persona.store';
-import { ID, setLoading } from '@datorama/akita';
-import { NgEntityService } from '@datorama/akita-ng-entity-service';
+import { PersonaStore } from '../store/persona.store';
+import { ID } from '@datorama/akita';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PersonaService extends NgEntityService<PersonaState>{
+export class PersonaService {
   endPoint = 'http://localhost:3000';
   converter: PersonaConverter = new PersonaConverter();
+  error: string;
 
-  constructor(private httpClient: HttpClient,protected override store: PersonaStore) { super(store);}
+  constructor(private httpClient: HttpClient,protected store: PersonaStore) { }
 
   httpHeader = {
     headers: new HttpHeaders({
@@ -24,7 +24,6 @@ export class PersonaService extends NgEntityService<PersonaState>{
   }
 
   getPersone(): void {
-    this.store.setLoading(true);
     this.httpClient
       .get<PersonaDto[]>(this.endPoint + '/persone')
       .pipe(
@@ -33,8 +32,12 @@ export class PersonaService extends NgEntityService<PersonaState>{
           BackEnd.forEach(element => {
             persona.push(this.converter.DaDtoaModel(element))
           }); return persona;
+        }),catchError((err) => {
+          this.store.setError('Il metodo getPersone() non ha potuto connettersi al server.');
+          return throwError(err); 
         })
-      ).subscribe(data => this.store.set(data));
+      )
+      .subscribe(data => this.store.set(data))
   }
 
   getPersona(id: ID): void {
@@ -45,7 +48,9 @@ export class PersonaService extends NgEntityService<PersonaState>{
           return this.converter.DaDtoaModel(personaDto);
           })
       )
-      .subscribe(data => this.store.add(data));
+      .subscribe({next: data => this.store.add(data),
+                  error: () => (console.log(this.error = 'ERROR: Cannot connect to server.'))
+      })
   }
 
   removePersona(id: ID): void {
@@ -54,8 +59,12 @@ export class PersonaService extends NgEntityService<PersonaState>{
     .pipe(
       map( (personaDto: PersonaDto) => { 
       return this.converter.DaDtoaModel(personaDto);
+        }),catchError((err) => {
+          this.store.setError('Il metodo removePersona() non ha potuto connettersi al server.');
+          return err; 
         })
-      ).subscribe(() => this.store.remove(id));
+      )
+      .subscribe(() => this.store.remove(id))
   }
 
   updatePersona(persona: Persona): void {
@@ -63,11 +72,14 @@ export class PersonaService extends NgEntityService<PersonaState>{
     personaDto = this.converter.DaModelaDto(persona);
     this.httpClient
       .put<PersonaDto>(this.endPoint + '/persone/' + personaDto.id, personaDto, this.httpHeader)
-      .pipe(setLoading(this.store),
+      .pipe(
         map( (personaDto) => {
           return this.converter.DaDtoaModel(personaDto);
           })
-      ).subscribe(data => this.store.update(data));
+      )
+      .subscribe({next: data => this.store.update(data),
+                  error: () => (console.log(this.error = 'ERROR: Cannot connect to server.'))
+      })
   }
 
   addPersona(persona: Persona): void {
@@ -77,7 +89,10 @@ export class PersonaService extends NgEntityService<PersonaState>{
       .pipe(map( (personaDto) => {
         return this.converter.DaDtoaModel(personaDto); 
         })
-      ).subscribe(data => this.store.add(data));
+      )
+      .subscribe({next: data => this.store.add(data),
+                  error: () => (console.log(this.error = 'ERROR: Cannot connect to server.'))
+      })
   }
   
 }
