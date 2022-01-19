@@ -1,12 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { TableComponent } from './components/table/table.component';
 import { PersonaRoutingModule } from './persona-routing.module';
-import { UserCardComponent } from './components/table/user-card/user-card.component';
-import { FormComponent } from './components/table/form/form.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
+import { UserCardComponent } from './components/user-card/user-card.component';
+import { FormComponent } from './components/form/form.component';
 import { SharedModule } from '../shared/shared.module';
 
 
@@ -19,20 +15,8 @@ import { SharedModule } from '../shared/shared.module';
     FormComponent
   ],
   imports: [
-    CommonModule,
-    HttpClientModule,
     PersonaRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
     SharedModule
-  ],
-  providers: [
-    {
-      provide: NG_ENTITY_SERVICE_CONFIG,
-      useValue: {
-        baseUrl: 'http://localhost:3000/persona'
-      }
-    }
   ],
   exports: [TableComponent, UserCardComponent, FormComponent]
 })
