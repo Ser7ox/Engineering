@@ -34,7 +34,7 @@ export class PersonaService {
           }); return persona;
         }),catchError((err) => {
           this.store.setError('Il metodo getPersone() non ha potuto connettersi al server.');
-          return throwError(err); 
+          return throwError(() => {err}); 
         })
       )
       .subscribe(data => this.store.set(data))
@@ -49,7 +49,7 @@ export class PersonaService {
           })
       )
       .subscribe({next: data => this.store.add(data),
-                  error: () => (console.log(this.error = 'ERROR: Cannot connect to server.'))
+                  error: () => (this.store.setError('Non è stato possibile prendere i dati della persona.'))
       })
   }
 

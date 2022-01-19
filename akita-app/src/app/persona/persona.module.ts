@@ -16,7 +16,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     PersonaRoutingModule,
-    SharedModule
+    SharedModule,
   ],
   exports: [TableComponent, UserCardComponent, FormComponent]
 })

@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     })
   }
   
-  title = 'Akita state manager';
+  title = 'akita-app';
 
   home() {
     this.router.navigate(['home/table']);

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ID } from '@datorama/akita';
-import { NgEntityServiceLoader } from '@datorama/akita-ng-entity-service';
 import { Persona } from '../../model/persona.model';
 import { PersonaService } from '../../service/persona.service';
 import { PersonaQuery } from '../../store/persona.query';

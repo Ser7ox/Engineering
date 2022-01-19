@@ -11,8 +11,9 @@ export class UserCardComponent implements OnInit {
 
   persona: Persona[] = [];
   constructor(protected router: Router) {
-    const navigation = this.router.getCurrentNavigation().extras.state as {usersCard: Persona[]};
-    this.persona = navigation.usersCard;
+    const navigation = this.router.getCurrentNavigation()
+    const state = navigation?.extras.state as {usersCard: Persona[]};
+    this.persona = state?.usersCard;
   }
 
   ngOnInit(): void {}
