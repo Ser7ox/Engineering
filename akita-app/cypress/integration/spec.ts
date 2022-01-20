@@ -27,8 +27,9 @@ describe('My First Test', () => {
     cy.url().should('include', '/home/card')
   })
 
-  it('Type on input firstName lastName and email and click on Save', () => {
-    cy.visit('http://localhost:4200/home/form');
+  it('Go on create user from card, type on input firstName lastName and email and click on Save', () => {
+    cy.visit('/home/table');
+    cy.get('.cypress-btn').click();
     cy.get('.nome')
       .type('Flavio')
       .should( 'have.value', 'Flavio');
