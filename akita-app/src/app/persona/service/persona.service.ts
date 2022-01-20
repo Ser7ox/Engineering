@@ -33,7 +33,7 @@ export class PersonaService {
             persona.push(this.converter.DaDtoaModel(element))
           }); return persona;
         }),catchError((err) => {
-          this.store.setError('Il metodo getPersone() non ha potuto connettersi al server.');
+          this.store.setError('Non è stato possibile caricare i dati degli utenti.');
           return throwError(() => {err}); 
         })
       )
@@ -49,7 +49,7 @@ export class PersonaService {
           })
       )
       .subscribe({next: data => this.store.add(data),
-                  error: () => (this.store.setError('Non è stato possibile prendere i dati della persona.'))
+                  error: () => (this.store.setError('Non è stato possibile prendere i dati dell\'utente.'))
       })
   }
 
@@ -60,7 +60,7 @@ export class PersonaService {
       map( (personaDto: PersonaDto) => { 
       return this.converter.DaDtoaModel(personaDto);
         }),catchError((err) => {
-          this.store.setError('Il metodo removePersona() non ha potuto connettersi al server.');
+          this.store.setError('Non è stato possibile eliminare l\' utente selezionato.');
           return err; 
         })
       )
@@ -78,7 +78,7 @@ export class PersonaService {
           })
       )
       .subscribe({next: data => this.store.update(data),
-                  error: () => (console.log(this.error = 'ERROR: Cannot connect to server.'))
+                  error: () => (this.store.setError('Non è stato possibile aggiornare i dati dell\'utente.'))
       })
   }
 
@@ -91,7 +91,7 @@ export class PersonaService {
         })
       )
       .subscribe({next: data => this.store.add(data),
-                  error: () => (console.log(this.error = 'ERROR: Cannot connect to server.'))
+                  error: () => (this.store.setError('Non è stato possibile creare l\'utente richiesto.'))
       })
   }
   

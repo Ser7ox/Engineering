@@ -19,6 +19,7 @@ export class FormComponent implements OnInit {
   persona: Persona;
   profilo: FormGroup;
   headerForm: string;
+  error = this.personaQ.selectError();
   
   constructor(protected router: Router, private fb: FormBuilder, private _ActivatedRoute:ActivatedRoute, private personaS: PersonaService, private personaQ: PersonaQuery) { }
 

@@ -13,17 +13,17 @@ import { PersonaQuery } from '../../store/persona.query';
 export class TableComponent implements OnInit {
 
   persona: Persona[] = [];
-  isLoading = this.personaQuery.selectLoading();
+  isLoading = this.personaQ.selectLoading();
   showLoad: boolean;
-  error = this.personaQuery.selectError();
+  error = this.personaQ.selectError();
 
-  constructor(private personaS: PersonaService, private personaQuery: PersonaQuery, protected router: Router) {}
+  constructor(private personaS: PersonaService, private personaQ: PersonaQuery, protected router: Router) {}
 
   ngOnInit(): void {
     
     setTimeout(() => {
       this.personaS.getPersone();
-      this.personaQuery.selectAll().subscribe(data => {
+      this.personaQ.selectAll().subscribe(data => {
         this.persona = data;
       })
     },300);

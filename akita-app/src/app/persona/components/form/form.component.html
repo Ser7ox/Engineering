@@ -48,6 +48,8 @@
               Salva <i class="fas fa-save"></i>
             </button>
           </div>
+          <div class="text-danger mt-5" *ngIf="error | async as err"><h5>{{ err }}</h5></div>
+          
       </form>
     </div>
     <div class="col-lg-5 p-4" *ngIf="persona">
