@@ -1,5 +1,6 @@
 describe('My First Test', () => {
   const expectedTitle = 'akita-app'
+  
   it('Visits the initial project page', () => {
     cy.visit('/home/table')
     cy.contains('Actions')
@@ -15,7 +16,6 @@ describe('My First Test', () => {
 
   it('Should contain expected title', () => {
     cy.contains(expectedTitle);
-    //cy.get('[data-test=button]').click();
   })
 
   it('Visit user card', () => {
