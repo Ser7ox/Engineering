@@ -1,0 +1,17 @@
+<div class="px-3 shadow rounded">
+    <div class="row m-5 p-5">
+        <div class="col-md-6 col-lg-4 card border-secondary p-2" *ngFor="let user of users$ | async">
+            <div class="card mt-2 mb-3">
+                <div class="mx-auto white">
+                    <i class="far fa-user fa-5x"></i>
+                </div>
+                <div class="card-body text-center">
+                <h4 class="card-title font-weight-bold">{{user.nome}} {{user.cognome}}</h4>
+                <p class="lead"><i class="fas fa-fingerprint"></i> {{user.id}}</p>
+                <hr>
+                <p><i class="fas fa-map-pin"></i> {{user.indirizzo}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

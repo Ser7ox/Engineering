@@ -1,0 +1,68 @@
+<div class="px-3 shadow rounded">
+    <div class="row mt-5 px-4 py-4">
+      <div class="col-lg-4 col-md-12 px-4 py-3">
+        <div class="row">
+          <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">User card</h5>
+                  <p class="card-text">Detail's of user card</p>
+                  <a class="btn btn-dark" (click)="userCard()"><i class="fas fa-hand-pointer"></i></a>
+                </div>
+              </div>
+          </div>
+          <div class="col-sm-6 ">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Create user</h5>
+                  <p class="card-text">New user</p>
+                  <a class="btn btn-dark cypress-btn" (click)="form()"><i class="fas fa-hand-pointer"></i></a>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body text-center">
+                <h5 class="card-title">Utenti registrati</h5>
+                <h5 class="card-text">{{ (users$ | async)?.length }}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-12 px-4 py-3">
+        <div class="table-responsive px-1 py-1">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Cognome</th>
+                <th scope="col">Indirizzo</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users$ | async">
+                <th scope="row">{{ user.id }}</th>
+                <td>{{ user.nome }}</td>
+                <td>{{ user.cognome }}</td>
+                <td>{{ user.indirizzo }}</td>
+                <td>
+                  <button class="btn" (click)="delete(user.id)">
+                    <i class="fas fa-minus-circle"></i>
+                  </button>
+                  <button class="btn" (click)="form(user.id)">
+                    <i class="fas fa-pen"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
