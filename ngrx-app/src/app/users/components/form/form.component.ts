@@ -17,6 +17,7 @@ export class FormComponent implements OnInit {
 
   idSub: Subscription;
   titleSub: Subscription;
+  selectorSub: Subscription;
   profilo: FormGroup;
   headerForm: string;
   idValue: number;
@@ -40,7 +41,7 @@ export class FormComponent implements OnInit {
       this.headerForm=data['title'];
     })
     
-    this.store.pipe(select(selectUser)).subscribe( (data) => {
+    this.selectorSub = this.store.pipe(select(selectUser)).subscribe( (data) => {
       if (data.length > 0) {
         data.forEach(el => {
           if (el.id === this.idValue) {
@@ -60,6 +61,9 @@ export class FormComponent implements OnInit {
     }
     if ( this.titleSub) {
       this.titleSub.unsubscribe();
+    }
+    if ( this.selectorSub) {
+      this.selectorSub.unsubscribe();
     }
   }
 
