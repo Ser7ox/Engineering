@@ -16,14 +16,20 @@ export const userReducer = createReducer(
   on(actionUsers.getUsersSuccess,(state, { users }) => {
     return { ...state, users };
   }),
+  on(actionUsers.getUserSuccess,(state, {users}) => {
+    return {...state, users};
+  }),
+  on(actionUsers.updateUserSuccess,(state, {users}) => {
+    return {...state, users};
+  }),
+  on(actionUsers.newUserSuccess,(state, {users}) => {
+    return {...state, users};
+  }),
   on(actionUsers.deleteUser, (state, { id }) => {
     const updateUsers = state.users.filter(user => {
       return user.id !== id;
     })
-    return {
-      ...state,
-      users: updateUsers
-    }
+    return {...state, users: updateUsers}
   })
 )
 

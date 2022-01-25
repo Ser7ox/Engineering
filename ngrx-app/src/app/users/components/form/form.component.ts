@@ -39,16 +39,19 @@ export class FormComponent implements OnInit {
     this.titleSub = this.activatedRoute.data.subscribe(data => {
       this.headerForm=data['title'];
     })
-
-    this.store.pipe(select(selectUser)).forEach((element) => {
-      element.forEach( (user) => {
-        if (user.id === this.idValue) {
-          this.user = user;
-        }
-      }) 
+    
+    this.store.pipe(select(selectUser)).subscribe( (data) => {
+      if (data.length > 0) {
+        data.forEach(el => {
+          if (el.id === this.idValue) {
+            this.user = el;
+            this.setProfilo();
+          }
+        })
+      } else if (this.idValue) { // controllo per evitare che faccia un get not found quando si è nella view crea contatto
+        this.store.dispatch(userAction.getUser({id:this.idValue}));
+      }
     })
-
-    this.setProfilo();
   }
 
   ngOnDestroy() {
@@ -67,7 +70,23 @@ export class FormComponent implements OnInit {
   }
 
   saveForm() {
-
+    const id = this.user ? this.user.id : undefined;
+    const user = new User(
+      id,
+      this.profilo.get('nome').value,
+      this.profilo.get('cognome').value,
+      this.profilo.get('indirizzo').value
+    )
+    if (this.user) {
+      if (confirm(`Vuoi aggiornare l\'utente ${user.nome} ${user.cognome}?`)) {
+        this.store.dispatch(userAction.updateUser({user}));
+      }
+    } else {
+      if (confirm(`Vuoi creare l\'utente ${user.nome} ${user.cognome}?`)) {
+        this.profilo.reset();
+        this.store.dispatch(userAction.newUser({user}));
+      }
+    }
   }
 
   back() {

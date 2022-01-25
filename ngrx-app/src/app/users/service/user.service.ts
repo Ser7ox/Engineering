@@ -23,7 +23,8 @@ export class UserService {
   };
 
   getUsers(): Observable<User[]> {
-    return this.httpClient.get<UserDto[]>(this.endPoint + '/users').pipe(
+    return this.httpClient.get<UserDto[]>(this.endPoint + '/users')
+    .pipe(
       map((backEnd: UserDto[]) => {
         const user: User[] = [];
         backEnd.forEach((element) => {
@@ -32,6 +33,39 @@ export class UserService {
         return user;
       })
     );
+  }
+
+  getUser(id:number): Observable<User[]> {
+    return this.httpClient.get<UserDto>(this.endPoint + '/users/' + id)
+    .pipe(
+      map( (userDto: UserDto) => {
+        const userArray: User[] = [];
+        userArray.push(this.converter.DaDtoaModel(userDto));
+        return userArray;
+        }) 
+    )
+  }
+
+  updateUser(data: User): Observable<User[]> {
+    const userDto = this.converter.DaModelaDto(data);
+    return this.httpClient.put<UserDto>(this.endPoint + '/users/' + userDto.id, userDto, this.httpHeader)
+    .pipe(map( (userDto: UserDto) => {
+      const userArray: User[] = [];
+      userArray.push(this.converter.DaDtoaModel(userDto));
+      return userArray;
+      })
+    )
+  }
+
+  newUser(data: User): Observable<User[]> {
+    const userDto = this.converter.DaModelaDto(data);
+    return this.httpClient.post<UserDto>(this.endPoint + '/users', userDto, this.httpHeader)
+    .pipe(map( (userDto: UserDto) => {
+      const userArray: User[] = [];
+      userArray.push(this.converter.DaDtoaModel(userDto)); 
+      return userArray;
+      })
+    )
   }
 
   deleteUser(id: number): Observable<User> {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { UserService } from '../../service/user.service';
-import { deleteUser, deleteUserError, deleteUserSuccess, getUsers, getUsersError, getUsersSuccess } from '../action/user.actions';
+import { deleteUser, deleteUserError, deleteUserSuccess, getUser, getUserError, getUsers, getUsersError, getUsersSuccess, getUserSuccess, newUser, newUserError, newUserSuccess, updateUser, updateUserError, updateUserSuccess } from '../action/user.actions';
 
 @Injectable()
 export class UserEffects {
@@ -17,6 +17,33 @@ export class UserEffects {
       ))
     )
   );
+
+  getUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getUser),
+      switchMap((action) => this.userService.getUser(action.id).pipe(
+        map((users) => getUserSuccess({users})),
+        catchError(() => of(getUserError()))
+      ))
+  ))
+
+  updateUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(updateUser),
+      switchMap(({user}) => this.userService.updateUser(user).pipe(
+        map((users) => updateUserSuccess({users})),
+        catchError(() => of(updateUserError()))
+      ))
+  ))
+
+  newUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(newUser),
+      switchMap(({user}) => this.userService.newUser(user).pipe(
+        map((users) => newUserSuccess({users})),
+        catchError(() => of(newUserError()))
+      ))
+  ))
   
   deleteUser$ = createEffect(() =>
   this.actions$.pipe(
