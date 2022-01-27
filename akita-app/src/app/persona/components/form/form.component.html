@@ -24,7 +24,7 @@
           </div>
 
           <div class="form-floating mb-3">
-            <input type="email" class="form-control email" formControlName="indirizzo" placeholder="esempio">
+            <input type="email" class="form-control address" formControlName="indirizzo" placeholder="esempio">
             <label for="floatingInput">Indirizzo</label>
             <div *ngIf="profilo.controls['indirizzo'].invalid && (profilo.controls['indirizzo'].dirty || profilo.controls['indirizzo'].touched)">
               <small class="text-danger" *ngIf="profilo.controls['indirizzo'].hasError('required')">

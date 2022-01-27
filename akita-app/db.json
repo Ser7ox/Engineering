@@ -14,9 +14,9 @@
     },
     {
       "id": 3,
-      "firstName": "Roberta",
-      "lastName": "Mancini",
-      "address": "Via Pordeto 81, 00157, Roma"
+      "firstName": "Giordano",
+      "lastName": "Ferrara",
+      "address": "Via Marelli 258, 24597, Firenze"
     },
     {
       "id": 4,
@@ -41,30 +41,6 @@
       "firstName": "Daniele",
       "lastName": "Federici",
       "address": "Via dei Gordiani,255 00177 Roma"
-    },
-    {
-      "firstName": "Flavio",
-      "lastName": "Fantasia",
-      "address": "email@email.it",
-      "id": 8
-    },
-    {
-      "firstName": "Flavio",
-      "lastName": "Fantasia",
-      "address": "email@email.it",
-      "id": 9
-    },
-    {
-      "firstName": "Flavio",
-      "lastName": "Fantasia",
-      "address": "email@email.it",
-      "id": 10
-    },
-    {
-      "firstName": "Flavio",
-      "lastName": "Fantasia",
-      "address": "email@email.it",
-      "id": 11
     }
   ]
 }
