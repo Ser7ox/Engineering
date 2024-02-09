@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { Subscription } from 'rxjs';
-import { PersonaService } from './persona/services/persona.service';
 import { LocalStorageService } from './_services/local-storage.service';
+import { PersonaService } from './persona/services/persona.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { LocalStorageService } from './_services/local-storage.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular';
+  title = 'Rubrica contatti';
   mostraEmail: string;
   role: string;
   emailSub: Subscription;
@@ -56,7 +56,7 @@ export class AppComponent {
   lazy() {
     this.router.navigate(['lazy']);
   }
-  
+
   logout() {
     this.loading = true;
     setTimeout( () => {

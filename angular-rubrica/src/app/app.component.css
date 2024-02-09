@@ -1,28 +1,28 @@
-.noHover{
-    pointer-events: none;
-    color:aliceblue!important;
+.noHover {
+  pointer-events: none;
+  color: aliceblue !important;
 }
 
 .atext {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 a:hover {
-    cursor:context-menu;
+  cursor: pointer;
 }
 
 .navbar {
-    background-color:#1A2238!important;
+  background-color: #1a2238 !important;
 }
 
 .nav-link {
-    color:aliceblue!important;
+  color: aliceblue !important;
 }
 
 .navbar-brand {
-    color:aliceblue!important;
+  color: aliceblue !important;
 }
 
 .nav-link:hover {
-    color:#FF6A3D!important;
+  color: #ff6a3d !important;
 }

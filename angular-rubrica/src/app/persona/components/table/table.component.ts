@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { LocalStorageService } from 'src/app/_services/local-storage.service';
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { Persona } from '../../model/persona';
 
 @Component({
@@ -14,7 +14,7 @@ export class TableComponent implements OnInit {
 
   showLoad = true;
   showAdmin: boolean;
-  filterName: string;
+  filtraCognome: string;
   headT:string;
   bodyT:string;
   role: string;

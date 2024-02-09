@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie';
+import { Subscription } from 'rxjs';
+import { LocalStorageService } from 'src/app/_services/local-storage.service';
+import { Persona } from 'src/app/persona/model/persona';
 import { PersonaService } from 'src/app/persona/services/persona.service';
 import { ModalComponent } from '../../../shared/modal/modal.component';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Persona } from 'src/app/persona/model/persona';
-import { LocalStorageService } from 'src/app/_services/local-storage.service';
-import { Subscription } from 'rxjs';
-import { CookieService } from 'ngx-cookie';
 
 
 @Component({
@@ -32,7 +32,7 @@ export class RubricaComponent implements OnInit {
   headContact: string;
   bodyContact: string;
   classAlert: string;
-  showLoad = true;
+  showLoad = false;
   person:Persona[] = [];
   @ViewChild(ModalComponent)modalChild: ModalComponent;
 
@@ -66,10 +66,14 @@ export class RubricaComponent implements OnInit {
   }
 
   estraiUsers() {
-    this.personaService.getUtenti().subscribe((data: Persona[]) => {
-      this.person = data;
-      this.lengthPersona = data.length;
-    })
+    this.showLoad = true;
+    // setTimeout( () => {
+      this.personaService.getUtenti().subscribe((data: Persona[]) => {
+        this.person = data;
+        this.lengthPersona = data.length;
+        this.showLoad = false;
+      })
+    // },600);
   }
 
   removeUser(id:number) {
@@ -78,7 +82,7 @@ export class RubricaComponent implements OnInit {
       this.bodyR = 'Il profilo è stato eliminato';
       this.modalChild.show();
       this.updateTable();
-    }); 
+    });
   }
 
   updateTable() {

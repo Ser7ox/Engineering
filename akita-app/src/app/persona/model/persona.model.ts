@@ -2,8 +2,8 @@ import { ID } from "@datorama/akita";
 
 export class Persona {
 
-    private _id: ID;
-    private _nome: string;
+  private _id: ID;
+  private _nome: string;
 	private _cognome: string;
 	private _indirizzo: string;
 
@@ -13,7 +13,7 @@ export class Persona {
     this._cognome = cognome;
     this._indirizzo = indirizzo;
     }
-    
+
 	public get id() {
 		return this._id;
 	}

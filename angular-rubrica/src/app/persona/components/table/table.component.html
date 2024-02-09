@@ -1,7 +1,7 @@
 <div class="table-responsive px-1 py-1">
     <div class="form-floating mb-3 w-50">
-      <input type="search" class="form-control" placeholder="type here" [(ngModel)]="filterName" >
-      <label class="label-size"><small><i class="fas fa-filter"></i> Filtra per nome</small></label>
+      <input type="search" class="form-control" placeholder="type here" [(ngModel)]="filtraCognome" >
+      <label class="label-size"><small><i class="fas fa-filter"></i> Filtra per cognome</small></label>
     </div>
     <!-- <div class="text-center px-5 py-5 mt-5" *ngIf="showLoad">
       <app-loading></app-loading>
@@ -9,18 +9,16 @@
     <table class="table" *ngIf="person.length > 0">
       <thead>
         <tr>
-          <th scope="col">#</th>
           <th scope="col">Nome</th>
           <th scope="col">Cognome</th>
           <th scope="col">Data di nascita</th>
           <th scope="col">Sesso</th>
           <th scope="col">Telefono</th>
-          <th scope="col">Azioni user</th>
+          <th scope="col"><span class='sr-only'>azioni</span></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let persona of person | filterNames: filterName;">
-          <th scope="row">{{ persona.id }}</th>
+        <tr *ngFor="let persona of person | filtraCognome: filtraCognome;">
           <td>{{ persona.nome }}</td>
           <td>{{ persona.cognome }}</td>
           <td> {{ persona.dataNascita | date: 'dd/MM/yyyy' }} </td>
@@ -35,7 +33,7 @@
               <button class="btn"  *ngIf="showAdmin" (click)="remove(persona.id)">
                 <i class="fas fa-trash-alt"></i>
               </button>
-              <button class="btn" (click)="form(persona.id)" *ngIf="showAdmin"> 
+              <button class="btn" (click)="form(persona.id)" *ngIf="showAdmin">
                 <i class="fas fa-edit"></i>
               </button>
           </td>

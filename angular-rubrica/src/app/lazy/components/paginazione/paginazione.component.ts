@@ -18,9 +18,7 @@ export class PaginazioneComponent implements OnInit {
   constructor(private postsService: PostsService, private router: Router) { }
 
   ngOnInit(): void {
-  
     this.estraiPosts();
-    
   }
 
   setPage(parameter: boolean) {
@@ -30,14 +28,14 @@ export class PaginazioneComponent implements OnInit {
       this.page--;
     }
       this.estraiPosts();
-    
+
   }
 
   estraiPosts() {
     this.postsService.getDatafromPage(this.page).subscribe((data: Posts[]) => {
       this.postsData = data;
       this.showLoad = false;
-    }) 
+    })
   }
 
   details(id: number) {

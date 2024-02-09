@@ -10,14 +10,14 @@
             <a class="nav-link" (click)="home()">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="personaNew()" *ngIf="showAdmin">New contact</a>
+            <a class="nav-link" (click)="personaNew()" *ngIf="showAdmin">Nuovo utente</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" (click)="lazy()">Paginazione</a>
           </li>
         </ul>
       </div>
-      <a class="me-4 noHover" >Welcome on board, {{ mostraEmail }}</a>
+      <a class="me-4 noHover" >Benvenuto a bordo, {{ mostraEmail }}</a>
       <a class="atext text-danger" type="submit" (click)="logout()">
         Log out <app-loading *ngIf="loading"></app-loading>
       </a>

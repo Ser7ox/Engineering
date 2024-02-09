@@ -1,13 +1,13 @@
-import { Component,OnInit} from '@angular/core';
-import { Persona } from '../../model/persona';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { filtronumeri } from '../../validator/filtronumeri.validator';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PersonaService } from 'src/app/persona/services/persona.service';
 import { Observable, Subscription } from 'rxjs';
-import { CustomValidators } from 'src/app/persona/validator/custom-validators';
 import { map } from 'rxjs/operators';
 import { Sesso } from 'src/app/persona/model/sesso';
+import { PersonaService } from 'src/app/persona/services/persona.service';
+import { CustomValidators } from 'src/app/persona/validator/custom-validators';
+import { Persona } from '../../model/persona';
+import { filtronumeri } from '../../validator/filtronumeri.validator';
 
 @Component({
   selector: 'app-form',
@@ -24,21 +24,21 @@ export class FormComponent implements OnInit{
   idValue: number;
   page: number;
   titleValue: string;
-  headF: string; 
+  headF: string;
   bodyF: string;
   htmlIcon: string;
-  idSub: Subscription; 
-  titleSub: Subscription; 
+  idSub: Subscription;
+  titleSub: Subscription;
   pageSub: Subscription;
   modificaSub: Subscription;
-  creaSub: Subscription; 
+  creaSub: Subscription;
   classDynamic: string;
 
-  
+
   constructor(private fb: FormBuilder, private _ActivatedRoute:ActivatedRoute, private personaservice: PersonaService, private router: Router) {}
 
   ngOnInit(): void {
-    
+
     this.profilo = this.fb.group({
       nome: [undefined,[Validators.required, Validators.minLength(3), Validators.maxLength(20), filtronumeri]],
       cognome: [undefined,[Validators.required, Validators.minLength(3), Validators.maxLength(20), filtronumeri]],
@@ -58,8 +58,8 @@ export class FormComponent implements OnInit{
       this.page = +param['page'];
     });
 
+    this.showLoad = true;
     if ( this.idValue ) {
-      this.showLoad=true;
       setTimeout( () => {
         this.personaservice.getUtente(this.idValue).subscribe((data: Persona) => {
         this.utente = data;
@@ -68,12 +68,11 @@ export class FormComponent implements OnInit{
         })
       },300);
     } else {
-      this.showLoad = true;
       setTimeout( () => { this.showLoad = false; },300);
     }
 
     this.estraiSesso();
-    
+
   }
 
   ngOnChanges() {
@@ -105,11 +104,11 @@ export class FormComponent implements OnInit{
       this.sesso = data;
     })
   }
-  
+
   setProfilo() {
     this.profilo.get('nome').setValue(this.utente?.nome);
     this.profilo.get('cognome').setValue(this.utente?.cognome);
-    this.profilo.controls['datanascita'].setValue(this.utente?.dataNascita);    
+    this.profilo.controls['datanascita'].setValue(this.utente?.dataNascita);
     this.profilo.get('sesso').setValue(this.utente?.sesso);
     this.profilo.controls['telefono'].clearAsyncValidators();
     this.profilo.get('telefono').setValue(this.utente?.telefono);
@@ -130,14 +129,14 @@ export class FormComponent implements OnInit{
     );
     if ( this.utente ) {
       this.modificaSub = this.personaservice.modificaUtente(persona).subscribe(
-        (data: Persona) => 
+        (data: Persona) =>
         { this.utente = data;
         this.classDynamic = 'primary';
         this.alertShow = true;
         this.htmlIcon = 'fas fa-check-circle';
         this.headF = 'Profilo salvato! ';
-        this.bodyF = 'Ben fatto, l\'utente '+ this.utente.nome + ' ' + this.utente.cognome +' è stato salvato correttamente.'; }, 
-        () => 
+        this.bodyF = 'Ben fatto, l\'utente '+ this.utente.nome + ' ' + this.utente.cognome +' è stato salvato correttamente.'; },
+        () =>
         { this.personaservice.httpError;
         this.classDynamic = 'danger';
         this.alertShow = true;
@@ -153,14 +152,14 @@ export class FormComponent implements OnInit{
     else {
       this.profilo.reset();
       this.creaSub = this.personaservice.creaUtente(persona).subscribe(
-        (data: Persona) => 
+        (data: Persona) =>
         { this.utente = data;
         this.alertShow = true;
-        this.classDynamic = 'success'; 
+        this.classDynamic = 'success';
         this.htmlIcon = 'fas fa-check-circle';
         this.headF = 'Profilo creato! ';
-        this.bodyF = 'Ben fatto, l\'utente '+ this.utente.nome + ' ' + this.utente.cognome +' è stato creato correttamente.'; }, 
-        () => 
+        this.bodyF = 'Ben fatto, l\'utente '+ this.utente.nome + ' ' + this.utente.cognome +' è stato creato correttamente.'; },
+        () =>
         { this.personaservice.httpError;
         this.classDynamic = 'danger';
         this.alertShow = true;
@@ -173,10 +172,10 @@ export class FormComponent implements OnInit{
         this.alertShow = false;
       }, 4000);
     }
-    
+
   }
 
-  phoneValidator(telefono?: number): AsyncValidatorFn { 
+  phoneValidator(telefono?: number): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       if ( !control || !control.value || control.value === telefono ) {
         return new Observable<null>();
@@ -185,7 +184,7 @@ export class FormComponent implements OnInit{
         map((exists: boolean) => {
           return exists ? { phoneCheck: true } : null;
         })
-        
+
       )
     }
   }

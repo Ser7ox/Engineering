@@ -5,9 +5,9 @@ import { RubricaComponent } from './components/rubrica/rubrica.component';
 
 const routes: Routes = [
   {path: '', component: RubricaComponent},
-  {path: 'form', children: [ 
-    { path: '', component: FormComponent, data :{ title:"Crea contatto"}},
-    { path: ':id', component: FormComponent, data :{ title:"Modifica contatto"}}],}
+  {path: 'form', children: [
+    { path: '', component: FormComponent, data :{ title:"Crea utente"}},
+    { path: ':id', component: FormComponent, data :{ title:"Modifica utente"}}],}
 ];
 
 @NgModule({

@@ -1,7 +1,0 @@
-<div *ngIf="messageService.messages.length">
-    <h2>Messaggi</h2>
-    <button class="clear"
-            (click)="messageService.clear()"><span class="badge"> </span> Pulisci la cache</button>
-    <div *ngFor='let message of messageService.messages'> {{message}} </div>
-
-</div>

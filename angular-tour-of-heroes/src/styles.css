@@ -1,7 +1,0 @@
-h1 { color: orange; font-family: Verdana; font-size:250%; }
-h2, h3 { color: #444; font-family: Verdana; font-weight: lighter; }
-body { margin: 2em; }
-body, input[type="text"], button { color: #333; font-family: Verdana; }
-
-input:hover { background-color: lightgoldenrodyellow; }
-* { font-family: Verdana; }

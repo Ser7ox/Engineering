@@ -1,5 +1,8 @@
 <div class="mx-5 shadow rounded">
-  <div class="row d-flex justify-content-center mt-5 px-4 py-4">
+  <div class="text-center px-5 py-5 mt-5" *ngIf="showLoad">
+    <app-loading ></app-loading>
+  </div>
+  <div class="row d-flex justify-content-center mt-5 px-4 py-4" *ngIf="!showLoad">
     <div class="col-lg-8 col-md-12 px-4 py-3">
       <app-table (idOutput)="removeUser($event)" [person]="person"></app-table>
     </div>

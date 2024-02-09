@@ -9,7 +9,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/effect/user.effects';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { FormComponent } from './components/form/form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     UsersRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     StoreModule.forFeature(userFeatureKey, reducer),
     EffectsModule.forFeature([UserEffects])
   ],
